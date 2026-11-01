@@ -11,11 +11,38 @@ namespace VampWolfs.EditorMenu
     /// else is built at runtime), adds it to Build Settings and links the character art
     /// (FBX + textures) found in Assets/VampWolfs/Art/Characters/&lt;Name&gt;/.
     /// </summary>
+    [InitializeOnLoad]
     public static class VampWolfsMenu
     {
         const string SceneFolder = "Assets/VampWolfs/Scenes";
         const string ScenePath = SceneFolder + "/FarmPrototype.unity";
         const string CharactersFolder = "Assets/VampWolfs/Art/Characters";
+
+        // Runs when the editor loads: re-link shaders and character art every time Play is pressed,
+        // so the plain Play button works without using the menu first.
+        static VampWolfsMenu()
+        {
+            EditorApplication.playModeStateChanged -= OnPlayModeChanged;
+            EditorApplication.playModeStateChanged += OnPlayModeChanged;
+        }
+
+        static void OnPlayModeChanged(PlayModeStateChange change)
+        {
+            if (change != PlayModeStateChange.ExitingEditMode)
+            {
+                return;
+            }
+
+            GameBootstrap bootstrap = Object.FindFirstObjectByType<GameBootstrap>();
+            if (bootstrap == null)
+            {
+                return;
+            }
+
+            Configure(bootstrap);
+            EditorUtility.SetDirty(bootstrap);
+            EditorSceneManager.MarkSceneDirty(bootstrap.gameObject.scene);
+        }
 
         [MenuItem("VampWolfs/Create Farm Prototype Scene", false, 0)]
         public static void CreateScene()
