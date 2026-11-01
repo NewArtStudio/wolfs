@@ -56,6 +56,9 @@ namespace VampWolfs.Vfx
         float Size { get { return kind == Kind.Creature ? 0.55f : CharacterFactory.SizeMultiplier; } }
         Vector3 Chest { get { return transform.position + Vector3.up * 1.3f * Size; } }
 
+        /// <summary>Altura acima da cabeça (estrelas do atordoamento): a fera é bem mais alta que o vampiro.</summary>
+        float HeadTop { get { return (kind == Kind.Beast ? 3.35f : 2.45f) * Size; } }
+
         Color BloodColor { get { return kind == Kind.Vampire ? new Color(1.1f, 0.02f, 0.08f) : new Color(1.6f, 0.08f, 0.06f); } }
 
         void OnDamaged(float amount, CombatUnit source)
@@ -96,10 +99,11 @@ namespace VampWolfs.Vfx
             // estados
             if (status != null)
             {
-                if (status.IsStunned) SkillFx.StunTick(transform.position + Vector3.up * 2.45f * Size);
-                if (status.IsInvulnerable && Random.value < 0.6f)
+                if (status.IsStunned) SkillFx.StunTick(transform.position + Vector3.up * HeadTop);
+                // névoa só na invulnerabilidade do dash (a do fim de partida dura até voltar à Base)
+                if (status.IsInvulnerable && unit.IsInForcedMove && SkillFx.Every(36f))
                     v.Smoke.Emit(Chest + Random.insideUnitSphere * 0.5f * Size, Random.insideUnitSphere * 0.4f, Random.Range(0.6f, 1f) * Size, 0.6f, SkillFx.MistSmoke, -1f, 30f);
-                if (status.IsHasted && unit.Velocity.sqrMagnitude > 1f && Random.value < 0.5f)
+                if (status.IsHasted && unit.Velocity.sqrMagnitude > 1f && SkillFx.Every(30f))
                     v.Sparks.Emit(transform.position + Vector3.up * Random.Range(0.2f, 1.6f) * Size, -unit.Velocity * 0.3f, 0.07f, 0.3f, SkillFx.Moon);
                 UpdateShield(v);
             }

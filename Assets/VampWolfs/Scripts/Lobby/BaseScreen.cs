@@ -65,6 +65,7 @@ namespace VampWolfs.Lobby
         void BuildSide()
         {
             var right = UiKit.El("bs-right", Root);
+            right.pickingMode = PickingMode.Ignore;   // o vazio da coluna deixa arrastar (girar o vampiro)
             var side = new FrameBox("bs-side"); right.Add(side);
             var h = UiKit.El("bs-sec-h", side);
             UiKit.El("bs-sec-bar", h);

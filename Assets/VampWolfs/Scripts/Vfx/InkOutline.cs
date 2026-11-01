@@ -17,9 +17,14 @@ namespace VampWolfs.Vfx
         public static readonly Color EnemyInk = new Color(0.55f, 0.03f, 0.04f, 0.95f);
 
         static Shader shader;
+        static readonly System.Collections.Generic.Dictionary<Color, Material> mats = new System.Collections.Generic.Dictionary<Color, Material>();
+        static readonly System.Collections.Generic.Dictionary<Mesh, Mesh> smooth = new System.Collections.Generic.Dictionary<Mesh, Mesh>();
 
+        /// <summary>Um material por cor (compartilhado entre partidas).</summary>
         static Material NewMaterial(Color color, float widthPx)
         {
+            Material cached;
+            if (mats.TryGetValue(color, out cached) && cached != null) return cached;
             if (shader == null)
             {
                 shader = Resources.Load<Shader>("VFX/Shaders/VfxOutline");
@@ -29,6 +34,28 @@ namespace VampWolfs.Vfx
             var m = new Material(shader) { name = "Contorno de tinta" };
             m.SetColor("_Color", color);
             m.SetFloat("_Width", widthPx);
+            m.renderQueue = 2490;   // depois dos opacos e ANTES da fumaça/partículas (a névoa cobre o contorno)
+            mats[color] = m;
+            return m;
+        }
+
+        /// <summary>
+        /// Cópia da malha com as normais "suavizadas" (média por posição): cubos têm normais quebradas nas quinas e
+        /// a casca invertida abriria buracos ali. Malhas sem leitura (FBX sem Read/Write) ficam como estão.
+        /// </summary>
+        static Mesh Smoothed(Mesh src)
+        {
+            Mesh m;
+            if (smooth.TryGetValue(src, out m) && m != null) return m;
+            if (!src.isReadable) { smooth[src] = src; return src; }
+            m = Object.Instantiate(src); m.name = src.name + " (contorno)";
+            var v = m.vertices; var n = m.normals;
+            if (n == null || n.Length != v.Length) { smooth[src] = src; return src; }
+            var sum = new System.Collections.Generic.Dictionary<Vector3, Vector3>();
+            for (int i = 0; i < v.Length; i++) { Vector3 acc; sum.TryGetValue(v[i], out acc); sum[v[i]] = acc + n[i]; }
+            for (int i = 0; i < v.Length; i++) n[i] = sum[v[i]].normalized;
+            m.normals = n;
+            smooth[src] = m;
             return m;
         }
 
@@ -61,7 +88,7 @@ namespace VampWolfs.Vfx
         {
             var go = new GameObject("Contorno"); go.layer = src.gameObject.layer; go.transform.SetParent(src.transform, false);
             var c = go.AddComponent<SkinnedMeshRenderer>();
-            c.sharedMesh = src.sharedMesh; c.bones = src.bones; c.rootBone = src.rootBone; c.localBounds = src.localBounds;
+            c.sharedMesh = Smoothed(src.sharedMesh); c.bones = src.bones; c.rootBone = src.rootBone; c.localBounds = src.localBounds;
             c.updateWhenOffscreen = true;
             Finish(c, src.sharedMesh.subMeshCount, mat);
         }
@@ -69,7 +96,7 @@ namespace VampWolfs.Vfx
         static void CopyMesh(MeshRenderer src, Mesh mesh, Material mat)
         {
             var go = new GameObject("Contorno"); go.layer = src.gameObject.layer; go.transform.SetParent(src.transform, false);
-            go.AddComponent<MeshFilter>().sharedMesh = mesh;
+            go.AddComponent<MeshFilter>().sharedMesh = Smoothed(mesh);
             Finish(go.AddComponent<MeshRenderer>(), mesh.subMeshCount, mat);
         }
 

@@ -23,6 +23,7 @@ Shader "Space/VFX/Outline"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fog
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             CBUFFER_START(UnityPerMaterial)
@@ -31,12 +32,13 @@ Shader "Space/VFX/Outline"
             CBUFFER_END
 
             struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; };
-            struct Varyings { float4 positionCS : SV_POSITION; };
+            struct Varyings { float4 positionCS : SV_POSITION; float fog : TEXCOORD0; };
 
             Varyings vert(Attributes v)
             {
                 Varyings o;
                 float4 cs = TransformObjectToHClip(v.positionOS.xyz);
+                o.fog = ComputeFogFactor(cs.z);   // VampWolfs: o contorno some na névoa como o resto
                 float3 nWS = TransformObjectToWorldNormal(v.normalOS);
                 float2 nCS = mul((float3x3)UNITY_MATRIX_VP, nWS).xy;
                 float len = length(nCS);
@@ -46,7 +48,7 @@ Shader "Space/VFX/Outline"
                 return o;
             }
 
-            half4 frag(Varyings i) : SV_Target { return _Color; }
+            half4 frag(Varyings i) : SV_Target { return half4(MixFog(_Color.rgb, i.fog), _Color.a); }
             ENDHLSL
         }
     }

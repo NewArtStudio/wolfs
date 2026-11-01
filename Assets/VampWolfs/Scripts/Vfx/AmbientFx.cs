@@ -39,7 +39,7 @@ namespace VampWolfs.Vfx
             }
 
             if (portal == null) portal = FindFirstObjectByType<ExtractionPoint>();
-            if (portal != null && Random.value < (portal.IsChanneling ? 0.9f : 0.3f))
+            if (portal != null && SkillFx.Every(portal.IsChanneling ? 54f : 18f))
             {
                 float a = Random.Range(0f, Mathf.PI * 2f), r = Random.Range(0.4f, 1.6f);
                 var p = portal.transform.position + new Vector3(Mathf.Cos(a) * r, 0.1f, Mathf.Sin(a) * r);

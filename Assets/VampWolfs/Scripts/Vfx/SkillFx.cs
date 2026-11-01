@@ -35,6 +35,9 @@ namespace VampWolfs.Vfx
         static Color Hdr(Color c, float k) { return new Color(c.r * k, c.g * k, c.b * k, 1f); }
         static float Rnd(float a, float b) { return Random.Range(a, b); }
 
+        /// <summary>Sorteio "por segundo" (igual em 60 e em 240 fps): true em média ratePerSecond vezes por segundo.</summary>
+        public static bool Every(float ratePerSecond) { return Random.value < ratePerSecond * Time.deltaTime; }
+
         /* ======================= conjuração (carga na mão) ======================= */
 
         /// <summary>Cor da carga/brilho na mão enquanto conjura.</summary>
@@ -69,14 +72,14 @@ namespace VampWolfs.Vfx
             if (V == null) return;
             var c = ChargeColor(a);
             var hand = Hand(u);
-            if (Random.value < 0.5f + k * 0.5f)
+            if (Every(30f + k * 30f))
             {
                 var off = Random.onUnitSphere * (0.7f - 0.5f * k) * Size;
                 V.Glows.Emit(hand + off, -off * 2.5f, Rnd(0.1f, 0.18f) * Size, 0.25f, c);   // energia sendo puxada para a mão
             }
             if (a.Fx == "feast" || a.Fx == "blood_moon")
             {
-                if (Random.value < 0.4f) V.Embers.Emit(u.Position + new Vector3(Rnd(-1.2f, 1.2f), 0.1f, Rnd(-1.2f, 1.2f)) * Size, Vector3.up * Rnd(1f, 3f), Rnd(0.06f, 0.11f), Rnd(0.5f, 0.9f), c);
+                if (Every(24f)) V.Embers.Emit(u.Position + new Vector3(Rnd(-1.2f, 1.2f), 0.1f, Rnd(-1.2f, 1.2f)) * Size, Vector3.up * Rnd(1f, 3f), Rnd(0.06f, 0.11f), Rnd(0.5f, 0.9f), c);
             }
         }
 
@@ -186,7 +189,6 @@ namespace VampWolfs.Vfx
                 default:
                     V.Flash(p, c, 0.9f, 0.1f, 0.4f);
                     V.SparkSpray(p, wall ? -dir : dir, c, 10, 6f, 0.5f, 0.3f, 0.06f);
-                    if (!wall && Random.value < 0.6f) V.Decal(p, 0.8f, VfxAssets.Splat, BloodDecal, 6f);
                     break;
             }
             if (wall) V.Dust(p, 4, 0.3f, 1.5f, 0.6f, Earth);
@@ -318,7 +320,7 @@ namespace VampWolfs.Vfx
                     V.Glows.Emit(p + Vector3.up * Size, Random.insideUnitSphere, 0.2f, 0.4f, Violet);
                     break;
                 case "bats":
-                    V.BatSwarm(p + Vector3.up * Size, Random.insideUnitSphere + Vector3.up * 0.3f, BatColor, 2, 3f, 1f, 0.7f, 0.5f);
+                    if (Every(90f)) V.BatSwarm(p + Vector3.up * Size, Random.insideUnitSphere + Vector3.up * 0.3f, BatColor, 2, 3f, 1f, 0.7f, 0.5f);
                     V.Smoke.Emit(p + Vector3.up * Size, Random.insideUnitSphere * 0.4f, 1f, 0.6f, MistSmoke, -1f, 30f);
                     break;
                 case "pounce":
@@ -474,7 +476,7 @@ namespace VampWolfs.Vfx
         /// <summary>Atordoado: estrelinhas girando sobre a cabeça (chamado todo quadro).</summary>
         public static void StunTick(Vector3 headTop)
         {
-            if (V == null || Random.value > 0.35f) return;
+            if (V == null || !Every(20f)) return;
             float a = Time.time * 7f + Rnd(0f, 0.3f);
             V.Flares.Emit(headTop + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * 0.45f * Size, new Vector3(-Mathf.Sin(a), 0f, Mathf.Cos(a)) * 2f, 0.35f, 0.25f, new Color(2.2f, 1.9f, 0.6f), -1f, 90f);
         }

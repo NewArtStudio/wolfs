@@ -27,7 +27,7 @@ namespace VampWolfs.Lobby
         BaseStage stage;
         Transform stageChar;
         // girar o vampiro arrastando o mouse no palco (área vazia da tela)
-        bool turning; float turnX, yaw, yawVelocity;
+        bool turning; float turnX, yaw, yawVelocity, lastTurnMove;
         const float TurnPerPixel = 0.45f, TurnFriction = 5f;
         readonly List<KeyValuePair<Label, float>> banners = new List<KeyValuePair<Label, float>>();
         readonly List<Action> scheduled = new List<Action>();
@@ -92,8 +92,10 @@ namespace VampWolfs.Lobby
                 float dx = e.position.x - turnX; turnX = e.position.x;
                 yaw -= dx * TurnPerPixel;
                 yawVelocity = -dx * TurnPerPixel / Mathf.Max(0.005f, Time.unscaledDeltaTime);
+                lastTurnMove = Time.unscaledTime;
             });
-            screen.RegisterCallback<PointerUpEvent>(e => { turning = false; if (screen.HasPointerCapture(e.pointerId)) screen.ReleasePointer(e.pointerId); });
+            screen.RegisterCallback<PointerUpEvent>(e => { turning = false; if (Time.unscaledTime - lastTurnMove > 0.05f) yawVelocity = 0f;   // parou antes de soltar: não arremessa
+ if (screen.HasPointerCapture(e.pointerId)) screen.ReleasePointer(e.pointerId); });
             screen.RegisterCallback<PointerCaptureOutEvent>(e => turning = false);
 
             UiKit.Show(root, false);

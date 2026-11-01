@@ -36,12 +36,18 @@ namespace VampWolfs.Vfx
         }
 
         /// <summary>Bloom + vinheta arroxeada + tonemapping neutro, só na câmera da partida.</summary>
+        static VolumeProfile profile;   // um só para todas as partidas
+
         static void BuildLook(Transform worldRoot, Camera cam)
         {
-            var prof = ScriptableObject.CreateInstance<VolumeProfile>(); prof.name = "Partida (runtime)";
-            var tm = prof.Add<Tonemapping>(false); tm.mode.Override(TonemappingMode.Neutral);
-            var bl = prof.Add<Bloom>(false); bl.threshold.Override(1.0f); bl.intensity.Override(0.9f); bl.scatter.Override(0.68f);
-            var vg = prof.Add<Vignette>(false); vg.intensity.Override(0.3f); vg.smoothness.Override(0.45f);
+            if (profile == null)
+            {
+                profile = ScriptableObject.CreateInstance<VolumeProfile>(); profile.name = "Partida (runtime)";
+                var tm = profile.Add<Tonemapping>(false); tm.mode.Override(TonemappingMode.Neutral);
+                var bl = profile.Add<Bloom>(false); bl.threshold.Override(1.0f); bl.intensity.Override(0.9f); bl.scatter.Override(0.68f);
+                var vg = profile.Add<Vignette>(false); vg.intensity.Override(0.3f); vg.smoothness.Override(0.45f);
+            }
+            var prof = profile;
             var go = new GameObject("Volume da partida"); go.transform.SetParent(worldRoot, false);
             var v = go.AddComponent<Volume>(); v.isGlobal = true; v.priority = 10f; v.sharedProfile = prof;
             if (cam != null)

@@ -26,6 +26,9 @@ namespace VampWolfs.Vfx
             public Emitter(ParticleSystem ps, bool mesh3D) { Ps = ps; this.mesh3D = mesh3D; ep = new ParticleSystem.EmitParams(); ep.applyShapeToPosition = false; }
             public void Emit(Vector3 pos, Vector3 vel, float size, float life, Color col, float rot = -1f, float spin = 0f)
             {
+                // startColor é Color32 (0..1): cores HDR (> 1) perderiam o tom; mantém o tom dividindo pelo maior canal
+                float mx = Mathf.Max(col.r, Mathf.Max(col.g, col.b));
+                if (mx > 1f) { col.r /= mx; col.g /= mx; col.b /= mx; }
                 ep.position = pos; ep.velocity = vel; ep.startSize = size * SizeScale; ep.startLifetime = life; ep.startColor = col;
                 if (mesh3D) { ep.rotation3D = new Vector3(UnityEngine.Random.value * 360f, UnityEngine.Random.value * 360f, UnityEngine.Random.value * 360f); ep.angularVelocity3D = UnityEngine.Random.insideUnitSphere * spin; }
                 else { ep.rotation = rot < 0f ? UnityEngine.Random.value * 360f : rot; ep.angularVelocity = spin * (UnityEngine.Random.value < 0.5f ? -1f : 1f); }
@@ -218,9 +221,12 @@ namespace VampWolfs.Vfx
             return o;
         }
 
+        bool dying;
+        void OnDestroy() { dying = true; }
+
         void Release(FxObj o)
         {
-            if (o == null || o.Go == null) return;
+            if (dying || o == null || o.Go == null) return;
             o.Go.SetActive(false);
             List<FxObj> l; if (!free.TryGetValue(o.Kind, out l)) free[o.Kind] = l = new List<FxObj>();
             l.Add(o);

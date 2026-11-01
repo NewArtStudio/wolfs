@@ -40,8 +40,10 @@ namespace VampWolfs
                 bool insideArc = toTarget.magnitude < 0.5f || Vector3.Angle(direction, toTarget) <= Angle * 0.5f;
                 if (insideArc)
                 {
+                    float before = targets[i].Current + targets[i].Ward;
                     Hit.Apply(caster, targets[i]);
-                    Vfx.SkillFx.MeleeHit(targets[i].transform.position + Vector3.up * 1.2f * CharacterFactory.SizeMultiplier, toTarget.normalized, Fx == "rend");
+                    if (targets[i].Current + targets[i].Ward < before)   // blocked (counter, invulnerable) = no blood
+                        Vfx.SkillFx.MeleeHit(targets[i].transform.position + Vector3.up * 1.2f * CharacterFactory.SizeMultiplier, toTarget.normalized, Fx == "rend");
                 }
             }
 
