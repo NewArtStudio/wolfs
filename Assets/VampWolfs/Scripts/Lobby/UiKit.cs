@@ -17,7 +17,7 @@ namespace VampWolfs.Lobby
         }
         public static Button Btn(string text, Action onClick, string classes = null, VisualElement parent = null)
         {
-            var b = new Button(onClick) { text = text }; AddClasses(b, classes); if (parent != null) parent.Add(b);
+            var b = new Button(onClick) { text = text, focusable = false }; AddClasses(b, classes); if (parent != null) parent.Add(b);   // sem foco: Enter não "clica" o último botão
             return b;
         }
         public static SvgIcon Icon(string name, string classes = null, VisualElement parent = null)

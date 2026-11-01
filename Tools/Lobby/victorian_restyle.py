@@ -24,6 +24,9 @@ FONTS = {
     "Barlow-Medium.ttf": "CrimsonText-SemiBold.ttf",
     "Barlow-SemiBold.ttf": "CrimsonText-Bold.ttf",
 }
+# Space-only texture (talent tree background) that does not exist here
+css = css.replace('background-image: url("Textures/tree_bg.png"); ', '')
+
 for a, b in FONTS.items():
     css = css.replace('Fonts/' + a, 'Fonts/' + b)
 

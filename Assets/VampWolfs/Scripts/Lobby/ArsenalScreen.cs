@@ -29,6 +29,9 @@ namespace VampWolfs.Lobby
 
         // arrastar e soltar
         Sel dragFrom; Vector2 dragStart; bool dragging; SvgIcon ghost;
+        // duplo clique feito à mão: o clique simples refaz a grade, então o clickCount do UI Toolkit não chega a 2
+        string lastClickUid; float lastClickTime;
+        const float DoubleClickTime = 0.35f;
 
         PlayerProfile P { get { return ui.Profile; } }
         GearCatalog C { get { return ui.Catalog; } }
@@ -122,6 +125,7 @@ namespace VampWolfs.Lobby
         {
             if (!IsOpen) return;
             CancelDrag();
+            search.Blur();   // o campo escondido não pode segurar o foco (bloquearia as teclas na Base)
             UiKit.Show(modal, false); tooltip.Hide(); CloseUpgrade();
             PortraitStudio.SetPreviewActive(false);
             ui.Save(); ui.RenderBase();
@@ -429,7 +433,9 @@ namespace VampWolfs.Lobby
             {
                 if (ev.button != 0) return;
                 tooltip.Hide();
-                if (ev.clickCount == 2) { var item = FindStash(uid); if (item != null && C.GetEquip(item.DefId) != null) { TryEquip(uid, BestSlot(item)); ev.StopPropagation(); return; } }
+                bool dbl = lastClickUid == uid && Time.unscaledTime - lastClickTime < DoubleClickTime;
+                lastClickUid = uid; lastClickTime = Time.unscaledTime;
+                if (dbl) { lastClickUid = null; var item = FindStash(uid); if (item != null && C.GetEquip(item.DefId) != null) { TryEquip(uid, BestSlot(item)); ev.StopPropagation(); return; } }
                 BeginPress(new Sel { Kind = "inv", Id = uid }, ev.position);
                 ev.StopPropagation();
             });
@@ -577,11 +583,12 @@ namespace VampWolfs.Lobby
         {
             var mat = it != null ? C.GetMaterial(it.DefId) : null;
             var e = it != null ? C.GetEquip(it.DefId) : null;
+            bool handLBlocked = HandLBlocked(P.EquippedMap());
             foreach (var kv in slotEls)
             {
                 bool can = false;
                 if (mat != null) { var piece = P.GetEquipped(kv.Key); can = piece != null && GearUpgrades.Check(C, mat, C.GetEquip(piece.DefId), piece).Ok; }
-                else if (e != null) can = C.FitsSlot(e, kv.Key);
+                else if (e != null) can = C.FitsSlot(e, kv.Key) && !(kv.Key == "handL" && handLBlocked);
                 kv.Value.EnableInClassList("can", can);
             }
         }

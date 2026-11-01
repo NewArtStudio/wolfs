@@ -28,6 +28,7 @@ namespace VampWolfs.Lobby
         Transform stageChar;
         readonly List<KeyValuePair<Label, float>> banners = new List<KeyValuePair<Label, float>>();
         readonly List<Action> scheduled = new List<Action>();
+        readonly Vector3[] feet = new Vector3[1];
         int shownFrame;   // a tecla que fechou a partida (Enter) não pode valer também aqui no mesmo quadro
 
         /// <summary>true se o estilo do lobby existe (sem ele o jogo usa a Base antiga em IMGUI).</summary>
@@ -120,10 +121,10 @@ namespace VampWolfs.Lobby
             if (stage != null && stage.Visible)
             {
                 stage.ApplyCamera(cam, Vector3.zero);
-                if (stageChar != null) stage.SetFeet(new[] { stageChar.position });
+                if (stageChar != null) { feet[0] = stageChar.position; stage.SetFeet(feet); }
             }
 
-            if (Time.frameCount <= shownFrame + 1) return;
+            if (Time.frameCount <= shownFrame + 1 || CapturesKeyboard) return;
 
             if (InputReader.EscapePressed())
             {
@@ -137,6 +138,18 @@ namespace VampWolfs.Lobby
             else if (InputReader.RestartPressed() && !arsenal.IsOpen && !baseScreen.ModalOpen)
             {
                 Explore();
+            }
+        }
+
+        /// <summary>true enquanto um campo de texto (busca do Arsenal) tem o foco: as teclas de atalho não valem.</summary>
+        bool CapturesKeyboard
+        {
+            get
+            {
+                if (root == null || root.panel == null) return false;
+                var f = root.panel.focusController.focusedElement as VisualElement;
+                for (var e = f; e != null; e = e.parent) if (e is TextField) return true;
+                return false;
             }
         }
 

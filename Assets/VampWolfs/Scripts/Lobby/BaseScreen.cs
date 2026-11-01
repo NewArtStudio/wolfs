@@ -79,7 +79,7 @@ namespace VampWolfs.Lobby
             record = UiKit.El("bs-record", side);
 
             UiKit.El("bs-spacer", right);
-            var ex = new Button(ui.Explore); ex.AddToClassList("bs-explore"); right.Add(ex);
+            var ex = new Button(ui.Explore) { focusable = false }; ex.AddToClassList("bs-explore"); right.Add(ex);
             ex.text = "";
             var exi = UiKit.Icon("ui_chevrons", "bs-explore-ic", ex); exi.Color = UiKit.Hex(0x2a1606);
             UiKit.Lbl("EXPLORAR", "bs-explore-t", ex);
@@ -164,7 +164,7 @@ namespace VampWolfs.Lobby
 
         static Button IconButton(VisualElement parent, string icon, string text, System.Action click, string classes)
         {
-            var b = new Button(click); UiKit.AddClasses(b, classes); b.text = ""; parent.Add(b);
+            var b = new Button(click) { focusable = false }; UiKit.AddClasses(b, classes); b.text = ""; parent.Add(b);
             var ic = UiKit.Icon(icon, "bs-btn-ic", b);
             ic.Color = classes.Contains("skills") ? UiKit.Hex(0xd9a441) : new Color(0.93f, 0.88f, 0.78f);
             UiKit.Lbl(text, "bs-btn-t", b);

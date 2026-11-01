@@ -20,6 +20,7 @@ namespace VampWolfs.Lobby
         };
 
         readonly Dictionary<string, VisualElement> slots = new Dictionary<string, VisualElement>();
+        readonly HashSet<VisualElement> watched = new HashSet<VisualElement>();   // cada elemento ganha o aviso de layout uma vez só
         VisualElement figure;
         public Color Color = new Color(0.95f, 0.66f, 0.23f, 0.5f);
 
@@ -34,9 +35,15 @@ namespace VampWolfs.Lobby
         public void Bind(VisualElement figureArea, Dictionary<string, VisualElement> slotCards)
         {
             figure = figureArea; slots.Clear();
-            foreach (var kv in slotCards) { slots[kv.Key] = kv.Value; kv.Value.RegisterCallback<GeometryChangedEvent>(e => MarkDirtyRepaint()); }
-            if (figure != null) figure.RegisterCallback<GeometryChangedEvent>(e => MarkDirtyRepaint());
+            foreach (var kv in slotCards) { slots[kv.Key] = kv.Value; Watch(kv.Value); }
+            if (figure != null) Watch(figure);
             MarkDirtyRepaint();
+        }
+
+        void Watch(VisualElement e)
+        {
+            if (!watched.Add(e)) return;
+            e.RegisterCallback<GeometryChangedEvent>(ev => MarkDirtyRepaint());
         }
 
         void Draw(MeshGenerationContext ctx)

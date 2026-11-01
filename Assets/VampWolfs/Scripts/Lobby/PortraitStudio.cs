@@ -140,7 +140,7 @@ namespace VampWolfs.Lobby
             var s = Instance();
             s.enabledInBase = on;
             s.previewCam.enabled = on && s.previewOn;
-            if (!on) { s.portraitCam.enabled = false; s.rendering = false; }
+            if (!on) { s.portraitCam.enabled = false; s.rendering = false; s.portraitModel.gameObject.SetActive(false); }
         }
 
         void LateUpdate()

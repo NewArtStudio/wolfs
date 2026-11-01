@@ -621,7 +621,7 @@
    ÁRVORES DE TALENTO (out/2026) — TreeScreen no visual da referência do criador (classe .tv).
    Nós e emblemas em TalentNodeFrame (vetor), colunas em FrameBox com a cor da árvore e a arte em Resources/TreeArt/<id>.
    ===================================================================== */
-.space-root .tv { background-image: url("Textures/tree_bg.png"); -unity-background-scale-mode: scale-and-crop; background-color: rgb(6, 8, 11); padding: 14px 18px; }
+.space-root .tv { -unity-background-scale-mode: scale-and-crop; background-color: rgb(6, 8, 11); padding: 14px 18px; }
 .space-root .tv .unity-label { -unity-font-definition: url("Fonts/CrimsonText-SemiBold.ttf"); }
 .space-root .tv .tcard { width: 100%; max-width: 1680px; background-color: rgba(0, 0, 0, 0); border-width: 0; }
 .space-root .tv .tcard-h { flex-direction: row; align-items: center; padding: 10px 16px; margin-bottom: 8px; border-width: 0; --frame-fill: rgba(17, 8, 9, 0.9); --frame-glow: rgba(217, 164, 65, 0.1); --frame-cut: 14; }

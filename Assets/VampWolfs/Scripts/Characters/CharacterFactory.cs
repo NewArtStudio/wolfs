@@ -62,8 +62,9 @@ namespace VampWolfs
         /// </summary>
         public static GameObject CreateDisplayVampire(Transform parent, float sizeMultiplier = 1f)
         {
+            // Built unparented (always active, so UnitVisual.Awake runs even if the parent is inactive),
+            // then attached: FitToHeight works from the origin, so the local offsets stay right.
             GameObject go = new GameObject("Vampiro (vitrine)");
-            go.transform.SetParent(parent, false);
             UnitVisual v = go.AddComponent<UnitVisual>();
 
             if (ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid)
@@ -75,6 +76,7 @@ namespace VampWolfs
                 BuildVampirePlaceholder(v);
             }
 
+            go.transform.SetParent(parent, false);
             return go;
         }
 
