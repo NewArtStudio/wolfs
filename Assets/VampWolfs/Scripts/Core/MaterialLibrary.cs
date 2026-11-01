@@ -24,10 +24,31 @@ namespace VampWolfs
         /// <summary>Shaders referenced by the scene (included in builds). Null = find by name.</summary>
         public static void SetShaders(Shader lit, Shader unlit)
         {
-            litOverride = lit;
-            unlitOverride = unlit;
+            litOverride = IsCompatible(lit) ? lit : null;
+            unlitOverride = IsCompatible(unlit) ? unlit : null;
             litCache.Clear();
             unlitCache.Clear();
+        }
+
+        /// <summary>
+        /// A shader saved in the scene may come from a different render pipeline (e.g. "Standard" saved
+        /// before URP was active renders pink under URP). Such shaders are ignored and found by name instead.
+        /// </summary>
+        static bool IsCompatible(Shader shader)
+        {
+            if (shader == null || !shader.isSupported)
+            {
+                return false;
+            }
+
+            bool isUrpShader = shader.name.StartsWith("Universal Render Pipeline/");
+            if (UsingRenderPipeline != isUrpShader)
+            {
+                Debug.LogWarning("[VampWolfs] Ignoring shader '" + shader.name + "' (wrong render pipeline). Run VampWolfs > Refresh Character Art to update the scene.");
+                return false;
+            }
+
+            return true;
         }
 
         public static Material Lit(Color color)
