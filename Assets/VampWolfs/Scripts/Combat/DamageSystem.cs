@@ -37,12 +37,8 @@ namespace VampWolfs
                 return;
             }
 
-            // VIT gives status resistance: shorter slows and stuns.
-            Equipment targetGear = target.GetComponent<Equipment>();
-            float resist = targetGear != null ? 1f - targetGear.Stats.StatusResist : 1f;
-
-            if (SlowDuration > 0f) status.ApplySlow(SlowAmount, SlowDuration * resist);
-            if (StunDuration > 0f) status.ApplyStun(StunDuration * resist);
+            if (SlowDuration > 0f) status.ApplySlow(SlowAmount, SlowDuration);
+            if (StunDuration > 0f) status.ApplyStun(StunDuration);
         }
     }
 
@@ -66,7 +62,8 @@ namespace VampWolfs
                 return false;
             }
 
-            amount = ApplyGear(caster, target, amount, type);
+            float attackerMult;
+            amount = ApplyGear(caster, target, amount, type, out attackerMult);
 
             float dealt;
             if (!target.TryTakeDamage(amount, caster, out dealt))
@@ -91,7 +88,8 @@ namespace VampWolfs
             if (caster != null && !caster.IsDead)
             {
                 float rate = target.Team == Team.Neutral ? EnergyPerNeutralDamage : EnergyPerDamage;
-                caster.Energy.Add(dealt * rate);
+                // Energy from the damage BEFORE the gear multiplier, so EX/ultimate pacing is the same at every tier.
+                caster.Energy.Add(dealt / Mathf.Max(0.01f, attackerMult) * rate);
 
                 if (lifesteal > 0f)
                 {
@@ -106,13 +104,15 @@ namespace VampWolfs
         /// Attributes and gear: the caster's ATK/MATK (from STR/DEX/INT + weapon) multiplies the damage,
         /// the target's armour, evasion and flat defense reduce it. Creatures without gear are unaffected.
         /// </summary>
-        static float ApplyGear(CombatUnit caster, Health target, float amount, DamageType type)
+        static float ApplyGear(CombatUnit caster, Health target, float amount, DamageType type, out float attackerMult)
         {
             GearRulesData rules = GearCatalog.Instance.Rules;
+            attackerMult = 1f;
 
             if (caster != null && caster.Equipment != null)
             {
-                amount *= caster.Equipment.Stats.DamageMult(type, rules);
+                attackerMult = caster.Equipment.Stats.DamageMult(type, rules);
+                amount *= attackerMult;
             }
 
             Equipment targetGear = target.GetComponent<Equipment>();

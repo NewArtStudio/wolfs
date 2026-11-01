@@ -153,9 +153,30 @@ namespace VampWolfs
             return FromJson(asset.text);
         }
 
+        /// <summary>False when gear.json is missing or broken (saving is then disabled to protect the profile).</summary>
+        public bool IsLoaded
+        {
+            get { return Equipment.Count > 0; }
+        }
+
         public static GearCatalog FromJson(string json)
         {
-            GearCatalog catalog = JsonUtility.FromJson<GearCatalog>(json);
+            GearCatalog catalog = null;
+            try
+            {
+                catalog = JsonUtility.FromJson<GearCatalog>(json);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[VampWolfs] gear.json could not be read: " + e.Message);
+            }
+
+            if (catalog == null) catalog = new GearCatalog();
+            if (catalog.Rules == null) catalog.Rules = new GearRulesData();
+            if (catalog.Slots == null) catalog.Slots = new List<SlotDef>();
+            if (catalog.Types == null) catalog.Types = new List<EquipTypeDef>();
+            if (catalog.Equipment == null) catalog.Equipment = new List<EquipDef>();
+            if (catalog.Materials == null) catalog.Materials = new List<MaterialDef>();
             catalog.BuildIndex();
             return catalog;
         }
@@ -166,9 +187,9 @@ namespace VampWolfs
             equipById = new Dictionary<string, EquipDef>();
             materialById = new Dictionary<string, MaterialDef>();
 
-            foreach (EquipTypeDef t in Types) typeById[t.Id] = t;
-            foreach (EquipDef e in Equipment) equipById[e.Id] = e;
-            foreach (MaterialDef m in Materials) materialById[m.Id] = m;
+            foreach (EquipTypeDef t in Types) if (t != null && t.Id != null) typeById[t.Id] = t;
+            foreach (EquipDef e in Equipment) if (e != null && e.Id != null) equipById[e.Id] = e;
+            foreach (MaterialDef m in Materials) if (m != null && m.Id != null) materialById[m.Id] = m;
         }
 
         public EquipDef GetEquip(string id)
@@ -186,7 +207,7 @@ namespace VampWolfs
         public EquipTypeDef TypeOf(EquipDef e)
         {
             EquipTypeDef t;
-            return e != null && typeById.TryGetValue(e.Type, out t) ? t : null;
+            return e != null && e.Type != null && typeById.TryGetValue(e.Type, out t) ? t : null;
         }
 
         /// <summary>weapon · armor · accessory.</summary>

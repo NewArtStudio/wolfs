@@ -87,7 +87,7 @@ namespace VampWolfs
         public float DamageMult(DamageType type, GearRulesData rules)
         {
             float atk = type == DamageType.PhysicalMelee ? AtkMelee : type == DamageType.PhysicalRanged ? AtkRanged : Matk;
-            float reference = rules.TierPower != null && rules.TierPower.Length > 0 ? rules.TierPower[0] : 56f;
+            float reference = rules.TierPower != null && rules.TierPower.Length > 0 && rules.TierPower[0] > 0f ? rules.TierPower[0] : 56f;
             return 0.5f + 0.5f * (WeaponDmg + atk) / reference;
         }
 
@@ -216,8 +216,10 @@ namespace VampWolfs
             s.AspdMult = 1f / (1f + dex / GearBalance.AspdDexK);
             s.StatusResist = Math.Min(GearBalance.StatusResistCap, vit * GearBalance.StatusResistPerVit);
 
-            s.PowerTier = pieces > 0 ? tierSum / pieces : 0f;
-            float reference = rules.TierPower != null && rules.TierPower.Length > 0 ? rules.TierPower[0] : 1f;
+            // Average over ALL slots (empty = 0), so removing pieces never raises HP or the invader's tier.
+            int slotCount = Math.Max(pieces, catalog.Slots.Count > 0 ? catalog.Slots.Count : 10);
+            s.PowerTier = tierSum / slotCount;
+            float reference = rules.TierPower != null && rules.TierPower.Length > 0 && rules.TierPower[0] > 0f ? rules.TierPower[0] : 1f;
             float tierScale = 0.5f + 0.5f * TierPowerAt(rules, s.PowerTier) / reference;
             s.HpMult = tierScale * (1f + vit / 100f);
 

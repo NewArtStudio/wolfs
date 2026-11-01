@@ -284,6 +284,8 @@ namespace VampWolfs
             if (Profile != null)
             {
                 Profile.DepositBag(GearCatalog.Instance, Player.Inventory);
+                Player.Inventory.TakeAll();
+                Player.Inventory.TakeAllItems();
                 Profile.Extractions++;
                 Profile.Save();
             }

@@ -101,6 +101,7 @@ namespace VampWolfs
                 cam.clearFlags = CameraClearFlags.SolidColor;
                 cam.backgroundColor = new Color(0.07f, 0.05f, 0.1f);
                 cam.cullingMask = 0;
+                baseCamera.AddComponent<AudioListener>();
             }
 
             baseCamera.SetActive(on);

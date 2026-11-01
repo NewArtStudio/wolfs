@@ -114,6 +114,7 @@ namespace VampWolfs
             CharacterStats stats = Equipment.Stats;
             float maxHealth = BaseMaxHealth * stats.HpMult;
             Health.SetMaxHealth(maxHealth, maxHealth * stats.WardPct);
+            Health.HealScale = BaseMaxHealth > 0f ? maxHealth / BaseMaxHealth : 1f;
             MoveSpeed = BaseMoveSpeed * stats.MoveMult;
         }
 

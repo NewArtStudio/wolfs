@@ -35,34 +35,64 @@ namespace VampWolfs
             get { return Path.Combine(Application.persistentDataPath, FileName); }
         }
 
+        /// <summary>Saving is off when the catalog failed to load, so a broken build never overwrites real progress.</summary>
+        [NonSerialized] public bool SavingEnabled = true;
+
         // ---------------------------------------------------------------- save / load
 
         public static PlayerProfile LoadOrCreate(GearCatalog catalog)
         {
-            try
+            bool fileExists = File.Exists(FilePath);
+
+            if (fileExists)
             {
-                if (File.Exists(FilePath))
+                try
                 {
                     PlayerProfile loaded = JsonUtility.FromJson<PlayerProfile>(File.ReadAllText(FilePath));
                     if (loaded != null)
                     {
-                        loaded.RemoveUnknownItems(catalog);
+                        if (catalog.IsLoaded)
+                        {
+                            loaded.Sanitize(catalog);
+                        }
+                        else
+                        {
+                            loaded.SavingEnabled = false; // catalog broken: don't touch the real save
+                        }
+
                         return loaded;
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning("[VampWolfs] Could not read profile, starting a new one: " + e.Message);
+                catch (Exception e)
+                {
+                    Debug.LogWarning("[VampWolfs] Could not read profile: " + e.Message);
+                }
+
+                // Corrupt file: keep a backup instead of silently losing it.
+                try
+                {
+                    File.Copy(FilePath, FilePath + ".bak", true);
+                    Debug.LogWarning("[VampWolfs] Broken profile saved as " + FileName + ".bak; starting a new one.");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogWarning("[VampWolfs] Could not back up profile: " + e.Message);
+                }
             }
 
             PlayerProfile profile = GearLoadouts.NewVampireProfile(catalog);
+            profile.SavingEnabled = catalog.IsLoaded;
             profile.Save();
             return profile;
         }
 
         public void Save()
         {
+            if (!SavingEnabled)
+            {
+                return;
+            }
+
             try
             {
                 File.WriteAllText(FilePath, JsonUtility.ToJson(this, true));
@@ -81,10 +111,38 @@ namespace VampWolfs
             return profile;
         }
 
-        void RemoveUnknownItems(GearCatalog catalog)
+        /// <summary>
+        /// Cleans a loaded save: unknown items are dropped; worn pieces in a wrong/duplicate slot or blocked by
+        /// a two-handed weapon go back to the stash (nothing the player owns is lost).
+        /// </summary>
+        void Sanitize(GearCatalog catalog)
         {
+            if (Stash == null) Stash = new List<ItemInstance>();
+            if (Equipped == null) Equipped = new List<EquippedSlot>();
+
             Stash.RemoveAll(i => i == null || (catalog.GetEquip(i.DefId) == null && catalog.GetMaterial(i.DefId) == null));
-            Equipped.RemoveAll(s => s == null || s.Item == null || catalog.GetEquip(s.Item.DefId) == null);
+
+            List<EquippedSlot> valid = new List<EquippedSlot>();
+            foreach (EquippedSlot s in Equipped)
+            {
+                if (s == null || s.Item == null) continue;
+                EquipDef e = catalog.GetEquip(s.Item.DefId);
+                if (e == null) continue;
+
+                bool fits = catalog.FitsSlot(e, s.Slot) && !valid.Exists(v => v.Slot == s.Slot);
+                if (fits) valid.Add(s);
+                else Stash.Add(s.Item);
+            }
+
+            EquippedSlot right = valid.Find(v => v.Slot == "handR");
+            EquippedSlot left = valid.Find(v => v.Slot == "handL");
+            if (right != null && left != null && catalog.IsTwoHand(catalog.GetEquip(right.Item.DefId)))
+            {
+                valid.Remove(left);
+                Stash.Add(left.Item);
+            }
+
+            Equipped = valid;
         }
 
         // ---------------------------------------------------------------- equipment
@@ -247,7 +305,7 @@ namespace VampWolfs
             MoonShard += bag.Count(ItemType.MoonShard);
             foreach (ItemInstance item in bag.Items)
             {
-                AddToStash(catalog, item);
+                AddToStash(catalog, item.CloneWithQty(item.Qty)); // copy: the bag and the stash never share objects
             }
         }
     }

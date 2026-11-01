@@ -181,7 +181,7 @@ namespace VampWolfs
             FloatingText.Spawn(textPosition, text, new Color(1f, 0.85f, 0.35f), 1.4f, 0.9f);
 
             // Feeding: drinking from the kill restores a little health and energy.
-            killer.Health.Heal(6f);
+            killer.Health.HealScaled(6f);
             killer.Energy.Add(5f);
         }
     }

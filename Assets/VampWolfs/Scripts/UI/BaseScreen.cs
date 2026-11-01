@@ -234,9 +234,10 @@ namespace VampWolfs
                         "   ·   Cartas: " + item.CardsOpen + "/" + e.CardSlots + " abertos" +
                         "   ·   Gema: " + (e.GemSlot <= 0 ? "sem encaixe" : !item.GemOpen ? "trancado" : string.IsNullOrEmpty(item.Gem) ? "vazio" : GemName(item.Gem));
 
-                Rect bodyRect = new Rect(x, y, w, r.yMax - y - Px(100));
-                detailScroll = GUI.BeginScrollView(bodyRect, detailScroll, new Rect(0, 0, w - Px(18), Px(140)));
-                GUI.Label(new Rect(0, 0, w - Px(18), Px(140)), body, small);
+                Rect bodyRect = new Rect(x, y, w, Mathf.Max(Px(40), r.yMax - y - Px(136)));
+                float bodyHeight = Mathf.Max(bodyRect.height, small.CalcHeight(new GUIContent(body), w - Px(18)));
+                detailScroll = GUI.BeginScrollView(bodyRect, detailScroll, new Rect(0, 0, w - Px(18), bodyHeight));
+                GUI.Label(new Rect(0, 0, w - Px(18), bodyHeight), body, small);
                 GUI.EndScrollView();
 
                 float by = r.yMax - Px(96);
@@ -342,7 +343,7 @@ namespace VampWolfs
                 bootstrap.StartMatch();
             }
 
-            GUI.Label(new Rect(r.x, r.y, r.width - Px(340), r.height),
+            GUI.Label(new Rect(r.x, r.y, r.width - Px(540), r.height),
                 "O que você <b>veste</b> nunca cai. O que achar na partida vai para a <b>bag</b> e só fica seu se extrair.\n" +
                 "Refino a partir do +5 pode <color=#ff7060><b>quebrar</b></color> a peça.", small);
 
@@ -470,19 +471,29 @@ namespace VampWolfs
             rowSelected = new GUIStyle(row);
             rowSelected.normal.background = SolidTexture(new Color(0.45f, 0.12f, 0.2f));
             rowSelected.hover.background = rowSelected.normal.background;
+            rowSelected.normal.scaledBackgrounds = new Texture2D[0]; // high-DPI skins would draw these instead
+            rowSelected.hover.scaledBackgrounds = new Texture2D[0];
             rowSelected.normal.textColor = Color.white;
 
             button = new GUIStyle(GUI.skin.button) { fontSize = Px(15), fontStyle = FontStyle.Bold };
             bigButton = new GUIStyle(GUI.skin.button) { fontSize = Px(20), fontStyle = FontStyle.Bold };
             bigButton.normal.background = SolidTexture(Accent);
             bigButton.hover.background = SolidTexture(new Color(0.95f, 0.3f, 0.4f));
+            bigButton.normal.scaledBackgrounds = new Texture2D[0];
+            bigButton.hover.scaledBackgrounds = new Texture2D[0];
             bigButton.normal.textColor = Color.white;
             bigButton.hover.textColor = Color.white;
         }
 
+        static readonly Dictionary<Color, Texture2D> textures = new Dictionary<Color, Texture2D>();
+
         static Texture2D SolidTexture(Color color)
         {
+            Texture2D cached;
+            if (textures.TryGetValue(color, out cached) && cached != null) return cached;
+
             Texture2D texture = new Texture2D(1, 1);
+            textures[color] = texture;
             texture.SetPixel(0, 0, color);
             texture.Apply();
             return texture;

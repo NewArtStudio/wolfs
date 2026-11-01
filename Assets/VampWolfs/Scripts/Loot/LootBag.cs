@@ -74,7 +74,8 @@ namespace VampWolfs
             model.localPosition = new Vector3(0f, 0.1f + Mathf.Sin(Time.time * 3f) * 0.08f, 0f);
             model.Rotate(0f, 60f * Time.deltaTime, 0f);
 
-            if (picked || Time.time - spawnTime < PickupDelay)
+            bool matchOver = MatchManager.Instance != null && MatchManager.Instance.IsOver;
+            if (picked || matchOver || Time.time - spawnTime < PickupDelay)
             {
                 return;
             }

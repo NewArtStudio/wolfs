@@ -30,13 +30,23 @@ namespace VampWolfs
         StatusEffects status;
         float lastDamageTime = -100f;
 
+        /// <summary>Max HP ÷ base max HP (gear). Fixed heals use it so they matter at every tier.</summary>
+        public float HealScale { get; set; }
+
         public void Init(float maxHealth, Team team)
         {
             MaxHealth = maxHealth;
             Current = maxHealth;
             Team = team;
             IsDead = false;
+            HealScale = 1f;
             status = GetComponent<StatusEffects>();
+        }
+
+        /// <summary>Heal a fixed amount designed for base health (scaled by gear HP).</summary>
+        public void HealScaled(float amount)
+        {
+            Heal(amount * Mathf.Max(1f, HealScale));
         }
 
         /// <summary>Changes max health (gear) keeping the same health fraction, and sets the ward size.</summary>
