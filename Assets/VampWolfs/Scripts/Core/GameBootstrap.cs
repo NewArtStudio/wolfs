@@ -16,11 +16,19 @@ namespace VampWolfs
         public Shader LitShader;
         public Shader UnlitShader;
 
+        [Header("Character art (filled by the VampWolfs menu)")]
+        public CharacterArt VampireArt = new CharacterArt(2.0f);
+        public CharacterArt WerewolfArt = new CharacterArt(2.5f);
+        public CharacterArt MonsterHunterArt = new CharacterArt(1.9f);
+
         GameObject worldRoot;
 
         void Start()
         {
             MaterialLibrary.SetShaders(LitShader, UnlitShader);
+            ArtLibrary.Vampire = VampireArt;
+            ArtLibrary.Werewolf = WerewolfArt;
+            ArtLibrary.MonsterHunter = MonsterHunterArt;
             Build();
         }
 

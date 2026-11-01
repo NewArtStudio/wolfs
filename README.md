@@ -6,32 +6,24 @@ Você é o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s u
 Quem morre perde **só a bag** (o que foi farmado na partida) — o **equipamento nunca cai**.
 Para garantir o loot, fique 4 s no **portal roxo de extração** (levar dano interrompe).
 
-> ⚠️ **Código ainda não executado na Unity.** Foi escrito sem o editor e verificado por compilação contra uma réplica da API da Unity e por revisão. Espere pequenos ajustes no primeiro Play — me mande o erro do Console que eu corrijo.
-
 ---
 
-## Como abrir (10 minutos)
+## Como abrir
 
-Requisitos: **Unity 6** (6000.x) pelo Unity Hub, e git (ou GitHub Desktop).
+Requisitos: **Unity 6.3** (6000.3.x) pelo Unity Hub e **GitHub Desktop**. O repositório é o projeto Unity completo (URP já configurado).
 
-1. **Unity Hub → New project → template "Universal 3D"** → nome `wolfs` → Create. Quando abrir, **feche a Unity**.
-2. Na pasta do projeto criado, rode:
-   ```bash
-   git init -b main
-   git remote add origin https://github.com/NewArtStudio/wolfs.git
-   git pull origin main
-   ```
-   Isso traz a pasta `Assets/VampWolfs` para dentro do projeto URP já configurado.
-3. Abra o projeto na Unity. No menu do topo: **VampWolfs → Open And Play Farm Prototype**.
-   (Ou **VampWolfs → Create Farm Prototype Scene** e depois Play.)
-4. Opcional: faça commit da pasta inteira do projeto (`Packages/`, `ProjectSettings/`) para o repositório virar o projeto completo:
-   ```bash
-   git add . && git commit -m "Add Unity project settings" && git push -u origin main
-   ```
+1. GitHub Desktop: **File → Clone repository → NewArtStudio/wolfs** (escolha uma pasta vazia).
+2. Unity Hub: **Add → Add project from disk** → a pasta clonada.
+3. Na Unity: **VampWolfs → Open And Play Farm Prototype**.
 
-Sem GitHub? Baixe o ZIP do repositório e copie `Assets/VampWolfs` para dentro do `Assets/` do projeto URP.
+Para receber atualizações: **feche a Unity**, no GitHub Desktop **Fetch origin → Pull origin**, e abra a Unity de novo.
 
-**Por que não abrir o repositório direto?** A configuração do URP (asset do pipeline, renderer) é gerada pelo template da Unity. Criar o projeto pelo template e trazer o código é o caminho mais seguro; depois do passo 4 o repositório já abre direto.
+### Modelos 3D dos personagens
+
+Coloque o FBX e as texturas em `Assets/VampWolfs/Art/Characters/<Personagem>/` (veja o README dessa pasta).
+O menu **VampWolfs → Open And Play** (ou **Refresh Character Art**) encontra o modelo e as texturas (`*basecolor*`, `*normal*`) sozinho.
+Altura e rotação de cada modelo ficam no Inspector do objeto **GameBootstrap** (`Height`, `YawOffset`).
+Sem modelo na pasta, o personagem usa o boneco de primitivas.
 
 ---
 

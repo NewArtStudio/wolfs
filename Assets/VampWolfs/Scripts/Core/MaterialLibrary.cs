@@ -60,6 +60,30 @@ namespace VampWolfs
             return material;
         }
 
+        /// <summary>Lit material with a color texture and an optional normal map (character models).</summary>
+        public static Material Textured(Texture2D baseColor, Texture2D normal)
+        {
+            Material material = new Material(LitShader());
+            material.color = Color.white;
+
+            if (baseColor != null)
+            {
+                if (material.HasProperty("_BaseMap")) material.SetTexture("_BaseMap", baseColor); // URP
+                if (material.HasProperty("_MainTex")) material.SetTexture("_MainTex", baseColor); // Built-in
+            }
+
+            if (normal != null && material.HasProperty("_BumpMap"))
+            {
+                material.SetTexture("_BumpMap", normal);
+                material.EnableKeyword("_NORMALMAP");
+            }
+
+            if (material.HasProperty("_Metallic")) material.SetFloat("_Metallic", 0f);
+            if (material.HasProperty("_Smoothness")) material.SetFloat("_Smoothness", 0.25f);
+            if (material.HasProperty("_Glossiness")) material.SetFloat("_Glossiness", 0.25f);
+            return material;
+        }
+
         /// <summary>An uncached unlit material, for objects that change color at runtime.</summary>
         public static Material NewUnlit(Color color)
         {

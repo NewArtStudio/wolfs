@@ -16,6 +16,42 @@ namespace VampWolfs
             CombatUnit unit = CreateUnit(parent, "Vampiro", position, Team.Vampires, 160f, 6.2f, 0.5f, 2.2f, VampireTeamColor);
             UnitVisual v = unit.Visual;
 
+            if (ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid)
+            {
+                v.UseModel(ArtLibrary.Vampire);
+            }
+            else
+            {
+                BuildVampirePlaceholder(v);
+            }
+
+            unit.SetAbilities(VampireKit.Create());
+            unit.Equipment.Set("Adaga Ritual T4", "Manto da Noite T4", 820);
+            return unit;
+        }
+
+        public static CombatUnit CreateWerewolf(Transform parent, Vector3 position)
+        {
+            CombatUnit unit = CreateUnit(parent, "Lobisomem", position, Team.Werewolves, 200f, 6.0f, 0.65f, 2.6f, WerewolfTeamColor);
+            UnitVisual v = unit.Visual;
+
+            if (ArtLibrary.Werewolf != null && ArtLibrary.Werewolf.IsValid)
+            {
+                v.UseModel(ArtLibrary.Werewolf);
+            }
+            else
+            {
+                BuildWerewolfPlaceholder(v);
+            }
+
+            unit.SetAbilities(WerewolfKit.Create());
+            unit.Equipment.Set("Garras de Prata Negra T4", "Pele Ancestral T4", 840);
+            return unit;
+        }
+
+        /// <summary>Primitive look used when no 3D model is assigned.</summary>
+        static void BuildVampirePlaceholder(UnitVisual v)
+        {
             Color coat = new Color(0.12f, 0.08f, 0.14f);
             Color cape = new Color(0.55f, 0.02f, 0.08f);
             Color skin = new Color(0.86f, 0.84f, 0.82f);
@@ -29,17 +65,11 @@ namespace VampWolfs
             v.Part(PrimitiveType.Sphere, "Hair", new Vector3(0f, 2.14f, -0.05f), new Vector3(0.52f, 0.36f, 0.52f), hair);
             v.Part(PrimitiveType.Sphere, "EyeL", new Vector3(-0.1f, 2.03f, 0.22f), Vector3.one * 0.08f, eyes, true);
             v.Part(PrimitiveType.Sphere, "EyeR", new Vector3(0.1f, 2.03f, 0.22f), Vector3.one * 0.08f, eyes, true);
-
-            unit.SetAbilities(VampireKit.Create());
-            unit.Equipment.Set("Adaga Ritual T4", "Manto da Noite T4", 820);
-            return unit;
         }
 
-        public static CombatUnit CreateWerewolf(Transform parent, Vector3 position)
+        /// <summary>Primitive look used when no 3D model is assigned.</summary>
+        static void BuildWerewolfPlaceholder(UnitVisual v)
         {
-            CombatUnit unit = CreateUnit(parent, "Lobisomem", position, Team.Werewolves, 200f, 6.0f, 0.65f, 2.6f, WerewolfTeamColor);
-            UnitVisual v = unit.Visual;
-
             Color fur = new Color(0.33f, 0.24f, 0.17f);
             Color darkFur = new Color(0.2f, 0.14f, 0.1f);
             Color claw = new Color(0.9f, 0.88f, 0.8f);
@@ -56,10 +86,6 @@ namespace VampWolfs
             v.Part(PrimitiveType.Cube, "ClawR", new Vector3(0.75f, 0.7f, 0.4f), new Vector3(0.32f, 0.15f, 0.35f), claw);
             v.Part(PrimitiveType.Sphere, "EyeL", new Vector3(-0.15f, 2.4f, 0.56f), Vector3.one * 0.1f, eyes, true);
             v.Part(PrimitiveType.Sphere, "EyeR", new Vector3(0.15f, 2.4f, 0.56f), Vector3.one * 0.1f, eyes, true);
-
-            unit.SetAbilities(WerewolfKit.Create());
-            unit.Equipment.Set("Garras de Prata Negra T4", "Pele Ancestral T4", 840);
-            return unit;
         }
 
         static CombatUnit CreateUnit(Transform parent, string displayName, Vector3 position, Team team, float maxHealth,

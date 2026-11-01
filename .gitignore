@@ -36,3 +36,8 @@ Thumbs.db
 *.unitypackage
 crashlytics-build.properties
 sysinfo.txt
+
+# Unity scene recovery
+[Rr]ecovery/
+_Recovery/
+_Recovery.meta
