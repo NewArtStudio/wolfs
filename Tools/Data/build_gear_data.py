@@ -131,6 +131,7 @@ for e in items:
         "Tier": e["tier"],
         "Focus": e["focus"],
         "ShieldKind": e.get("shield") or "",
+        "Model": e.get("model") or "",  # which tier-I drawing the lobby icon reuses
         "Dmg": e["dmg"],
         "Attrs": {"Str": e["attrs"]["str"], "Dex": e["attrs"]["dex"], "Int": e["attrs"]["int"], "Vit": e["attrs"]["vit"]},
         "AttrCap": {"Str": e["attrCap"]["str"], "Dex": e["attrCap"]["dex"], "Int": e["attrCap"]["int"], "Vit": e["attrCap"]["vit"]},
