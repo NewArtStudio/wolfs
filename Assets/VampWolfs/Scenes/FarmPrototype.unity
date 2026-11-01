@@ -157,10 +157,32 @@ MonoBehaviour:
     BagDropShare: 0.6
     ExtractionChannelTime: 4
     ExtractionRadius: 2.2
+    CameraHeight: 13
+    CameraBack: 8.5
+    CameraFieldOfView: 40
+    CharacterSize: 1.2
     AiDodgeChance: 0.45
     AiReactionTime: 0.25
-  LitShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  UnlitShader: {fileID: 10755, guid: 0000000000000000f000000000000000, type: 0}
+  LitShader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  UnlitShader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  VampireArt:
+    Model: {fileID: 919132149155446097, guid: 91bfb2808e3ccb44988d3f8e5708b025, type: 3}
+    BaseColor: {fileID: 2800000, guid: b4d450b4bffb19743828d5e9811f68a6, type: 3}
+    Normal: {fileID: 2800000, guid: 6c92638d070421344b54e87174b47f94, type: 3}
+    Height: 2
+    YawOffset: 0
+  WerewolfArt:
+    Model: {fileID: 919132149155446097, guid: b9c1d68d7f8d1484dba110c2def59eb3, type: 3}
+    BaseColor: {fileID: 2800000, guid: 30f0b3ebf8d670448b44f1cdd0d204d5, type: 3}
+    Normal: {fileID: 2800000, guid: 34b6536d127066d4e991c6e1e7162af6, type: 3}
+    Height: 2.5
+    YawOffset: 0
+  MonsterHunterArt:
+    Model: {fileID: 919132149155446097, guid: 822e940bd494a184e813a1ed29db870c, type: 3}
+    BaseColor: {fileID: 2800000, guid: daa0fc3e615151249881d117d449bacc, type: 3}
+    Normal: {fileID: 2800000, guid: 1c232ba190a1e144ba737de621a5fd46, type: 3}
+    Height: 1.9
+    YawOffset: 0
 --- !u!4 &1953414898
 Transform:
   m_ObjectHideFlags: 0
