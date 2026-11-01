@@ -22,6 +22,12 @@ namespace VampWolfs
         public CharacterArt WerewolfArt = new CharacterArt(2.5f);
         public CharacterArt MonsterHunterArt = new CharacterArt(1.9f);
 
+        [Header("Lobby")]
+        [Tooltip("Size of the vampire on the lobby stage (1 = same as in the match art height).")]
+        public float LobbyCharacterScale = 1.4f;
+        [Tooltip("Meters the lobby vampire stands in front of the stage center (toward the camera).")]
+        public float LobbyCharacterForward = 1.0f;
+
         GameObject worldRoot;
         GameObject baseCamera;
         BaseScreen baseScreen;          // old IMGUI Base (fallback when the lobby style is missing)
@@ -132,6 +138,7 @@ namespace VampWolfs
             player.ApplyGear(GearCatalog.Instance, Profile.EquippedMap());
 
             Camera cam = TopDownCamera.Create(root, player.transform, Settings);
+            Vfx.VfxHub.CreateForMatch(root, cam);   // particles, telegraphs, bloom (copied from the Space project)
             player.gameObject.AddComponent<PlayerController>().Init(cam);
 
             ExtractionPoint extraction = ExtractionPoint.Create(root, layout.ExtractionPosition, Settings);

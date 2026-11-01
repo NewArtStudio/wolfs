@@ -50,6 +50,8 @@ namespace VampWolfs
             visual.Part(PrimitiveType.Cube, "LegBL", new Vector3(-0.28f, 0.2f, -0.4f), new Vector3(0.15f, 0.4f, 0.15f), black);
             visual.Part(PrimitiveType.Cube, "LegBR", new Vector3(0.28f, 0.2f, -0.4f), new Vector3(0.15f, 0.4f, 0.15f), black);
 
+            Vfx.UnitFx.Attach(go, Vfx.UnitFx.Kind.Creature);   // blood when hit
+
             Sheep sheep = go.AddComponent<Sheep>();
             sheep.controller = cc;
             sheep.Health = health;
@@ -138,7 +140,10 @@ namespace VampWolfs
                 GiveLoot(killer);
             }
 
-            Effects.Puff(transform.position, new Color(0.9f, 0.9f, 0.86f), 8);
+            if (!Vfx.SkillFx.SheepDeath(transform.position))
+            {
+                Effects.Puff(transform.position, new Color(0.9f, 0.9f, 0.86f), 8);
+            }
 
             if (MatchManager.Instance != null)
             {

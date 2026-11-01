@@ -16,6 +16,7 @@ namespace VampWolfs.Lobby
     ///  - Chão: plano invisível que só recebe a sombra dos soldados e uma sombra de contato sob os pés.
     ///  - Luz: sol baixo atrás da cena (sombras vindo para a câmera, como na pintura), preenchimento pela frente,
     ///    ambiente quente; pós-processamento próprio sem "grade" de cor (a pintura aparece com as cores originais).
+    ///  - Vida: poeira dourada brilhando na luz (precisa dos arquivos de VFX).
     ///  - O palco tem o próprio sol (a Fazenda é destruída ao voltar para a Base, junto com a luz dela).
     /// Sem a placa ou os shaders, Create devolve null e o lobby aparece sem o palco 3D.
     ///
@@ -44,7 +45,7 @@ namespace VampWolfs.Lobby
         Texture2D plate;
         float cx, cy, focal, pitch, camHeight, camDist, camX;
         Transform backdrop, catcher; Material backdropMat, catcherMat;
-        Light fillLight, sun; Volume look;
+        Light fillLight, sun; Volume look; ParticleSystem dust;
         bool visible;
         sealed class Saved
         {
@@ -128,7 +129,33 @@ namespace VampWolfs.Lobby
             sun.shadows = LightShadows.Soft; sun.shadowStrength = 1f;
             sun.cullingMask &= ~(1 << PortraitStudio.Layer);
             sg.transform.rotation = Quaternion.LookRotation(SunTravel);
+            BuildDust();
             gameObject.SetActive(false);
+        }
+
+        /// <summary>Poeira dourada flutuando na luz, entre a câmera e o vampiro (do Space; precisa dos arquivos de VFX).</summary>
+        void BuildDust()
+        {
+            if (!Vfx.VfxAssets.Load()) return;
+            var go = new GameObject("Poeira no ar (Base)"); go.transform.SetParent(transform, false);
+            go.transform.localPosition = new Vector3(0f, 1.6f, 1.2f);
+            dust = go.AddComponent<ParticleSystem>();
+            dust.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main = dust.main; main.loop = true; main.playOnAwake = false; main.maxParticles = 140;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(6f, 10f); main.startSpeed = new ParticleSystem.MinMaxCurve(0.02f, 0.12f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.025f, 0.06f); main.startColor = new ParticleSystem.MinMaxGradient(new Color(1f, 0.78f, 0.45f, 0.55f));
+            main.simulationSpace = ParticleSystemSimulationSpace.World; main.prewarm = true;
+            var em = dust.emission; em.rateOverTime = new ParticleSystem.MinMaxCurve(16f);
+            var sh = dust.shape; sh.enabled = true; sh.shapeType = ParticleSystemShapeType.Box; sh.scale = new Vector3(9f, 3.2f, 5f);
+            var no = dust.noise; no.enabled = true; no.strength = new ParticleSystem.MinMaxCurve(0.12f); no.frequency = 0.35f; no.scrollSpeed = new ParticleSystem.MinMaxCurve(0.1f);
+            var col = dust.colorOverLifetime; col.enabled = true;
+            var g = new Gradient();
+            g.SetKeys(new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
+                      new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(1f, 0.25f), new GradientAlphaKey(1f, 0.75f), new GradientAlphaKey(0f, 1f) });
+            col.color = new ParticleSystem.MinMaxGradient(g);
+            var r = go.GetComponent<ParticleSystemRenderer>();
+            r.renderMode = ParticleSystemRenderMode.Billboard; r.sharedMaterial = Vfx.VfxAssets.AdditiveMat("base.dust", Vfx.VfxAssets.Glow, 1.6f);
+            r.shadowCastingMode = ShadowCastingMode.Off; r.receiveShadows = false;
         }
 
         /* ======================= ligar / desligar ======================= */
@@ -159,6 +186,7 @@ namespace VampWolfs.Lobby
                     var data = cam.GetUniversalAdditionalCameraData(); if (data != null) data.renderPostProcessing = true;   // bloom/vinheta da Base
                 }
                 if (look != null) look.weight = 1f;
+                if (dust != null) dust.Play();
             }
             else if (saved != null)
             {
@@ -166,6 +194,7 @@ namespace VampWolfs.Lobby
                 RenderSettings.ambientEquatorColor = saved.AmbEq; RenderSettings.ambientGroundColor = saved.AmbGround;
                 if (cam != null) { cam.fieldOfView = saved.Fov; cam.clearFlags = saved.Clear; cam.backgroundColor = saved.Bg; }
                 if (look != null) look.weight = 0f;
+                if (dust != null) dust.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             }
         }
 

@@ -27,6 +27,9 @@ namespace VampWolfs
         /// <summary>killer (may be null).</summary>
         public event Action<CombatUnit> Died;
 
+        /// <summary>amount actually healed (used by the VFX).</summary>
+        public event Action<float> Healed;
+
         StatusEffects status;
         float lastDamageTime = -100f;
 
@@ -139,6 +142,11 @@ namespace VampWolfs
 
             float healed = Mathf.Min(amount, MaxHealth - Current);
             Current += healed;
+
+            if (healed > 0f && Healed != null)
+            {
+                Healed(healed);
+            }
 
             if (healed >= 1f)
             {

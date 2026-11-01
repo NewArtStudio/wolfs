@@ -160,7 +160,10 @@ namespace VampWolfs
             Invader.Inventory.AddItem(catalog, GearLoadouts.RandomMaterial(catalog));
 
             State = MatchState.Invaded;
-            Effects.Burst(spawn, 3.5f, new Color(0.55f, 0.25f, 0.9f), 0.8f);
+            if (!Vfx.SkillFx.InvaderArrives(spawn))
+            {
+                Effects.Burst(spawn, 3.5f, new Color(0.55f, 0.25f, 0.9f), 0.8f);
+            }
             ShowBanner("UM LOBISOMEM INVADIU A FAZENDA!\nLute pela bag dele ou fuja pelo portal.", new Color(1f, 0.45f, 0.25f), 4.5f);
         }
 

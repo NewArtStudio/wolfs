@@ -29,6 +29,14 @@ namespace VampWolfs
 
             GameObject go = Shapes.Create(PrimitiveType.Sphere, parent, ability.Name, position, Vector3.one * ability.VisualScale, ability.Color, true);
 
+            // With the VFX files: glowing core + trail instead of the plain sphere (the sphere stays as the fallback look).
+            if (Vfx.ProjectileFx.Attach(go, ability, direction) != null)
+            {
+                Renderer sphere = go.GetComponent<Renderer>();
+                if (sphere != null) sphere.enabled = false;
+                if (owner != null) Vfx.SkillFx.ProjectileLaunch(owner, ability, direction);
+            }
+
             Light glow = go.AddComponent<Light>();
             glow.type = LightType.Point;
             glow.color = ability.Color;
@@ -60,7 +68,7 @@ namespace VampWolfs
 
                 if (hits[i].collider.GetComponent<Obstacle>() != null)
                 {
-                    Effects.Burst(hitPoint, 0.5f, ability.Color, 0.15f);
+                    if (!Vfx.SkillFx.ProjectileHit(ability, hitPoint, Direction, true)) Effects.Burst(hitPoint, 0.5f, ability.Color, 0.15f);
                     Destroy(gameObject);
                     return;
                 }
@@ -78,7 +86,7 @@ namespace VampWolfs
 
                 alreadyHit.Add(target);
                 ability.Hit.Apply(Owner, target);
-                Effects.Burst(hitPoint, 0.7f, ability.Color, 0.2f);
+                if (!Vfx.SkillFx.ProjectileHit(ability, hitPoint, Direction, false)) Effects.Burst(hitPoint, 0.7f, ability.Color, 0.2f);
 
                 if (!ability.Pierce)
                 {

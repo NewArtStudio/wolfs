@@ -62,6 +62,7 @@ namespace VampWolfs
             bag.spawnTime = Time.time;
             bag.DroppedBy = droppedBy;
 
+            Vfx.SkillFx.BagDropped(go.transform.position);
             FloatingText.Spawn(go.transform.position + Vector3.up * 1.6f, "Bag caiu (" + bag.TotalItems + " itens)", gold, 1.6f, 1f);
             return bag;
         }
@@ -103,7 +104,10 @@ namespace VampWolfs
             picked = true;
             unit.Inventory.AddAll(contents);
             unit.Inventory.AddItems(GearCatalog.Instance, gear);
-            Effects.Puff(transform.position, new Color(1f, 0.8f, 0.25f), 10);
+            if (!Vfx.SkillFx.BagPicked(transform.position))
+            {
+                Effects.Puff(transform.position, new Color(1f, 0.8f, 0.25f), 10);
+            }
 
             if (MatchManager.Instance != null)
             {

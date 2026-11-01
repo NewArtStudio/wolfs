@@ -19,7 +19,10 @@ namespace VampWolfs
             if (HasteDuration > 0f) caster.Status.ApplyHaste(Haste, HasteDuration);
 
             FloatingText.Spawn(caster.Position + Vector3.up * 2.8f, Name, Color);
-            Effects.Burst(caster.Position, 1.6f, Color, 0.3f);
+            if (!Vfx.SkillFx.Buff(caster, this))
+            {
+                Effects.Burst(caster.Position, 1.6f, Color, 0.3f);
+            }
         }
     }
 }

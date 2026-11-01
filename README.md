@@ -42,6 +42,7 @@ Sem modelo na pasta, o personagem usa o boneco de primitivas.
 | F | Ultimate — Banquete Carmesim (custa 100) |
 | C | cancelar conjuração (devolve cooldown e energia) |
 | H | mostrar/esconder ajuda |
+| Rodinha do mouse | aproximar/afastar a câmera |
 | I | ver equipamento e atributos (na Base abre o Arsenal) |
 | Esc | fechar o Arsenal / a janela de melhoria (Base) |
 | Enter | EXPLORAR (Base) / voltar à Base (tela final) |
@@ -68,6 +69,7 @@ Assets/VampWolfs/
     World/       FarmBuilder (mapa), Sheep, ExtractionPoint, Obstacle
     Loot/        Inventory (a BAG, em risco), Equipment (seguro), LootBag (bag no chão)
     UI/          GameHUD (IMGUI), FloatingText, BaseScreen (Base antiga em IMGUI, reserva se o lobby faltar)
+    Vfx/         efeitos visuais (motor do Space + receitas das habilidades) — veja docs/VFX.md
     Lobby/       lobby copiado do Space (UI Toolkit): LobbyUI, BaseScreen, ArsenalScreen, BaseStage, PortraitStudio…
   Resources/Lobby/   Lobby.uss (estilos), fontes vitorianas, botão EXPLORAR
   Resources/Base/    fundo pintado do palco (ainda o hangar do Space) + shaders

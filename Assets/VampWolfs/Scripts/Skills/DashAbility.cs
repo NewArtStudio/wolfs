@@ -52,7 +52,13 @@ namespace VampWolfs
                 caster.Status.ApplyInvulnerable(InvulnerableTime);
             }
 
-            Effects.Burst(caster.Position, 1f, Color, 0.25f);
+            Vfx.UnitFx fx = caster.GetComponent<Vfx.UnitFx>();
+            if (fx != null) fx.SetDash(this);
+            if (!Vfx.SkillFx.DashStart(caster, this, direction))
+            {
+                Effects.Burst(caster.Position, 1f, Color, 0.25f);
+            }
+
             caster.StartForcedMove(direction * (distance / duration), duration, delegate { OnLand(caster); });
         }
 
@@ -62,6 +68,8 @@ namespace VampWolfs
             {
                 return;
             }
+
+            bool vfx = Vfx.SkillFx.DashLand(caster, this);
 
             if (LandingRadius <= 0f)
             {
@@ -74,7 +82,10 @@ namespace VampWolfs
                 LandingHit.Apply(caster, targets[i]);
             }
 
-            Effects.Burst(caster.Position, LandingRadius, Color, 0.3f);
+            if (!vfx)
+            {
+                Effects.Burst(caster.Position, LandingRadius, Color, 0.3f);
+            }
         }
     }
 }

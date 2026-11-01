@@ -20,6 +20,7 @@ namespace VampWolfs
         public override void Execute(CombatUnit caster, Vector3 aimPoint)
         {
             caster.Status.StartCounter(Duration, StunAttacker, HealOnTrigger);
+            Vfx.SkillFx.CounterStart(caster);
             FloatingText.Spawn(caster.Position + Vector3.up * 2.8f, Name, new Color(1f, 0.85f, 0.4f));
         }
     }

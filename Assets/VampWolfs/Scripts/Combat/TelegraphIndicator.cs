@@ -37,6 +37,8 @@ namespace VampWolfs
     /// <summary>
     /// Draws the cast telegraph on the ground. In Battlerite, reading the enemy's telegraph
     /// and moving out of it is the core skill, so every enemy cast shows one.
+    /// With the VFX files present it uses the ground shader copied from the Space project
+    /// (glowing rim, striped fill and a front that grows with the cast); otherwise flat primitives.
     /// </summary>
     public class TelegraphIndicator : MonoBehaviour
     {
@@ -46,8 +48,24 @@ namespace VampWolfs
         GameObject circle;
         Material material;
 
+        // VFX version: two quads with the "Space/VFX/Ground" shader (mode 1 = circle, 3 = line)
+        Vfx.VfxSystem.FxObj vfxLine, vfxCircle;
+        Vfx.VfxSystem vfxOwner;
+
         public void Show(TelegraphInfo info, Color color)
         {
+            Show(info, color, 0f);
+        }
+
+        /// <summary>progress = cast progress 0..1 (the fill grows toward the edge).</summary>
+        public void Show(TelegraphInfo info, Color color, float progress)
+        {
+            if (Vfx.VfxHub.Ready && ShowVfx(info, color, progress))
+            {
+                if (line != null) { line.SetActive(false); circle.SetActive(false); }
+                return;
+            }
+
             EnsureObjects();
             material.color = color;
 
@@ -69,12 +87,58 @@ namespace VampWolfs
             }
         }
 
+        bool ShowVfx(TelegraphInfo info, Color color, float progress)
+        {
+            var v = Vfx.VfxHub.Fx;
+            if (vfxOwner != v) { ReleaseVfx(); vfxOwner = v; }
+            Color c = new Color(color.r * 1.6f, color.g * 1.6f, color.b * 1.6f, 1f);   // HDR: the rim glows with the bloom
+
+            if (info.Kind == TelegraphKind.Circle)
+            {
+                if (vfxLine != null) { v.Return(vfxLine); vfxLine = null; }
+                if (vfxCircle == null) vfxCircle = v.Acquire("ground");
+                vfxCircle.T.position = new Vector3(info.Origin.x, 0.05f, info.Origin.z);
+                vfxCircle.T.rotation = Quaternion.identity;
+                vfxCircle.T.localScale = new Vector3(info.Width * 2f, 1f, info.Width * 2f);
+                Vfx.VfxSystem.GroundSet(vfxCircle, 1, c, c, new Vector4(progress, 0f, 0f, 0f), 0.9f, 1.2f);
+                return true;
+            }
+
+            if (info.Kind == TelegraphKind.Line)
+            {
+                if (vfxCircle != null) { v.Return(vfxCircle); vfxCircle = null; }
+                if (vfxLine == null) vfxLine = v.Acquire("ground");
+                Vector3 direction = info.Direction.sqrMagnitude > 0.0001f ? info.Direction.normalized : Vector3.forward;
+                direction.y = 0f;
+                Vector3 center = info.Origin + direction * (info.Length * 0.5f);
+                float width = Mathf.Max(0.6f, info.Width);
+                vfxLine.T.position = new Vector3(center.x, 0.05f, center.z);
+                vfxLine.T.rotation = Quaternion.LookRotation(direction, Vector3.up);
+                vfxLine.T.localScale = new Vector3(width, 1f, info.Length);
+                Vfx.VfxSystem.GroundSet(vfxLine, 3, c, c, new Vector4(progress, info.Length / Mathf.Max(0.2f, width), 0f, 0f), 0.9f, 1.2f);
+                return true;
+            }
+
+            ReleaseVfx();
+            return true;
+        }
+
+        void ReleaseVfx()
+        {
+            if (vfxOwner != null)
+            {
+                if (vfxLine != null) vfxOwner.Return(vfxLine);
+                if (vfxCircle != null) vfxOwner.Return(vfxCircle);
+            }
+            vfxLine = null; vfxCircle = null;
+        }
+
         public void Hide()
         {
             if (line != null) line.SetActive(false);
             if (circle != null) circle.SetActive(false);
+            ReleaseVfx();
         }
-
         void EnsureObjects()
         {
             if (line != null)
@@ -98,6 +162,7 @@ namespace VampWolfs
 
         void OnDestroy()
         {
+            ReleaseVfx();
             if (line != null) Destroy(line);
             if (circle != null) Destroy(circle);
             if (material != null) Destroy(material);

@@ -47,6 +47,13 @@ namespace VampWolfs
         [Tooltip("Multiplies character model size and collision radius.")]
         public float CharacterSize = 1.2f;
 
+        [Tooltip("Pulls the camera back (multiplies height and distance, same angle). 1 = old framing. The mouse wheel changes it in game.")]
+        public float CameraZoom = 1.35f;
+
+        [Tooltip("Mouse wheel limits for CameraZoom.")]
+        public float CameraZoomMin = 0.85f;
+        public float CameraZoomMax = 1.9f;
+
         [Header("Werewolf AI")]
         [Range(0f, 1f)]
         [Tooltip("Chance the AI tries to dash away from a projectile about to hit it.")]

@@ -42,7 +42,10 @@ namespace VampWolfs
             if (SelfHeal > 0f) caster.Health.HealScaled(SelfHeal);
             if (SelfHasteDuration > 0f) caster.Status.ApplyHaste(SelfHaste, SelfHasteDuration);
 
-            Effects.Burst(center, Radius, Color, 0.3f);
+            if (!Vfx.SkillFx.Area(caster, this, center))
+            {
+                Effects.Burst(center, Radius, Color, 0.3f);
+            }
         }
     }
 }

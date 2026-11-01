@@ -19,6 +19,8 @@ com tudo o que dava trocado para o estilo **vitoriano cartunizado**. O que não 
 - **Retratos** (`PortraitStudio.cs`): estúdio escondido que fotografa o vampiro (card e Arsenal).
 
 Atalhos na Base: **I** abre/fecha o Arsenal, **Esc** fecha janelas, **Enter** = EXPLORAR.
+Arraste o mouse numa área vazia da tela para **girar o vampiro** no palco. O tamanho e a posição dele no palco ficam no
+Inspector do GameBootstrap (`LobbyCharacterScale`, `LobbyCharacterForward`).
 
 ## O que já está no estilo vitoriano
 

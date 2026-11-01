@@ -18,6 +18,7 @@ namespace VampWolfs
             ProjectileAbility bloodBolt = new ProjectileAbility
             {
                 Name = "Seta de Sangue",
+                Fx = "blood_bolt",
                 CastTime = 0.3f,
                 MoveMultiplierWhileCasting = 0.55f,
                 Range = 11f,
@@ -31,6 +32,7 @@ namespace VampWolfs
             ProjectileAbility crimsonLance = new ProjectileAbility
             {
                 Name = "Lança Carmesim",
+                Fx = "lance",
                 Cooldown = 4f,
                 CastTime = 0.75f,
                 MoveMultiplierWhileCasting = 0.2f,
@@ -43,6 +45,7 @@ namespace VampWolfs
                 Ex = new ProjectileAbility
                 {
                     Name = "EX Lança Perfurante",
+                    Fx = "lance_ex",
                     Cooldown = 4f,
                     EnergyCost = 25f,
                     CastTime = 0.75f,
@@ -60,6 +63,7 @@ namespace VampWolfs
             DashAbility mistStep = new DashAbility
             {
                 Name = "Passo da Névoa",
+                Fx = "mist_step",
                 Cooldown = 8f,
                 CastTime = 0f,
                 MaxDistance = 6f,
@@ -70,6 +74,7 @@ namespace VampWolfs
                 Ex = new DashAbility
                 {
                     Name = "EX Revoada de Morcegos",
+                    Fx = "bats",
                     Cooldown = 8f,
                     EnergyCost = 25f,
                     CastTime = 0f,
@@ -84,6 +89,7 @@ namespace VampWolfs
             ProjectileAbility hypnoticGaze = new ProjectileAbility
             {
                 Name = "Olhar Hipnótico",
+                Fx = "gaze",
                 Cooldown = 10f,
                 CastTime = 0.4f,
                 MoveMultiplierWhileCasting = 0.3f,
@@ -98,6 +104,7 @@ namespace VampWolfs
             CounterAbility bloodMirror = new CounterAbility
             {
                 Name = "Espelho de Sangue",
+                Fx = "mirror",
                 Cooldown = 12f,
                 CastTime = 0f,
                 Duration = 1.2f,
@@ -108,6 +115,7 @@ namespace VampWolfs
             AreaAbility bloodNova = new AreaAbility
             {
                 Name = "Nova Sanguínea",
+                Fx = "nova",
                 Cooldown = 6f,
                 EnergyCost = 25f,
                 CastTime = 0.25f,
@@ -122,6 +130,7 @@ namespace VampWolfs
             ProjectileAbility crimsonFeast = new ProjectileAbility
             {
                 Name = "Banquete Carmesim",
+                Fx = "feast",
                 EnergyCost = Energy.Max,
                 Cooldown = 1f,
                 CastTime = 0.6f,

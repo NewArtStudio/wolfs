@@ -108,7 +108,10 @@ namespace VampWolfs
                 health.HealScaled(counterHeal);
             }
 
-            Effects.Burst(transform.position, 2.2f, new Color(1f, 0.8f, 0.2f), 0.3f);
+            if (!Vfx.SkillFx.CounterTrigger(transform.position))
+            {
+                Effects.Burst(transform.position, 2.2f, new Color(1f, 0.8f, 0.2f), 0.3f);
+            }
         }
 
         public void ClearAll()

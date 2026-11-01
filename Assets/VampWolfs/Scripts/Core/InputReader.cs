@@ -38,6 +38,15 @@ namespace VampWolfs
             return m != null ? m.position.ReadValue() : Vector2.zero;
         }
 
+        /// <summary>Mouse wheel this frame: +1 per notch forward (away from you), -1 back.</summary>
+        public static float ScrollDelta()
+        {
+            Mouse m = Mouse.current;
+            if (m == null) return 0f;
+            float y = m.scroll.ReadValue().y;
+            return Mathf.Abs(y) > 3f ? y / 120f : y;   // some setups report 120 per notch, others 1
+        }
+
         public static bool PrimaryHeld()
         {
             Mouse m = Mouse.current;
@@ -72,6 +81,7 @@ namespace VampWolfs
         }
 
         public static Vector2 MousePosition() { return Input.mousePosition; }
+        public static float ScrollDelta() { return Input.mouseScrollDelta.y; }
         public static bool PrimaryHeld() { return Input.GetMouseButton(0); }
         public static bool SecondaryPressed() { return Input.GetMouseButtonDown(1); }
         public static bool ExHeld() { return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift); }

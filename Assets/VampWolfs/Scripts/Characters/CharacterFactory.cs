@@ -32,6 +32,9 @@ namespace VampWolfs
                 BuildVampirePlaceholder(v);
             }
 
+            Vfx.InkOutline.Attach(v.Model.gameObject, Vfx.InkOutline.Ink);   // cartoon ink line
+            Vfx.UnitFx.Attach(unit.gameObject, Vfx.UnitFx.Kind.Vampire);       // blood, cast glow, shields, footsteps, death
+
             unit.SetAbilities(VampireKit.Create());
             unit.Equipment.Set("Adaga Ritual T4", "Manto da Noite T4", 820);
             return unit;
@@ -50,6 +53,9 @@ namespace VampWolfs
             {
                 BuildWerewolfPlaceholder(v);
             }
+
+            Vfx.InkOutline.Attach(v.Model.gameObject, Vfx.InkOutline.EnemyInk);
+            Vfx.UnitFx.Attach(unit.gameObject, Vfx.UnitFx.Kind.Beast);
 
             unit.SetAbilities(WerewolfKit.Create());
             unit.Equipment.Set("Garras de Prata Negra T4", "Pele Ancestral T4", 840);
@@ -74,8 +80,10 @@ namespace VampWolfs
             else
             {
                 BuildVampirePlaceholder(v);
+                go.transform.localScale = Vector3.one * sizeMultiplier;
             }
 
+            Vfx.InkOutline.Attach(v.Model.gameObject, Vfx.InkOutline.Ink);
             go.transform.SetParent(parent, false);
             return go;
         }

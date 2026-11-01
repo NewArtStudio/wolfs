@@ -26,6 +26,9 @@ namespace VampWolfs.Lobby
         ArsenalScreen arsenal;
         BaseStage stage;
         Transform stageChar;
+        // girar o vampiro arrastando o mouse no palco (área vazia da tela)
+        bool turning; float turnX, yaw, yawVelocity;
+        const float TurnPerPixel = 0.45f, TurnFriction = 5f;
         readonly List<KeyValuePair<Label, float>> banners = new List<KeyValuePair<Label, float>>();
         readonly List<Action> scheduled = new List<Action>();
         readonly Vector3[] feet = new Vector3[1];
@@ -73,16 +76,38 @@ namespace VampWolfs.Lobby
             bannerBox.pickingMode = PickingMode.Ignore;
 
             stage = BaseStage.Create(transform);
-            if (stage != null) stageChar = BuildStageCharacter(stage.transform);
+            if (stage != null) stageChar = BuildStageCharacter(stage.transform, boot.LobbyCharacterScale, boot.LobbyCharacterForward);
+            if (stageChar != null) yaw = stageChar.localEulerAngles.y;
+
+            // arrastar na área vazia (fora dos painéis) gira o vampiro: uma camada transparente atrás dos painéis recebe o clique
+            VisualElement screen = new VisualElement { name = "lobby-drag" };
+            screen.style.position = Position.Absolute;
+            screen.style.left = 0f; screen.style.top = 0f; screen.style.right = 0f; screen.style.bottom = 0f;
+            screen.pickingMode = PickingMode.Position;
+            root.Insert(0, screen);
+            screen.RegisterCallback<PointerDownEvent>(e => { if (e.button == 0) { turning = true; turnX = e.position.x; yawVelocity = 0f; screen.CapturePointer(e.pointerId); } });
+            screen.RegisterCallback<PointerMoveEvent>(e =>
+            {
+                if (!turning) return;
+                float dx = e.position.x - turnX; turnX = e.position.x;
+                yaw -= dx * TurnPerPixel;
+                yawVelocity = -dx * TurnPerPixel / Mathf.Max(0.005f, Time.unscaledDeltaTime);
+            });
+            screen.RegisterCallback<PointerUpEvent>(e => { turning = false; if (screen.HasPointerCapture(e.pointerId)) screen.ReleasePointer(e.pointerId); });
+            screen.RegisterCallback<PointerCaptureOutEvent>(e => turning = false);
 
             UiKit.Show(root, false);
         }
 
-        /// <summary>Vampiro em pé no palco, de frente para a câmera (só visual: sem combate nem colisão).</summary>
-        static Transform BuildStageCharacter(Transform parent)
+        /// <summary>
+        /// Vampiro em pé no palco, de frente para a câmera (só visual: sem combate nem colisão).
+        /// scale = tamanho no palco (o palco do Space foi pintado para 3 soldados; com 1 personagem ele fica maior),
+        /// forward = metros para a frente (em direção à câmera). Os dois ficam no Inspector do GameBootstrap.
+        /// </summary>
+        static Transform BuildStageCharacter(Transform parent, float scale, float forward)
         {
-            GameObject go = CharacterFactory.CreateDisplayVampire(parent);
-            go.transform.localPosition = BaseStage.SlotPositions[1];
+            GameObject go = CharacterFactory.CreateDisplayVampire(parent, Mathf.Max(0.2f, scale));
+            go.transform.localPosition = BaseStage.SlotPositions[1] + new Vector3(0f, 0f, forward);
             go.transform.localRotation = Quaternion.Euler(0f, BaseStage.SlotYaw[1], 0f);
             return go.transform;
         }
@@ -121,7 +146,16 @@ namespace VampWolfs.Lobby
             if (stage != null && stage.Visible)
             {
                 stage.ApplyCamera(cam, Vector3.zero);
-                if (stageChar != null) { feet[0] = stageChar.position; stage.SetFeet(feet); }
+                if (stageChar != null)
+                {
+                    feet[0] = stageChar.position; stage.SetFeet(feet);
+                    if (!turning)
+                    {
+                        yaw += yawVelocity * Time.unscaledDeltaTime;   // continua girando um pouco depois de soltar
+                        yawVelocity *= Mathf.Exp(-TurnFriction * Time.unscaledDeltaTime);
+                    }
+                    stageChar.localRotation = Quaternion.Euler(0f, yaw, 0f);
+                }
             }
 
             if (Time.frameCount <= shownFrame + 1 || CapturesKeyboard) return;

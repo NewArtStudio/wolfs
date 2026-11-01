@@ -301,7 +301,7 @@ namespace VampWolfs
 
             if (show)
             {
-                Telegraph.Show(currentCast.GetTelegraph(this, AimPoint), IsPlayer ? OwnTelegraphColor : EnemyTelegraphColor);
+                Telegraph.Show(currentCast.GetTelegraph(this, AimPoint), IsPlayer ? OwnTelegraphColor : EnemyTelegraphColor, CastProgress);
             }
             else
             {

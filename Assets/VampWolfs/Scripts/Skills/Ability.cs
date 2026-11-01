@@ -31,6 +31,9 @@ namespace VampWolfs
 
         public float Range = 10f;
 
+        /// <summary>Visual recipe in Vfx/SkillFx (e.g. "blood_bolt", "claws"); empty = generic effect in the ability color.</summary>
+        public string Fx = "";
+
         /// <summary>Optional EX version (Shift + key). Shares the cooldown with this ability.</summary>
         public Ability Ex;
 

@@ -41,10 +41,14 @@ namespace VampWolfs
                 if (insideArc)
                 {
                     Hit.Apply(caster, targets[i]);
+                    Vfx.SkillFx.MeleeHit(targets[i].transform.position + Vector3.up * 1.2f * CharacterFactory.SizeMultiplier, toTarget.normalized, Fx == "rend");
                 }
             }
 
-            Effects.Burst(center + direction * (Reach * 0.5f), Reach * 0.55f, Color, 0.15f);
+            if (!Vfx.SkillFx.Melee(caster, this, direction))
+            {
+                Effects.Burst(center + direction * (Reach * 0.5f), Reach * 0.55f, Color, 0.15f);
+            }
         }
     }
 }

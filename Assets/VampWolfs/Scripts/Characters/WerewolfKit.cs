@@ -18,6 +18,7 @@ namespace VampWolfs
             MeleeAbility claws = new MeleeAbility
             {
                 Name = "Garras",
+                Fx = "claws",
                 CastTime = 0.35f,
                 MoveMultiplierWhileCasting = 0.5f,
                 Reach = 2.4f,
@@ -29,6 +30,7 @@ namespace VampWolfs
             DashAbility pounce = new DashAbility
             {
                 Name = "Bote",
+                Fx = "pounce",
                 Cooldown = 6f,
                 CastTime = 0.2f,
                 MoveMultiplierWhileCasting = 0f,
@@ -41,6 +43,7 @@ namespace VampWolfs
                 Ex = new DashAbility
                 {
                     Name = "EX Bote Selvagem",
+                    Fx = "pounce",
                     Cooldown = 6f,
                     EnergyCost = 25f,
                     CastTime = 0.2f,
@@ -57,6 +60,7 @@ namespace VampWolfs
             DashAbility rush = new DashAbility
             {
                 Name = "Investida",
+                Fx = "rush",
                 Cooldown = 7f,
                 CastTime = 0f,
                 MaxDistance = 5f,
@@ -66,6 +70,7 @@ namespace VampWolfs
                 Ex = new DashAbility
                 {
                     Name = "EX Investida Fantasma",
+                    Fx = "rush",
                     Cooldown = 7f,
                     EnergyCost = 25f,
                     CastTime = 0f,
@@ -80,6 +85,7 @@ namespace VampWolfs
             AreaAbility howl = new AreaAbility
             {
                 Name = "Uivo",
+                Fx = "howl",
                 Cooldown = 10f,
                 CastTime = 0.3f,
                 MoveMultiplierWhileCasting = 0.2f,
@@ -92,6 +98,7 @@ namespace VampWolfs
             BuffAbility thickHide = new BuffAbility
             {
                 Name = "Couro Grosso",
+                Fx = "hide",
                 Cooldown = 12f,
                 CastTime = 0f,
                 DamageReduction = 0.6f,
@@ -102,6 +109,7 @@ namespace VampWolfs
             MeleeAbility rend = new MeleeAbility
             {
                 Name = "Dilacerar",
+                Fx = "rend",
                 Cooldown = 5f,
                 EnergyCost = 25f,
                 CastTime = 0.45f,
@@ -115,6 +123,7 @@ namespace VampWolfs
             AreaAbility bloodMoon = new AreaAbility
             {
                 Name = "Lua de Sangue",
+                Fx = "blood_moon",
                 EnergyCost = Energy.Max,
                 Cooldown = 1f,
                 CastTime = 0.5f,
