@@ -2,7 +2,7 @@
 
 Protótipo de **combate estilo Battlerite** + **loop estilo Brumas de Avalon (Albion)**, em Unity 6 / URP.
 
-Você é o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s um **Lobisomem (IA)** invade o mapa.
+O jogo abre na **Base** (baú, equipamento, refino, tônicos e gemas — sistema vindo do projeto Space, com nomes vitorianos; veja [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Em **Entrar na Fazenda**, você é o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s um **Lobisomem (IA)** invade o mapa.
 Quem morre perde **só a bag** (o que foi farmado na partida) — o **equipamento nunca cai**.
 Para garantir o loot, fique 4 s no **portal roxo de extração** (levar dano interrompe).
 
@@ -42,7 +42,8 @@ Sem modelo na pasta, o personagem usa o boneco de primitivas.
 | F | Ultimate — Banquete Carmesim (custa 100) |
 | C | cancelar conjuração (devolve cooldown e energia) |
 | H | mostrar/esconder ajuda |
-| Enter | jogar de novo (na tela final) |
+| I | ver equipamento e atributos (trocar só na Base) |
+| Enter | entrar na fazenda (Base) / voltar à Base (tela final) |
 
 Todos os números (tempo de invasão, % da bag que cai, dificuldade da IA…) ficam no **Inspector do objeto GameBootstrap**. Os números das habilidades ficam em `VampireKit.cs` e `WerewolfKit.cs`.
 

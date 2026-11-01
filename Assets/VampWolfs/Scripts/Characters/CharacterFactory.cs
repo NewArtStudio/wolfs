@@ -11,14 +11,21 @@ namespace VampWolfs
         public static readonly Color VampireTeamColor = new Color(0.85f, 0.1f, 0.2f);
         public static readonly Color WerewolfTeamColor = new Color(1f, 0.55f, 0.1f);
 
+        /// <summary>Scales models and collision (MatchSettings.CharacterSize). Set by GameBootstrap.</summary>
+        public static float SizeMultiplier = 1f;
+
+        /// <summary>Vampire stats before gear (the Base screen previews gear on top of these).</summary>
+        public const float VampireHealth = 160f;
+        public const float VampireSpeed = 6.2f;
+
         public static CombatUnit CreateVampire(Transform parent, Vector3 position)
         {
-            CombatUnit unit = CreateUnit(parent, "Vampiro", position, Team.Vampires, 160f, 6.2f, 0.5f, 2.2f, VampireTeamColor);
+            CombatUnit unit = CreateUnit(parent, "Vampiro", position, Team.Vampires, VampireHealth, VampireSpeed, 0.5f, 2.2f, VampireTeamColor);
             UnitVisual v = unit.Visual;
 
             if (ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid)
             {
-                v.UseModel(ArtLibrary.Vampire);
+                v.UseModel(ArtLibrary.Vampire, SizeMultiplier);
             }
             else
             {
@@ -37,7 +44,7 @@ namespace VampWolfs
 
             if (ArtLibrary.Werewolf != null && ArtLibrary.Werewolf.IsValid)
             {
-                v.UseModel(ArtLibrary.Werewolf);
+                v.UseModel(ArtLibrary.Werewolf, SizeMultiplier);
             }
             else
             {
@@ -91,6 +98,9 @@ namespace VampWolfs
         static CombatUnit CreateUnit(Transform parent, string displayName, Vector3 position, Team team, float maxHealth,
             float moveSpeed, float radius, float height, Color teamColor)
         {
+            radius *= SizeMultiplier;
+            height *= SizeMultiplier;
+
             GameObject go = new GameObject(displayName);
             go.transform.SetParent(parent, false);
             go.transform.position = new Vector3(position.x, 0f, position.z);

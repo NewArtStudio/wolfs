@@ -9,23 +9,23 @@ namespace VampWolfs
     public class TopDownCamera : MonoBehaviour
     {
         public Transform Target;
-        public Vector3 Offset = new Vector3(0f, 19f, -12f);
+        public Vector3 Offset = new Vector3(0f, 13f, -8.5f);
         public float FollowSharpness = 10f;
 
         [Tooltip("How much the camera leans toward the aim point (0 = none).")]
-        public float AimLookAhead = 0.2f;
-        public float MaxLookAhead = 3f;
+        public float AimLookAhead = 0.25f;
+        public float MaxLookAhead = 3.5f;
 
         CombatUnit targetUnit;
 
-        public static Camera Create(Transform parent, Transform target)
+        public static Camera Create(Transform parent, Transform target, MatchSettings settings)
         {
             GameObject go = new GameObject("Main Camera");
             go.tag = "MainCamera";
             go.transform.SetParent(parent, false);
 
             Camera cam = go.AddComponent<Camera>();
-            cam.fieldOfView = 45f;
+            cam.fieldOfView = settings.CameraFieldOfView;
             cam.nearClipPlane = 0.3f;
             cam.farClipPlane = 200f;
             cam.clearFlags = CameraClearFlags.SolidColor;
@@ -35,6 +35,7 @@ namespace VampWolfs
 
             TopDownCamera follow = go.AddComponent<TopDownCamera>();
             follow.Target = target;
+            follow.Offset = new Vector3(0f, settings.CameraHeight, -settings.CameraBack);
             follow.targetUnit = target.GetComponent<CombatUnit>();
             follow.SnapToTarget();
 

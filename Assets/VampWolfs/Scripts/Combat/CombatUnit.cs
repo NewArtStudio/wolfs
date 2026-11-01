@@ -80,10 +80,15 @@ namespace VampWolfs
         void OnEnable() { All.Add(this); }
         void OnDisable() { All.Remove(this); }
 
+        /// <summary>Health and speed before gear (set by CharacterFactory).</summary>
+        public float BaseMaxHealth { get; private set; }
+        public float BaseMoveSpeed { get; private set; }
+
         public void Init(string displayName, float moveSpeed)
         {
             DisplayName = displayName;
             MoveSpeed = moveSpeed;
+            BaseMoveSpeed = moveSpeed;
 
             Health = GetComponent<Health>();
             Energy = GetComponent<Energy>();
@@ -95,7 +100,30 @@ namespace VampWolfs
             Telegraph = GetComponent<TelegraphIndicator>();
 
             AimPoint = transform.position + transform.forward;
+            BaseMaxHealth = Health.MaxHealth;
             Health.Died += OnHealthDied;
+        }
+
+        /// <summary>
+        /// Wears gear and applies its stats: max health (tier + VIT), Égide (ward), move speed.
+        /// Damage, defense, cast speed and status resistance are read from Equipment.Stats when needed.
+        /// </summary>
+        public void ApplyGear(GearCatalog catalog, IDictionary<string, ItemInstance> items)
+        {
+            Equipment.Wear(catalog, items);
+            CharacterStats stats = Equipment.Stats;
+            float maxHealth = BaseMaxHealth * stats.HpMult;
+            Health.SetMaxHealth(maxHealth, maxHealth * stats.WardPct);
+            Health.HealScale = BaseMaxHealth > 0f ? maxHealth / BaseMaxHealth : 1f;
+            MoveSpeed = BaseMoveSpeed * stats.MoveMult;
+        }
+
+        /// <summary>Cast time after DEX: basic attack uses attack speed, other skills use cast speed.</summary>
+        float CastTimeFor(AbilitySlot slot, Ability ability)
+        {
+            CharacterStats stats = Equipment != null ? Equipment.Stats : null;
+            if (stats == null) return ability.CastTime;
+            return ability.CastTime * (slot == AbilitySlot.Primary ? stats.AspdMult : stats.CastMult);
         }
 
         public void SetAbilities(Ability[] kit)
@@ -143,10 +171,10 @@ namespace VampWolfs
             currentCastSlot = slotAbility;
             castEnergySpent = ability.EnergyCost;
             castStartTime = Time.time;
-            castEndTime = Time.time + ability.CastTime;
+            castEndTime = Time.time + CastTimeFor(slot, ability);
             FaceTowards(AimPoint);
 
-            if (ability.CastTime <= 0f)
+            if (castEndTime <= castStartTime)
             {
                 ReleaseCast();
             }

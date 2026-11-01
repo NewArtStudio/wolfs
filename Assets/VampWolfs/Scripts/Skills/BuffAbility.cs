@@ -14,7 +14,7 @@ namespace VampWolfs
 
         public override void Execute(CombatUnit caster, Vector3 aimPoint)
         {
-            if (Heal > 0f) caster.Health.Heal(Heal);
+            if (Heal > 0f) caster.Health.HealScaled(Heal);
             if (DamageReductionDuration > 0f) caster.Status.ApplyDamageReduction(DamageReduction, DamageReductionDuration);
             if (HasteDuration > 0f) caster.Status.ApplyHaste(Haste, HasteDuration);
 

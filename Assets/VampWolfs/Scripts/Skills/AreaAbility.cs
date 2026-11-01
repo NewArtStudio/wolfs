@@ -39,7 +39,7 @@ namespace VampWolfs
                 Hit.Apply(caster, targets[i]);
             }
 
-            if (SelfHeal > 0f) caster.Health.Heal(SelfHeal);
+            if (SelfHeal > 0f) caster.Health.HealScaled(SelfHeal);
             if (SelfHasteDuration > 0f) caster.Status.ApplyHaste(SelfHaste, SelfHasteDuration);
 
             Effects.Burst(center, Radius, Color, 0.3f);

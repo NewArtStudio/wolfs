@@ -43,8 +43,16 @@ namespace VampWolfs
             get { return HasDamageReduction ? 1f - reductionAmount : 1f; }
         }
 
+        /// <summary>VIT status resistance from gear: shorter slows and stuns (counters included).</summary>
+        float ResistMult()
+        {
+            Equipment gear = GetComponent<Equipment>();
+            return gear != null ? 1f - gear.Stats.StatusResist : 1f;
+        }
+
         public void ApplyStun(float duration)
         {
+            duration *= ResistMult();
             if (IsInvulnerable || duration <= 0f) return;
             stunUntil = Mathf.Max(stunUntil, Time.time + duration);
             FloatingText.Spawn(transform.position + Vector3.up * 2.8f, "Atordoado", new Color(1f, 0.9f, 0.3f));
@@ -52,6 +60,7 @@ namespace VampWolfs
 
         public void ApplySlow(float amount, float duration)
         {
+            duration *= ResistMult();
             if (IsInvulnerable || duration <= 0f) return;
             if (!IsSlowed || amount >= slowAmount) slowAmount = Mathf.Clamp01(amount);
             slowUntil = Mathf.Max(slowUntil, Time.time + duration);
@@ -96,7 +105,7 @@ namespace VampWolfs
             Health health = GetComponent<Health>();
             if (health != null)
             {
-                health.Heal(counterHeal);
+                health.HealScaled(counterHeal);
             }
 
             Effects.Burst(transform.position, 2.2f, new Color(1f, 0.8f, 0.2f), 0.3f);

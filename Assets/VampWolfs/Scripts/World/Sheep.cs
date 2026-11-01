@@ -167,10 +167,21 @@ namespace VampWolfs
                 text += "  +1 " + Inventory.DisplayName(ItemType.MoonShard) + "!";
             }
 
+            // Gear drops (go to the bag, at risk until extraction).
+            GearCatalog catalog = GearCatalog.Instance;
+            ItemInstance drop = null;
+            if (Random.value < 0.04f) drop = GearLoadouts.RandomEquipment(catalog, 1);
+            else if (Random.value < 0.12f) drop = GearLoadouts.RandomMaterial(catalog);
+            if (drop != null)
+            {
+                killer.Inventory.AddItem(catalog, drop);
+                text += "\n+ " + catalog.NameOf(drop) + "!";
+            }
+
             FloatingText.Spawn(textPosition, text, new Color(1f, 0.85f, 0.35f), 1.4f, 0.9f);
 
             // Feeding: drinking from the kill restores a little health and energy.
-            killer.Health.Heal(6f);
+            killer.Health.HealScaled(6f);
             killer.Energy.Add(5f);
         }
     }

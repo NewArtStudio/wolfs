@@ -1,0 +1,9259 @@
+{
+ "Rules": {
+  "RefineMax": 10,
+  "RefineBonus": [
+   0.05,
+   0.05,
+   0.05,
+   0.04,
+   0.04,
+   0.03,
+   0.03,
+   0.02,
+   0.02,
+   0.02
+  ],
+  "RefineBreakChance": [
+   0,
+   0,
+   0,
+   0,
+   0.2,
+   0.3,
+   0.4,
+   0.55,
+   0.65,
+   0.75
+  ],
+  "TierPower": [
+   56.1,
+   94.0,
+   127.2,
+   172.2,
+   242.0,
+   303.2,
+   336.8,
+   381.6
+  ]
+ },
+ "Slots": [
+  {
+   "Id": "head",
+   "Name": "Chapéu / Elmo"
+  },
+  {
+   "Id": "chest",
+   "Name": "Casaco / Couraça"
+  },
+  {
+   "Id": "gloves",
+   "Name": "Luvas"
+  },
+  {
+   "Id": "boots",
+   "Name": "Botas"
+  },
+  {
+   "Id": "handR",
+   "Name": "Mão direita"
+  },
+  {
+   "Id": "handL",
+   "Name": "Mão esquerda"
+  },
+  {
+   "Id": "accMajor",
+   "Name": "Relíquia"
+  },
+  {
+   "Id": "acc1",
+   "Name": "Joia 1"
+  },
+  {
+   "Id": "acc2",
+   "Name": "Joia 2"
+  },
+  {
+   "Id": "acc3",
+   "Name": "Joia 3"
+  }
+ ],
+ "Types": [
+  {
+   "Id": "chest",
+   "Name": "Casaco / Couraça",
+   "Slots": [
+    "chest"
+   ],
+   "TwoHand": false,
+   "Category": "armor"
+  },
+  {
+   "Id": "gloves",
+   "Name": "Luvas",
+   "Slots": [
+    "gloves"
+   ],
+   "TwoHand": false,
+   "Category": "armor"
+  },
+  {
+   "Id": "boots",
+   "Name": "Botas",
+   "Slots": [
+    "boots"
+   ],
+   "TwoHand": false,
+   "Category": "armor"
+  },
+  {
+   "Id": "head",
+   "Name": "Chapéu / Elmo",
+   "Slots": [
+    "head"
+   ],
+   "TwoHand": false,
+   "Category": "armor"
+  },
+  {
+   "Id": "handR",
+   "Name": "Arma de uma mão",
+   "Slots": [
+    "handR"
+   ],
+   "TwoHand": false,
+   "Category": "weapon"
+  },
+  {
+   "Id": "twoHand",
+   "Name": "Arma de duas mãos",
+   "Slots": [
+    "handR"
+   ],
+   "TwoHand": true,
+   "Category": "weapon"
+  },
+  {
+   "Id": "melee1H",
+   "Name": "Lâmina (1 mão)",
+   "Slots": [
+    "handR"
+   ],
+   "TwoHand": false,
+   "Category": "weapon"
+  },
+  {
+   "Id": "melee2H",
+   "Name": "Arma pesada (2 mãos)",
+   "Slots": [
+    "handR"
+   ],
+   "TwoHand": true,
+   "Category": "weapon"
+  },
+  {
+   "Id": "handL",
+   "Name": "Mão esquerda",
+   "Slots": [
+    "handL"
+   ],
+   "TwoHand": false,
+   "Category": "armor"
+  },
+  {
+   "Id": "accMajor",
+   "Name": "Relíquia",
+   "Slots": [
+    "accMajor"
+   ],
+   "TwoHand": false,
+   "Category": "accessory"
+  },
+  {
+   "Id": "accMinor",
+   "Name": "Joia",
+   "Slots": [
+    "acc1",
+    "acc2",
+    "acc3"
+   ],
+   "TwoHand": false,
+   "Category": "accessory"
+  }
+ ],
+ "Equipment": [
+  {
+   "Id": "elite_greathelm",
+   "Name": "Elmo de Cavalaria de Ferro Velho",
+   "Type": "head",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "rusted_greathelm",
+   "Name": "Capacete de Couraceiro de Ferro Velho",
+   "Type": "head",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "soldier_greathelm",
+   "Name": "Chapéu de Abas Largas de Couro Cru",
+   "Type": "head",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 4,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "spired_greathelm",
+   "Name": "Chapéu de Inquisidor do Noviço",
+   "Type": "head",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 4,
+    "Vit": 3
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 0,
+   "Ward": 8,
+   "Move": 0
+  },
+  {
+   "Id": "wrapped_greathelm",
+   "Name": "Cartola de Linho Gasto",
+   "Type": "head",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 4,
+    "Vit": 2
+   },
+   "AttrTotal": 4,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "chain_mail",
+   "Name": "Sobretudo de Couro Cru",
+   "Type": "chest",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 6,
+    "Int": 2,
+    "Vit": 5
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "leather_vest",
+   "Name": "Sobrecasaca Ocultista de Linho Gasto",
+   "Type": "chest",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 5,
+    "Vit": 3
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "pilgrim_vestments",
+   "Name": "Batina do Noviço",
+   "Type": "chest",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0
+  },
+  {
+   "Id": "rusted_cuirass",
+   "Name": "Couraça de Ferro Velho",
+   "Type": "chest",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 3,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "tattered_robe",
+   "Name": "Hábito de Inquisidor do Noviço",
+   "Type": "chest",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 4,
+    "Int": 5,
+    "Vit": 2
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0
+  },
+  {
+   "Id": "bolstered_mitts",
+   "Name": "Luvas de Capelão do Noviço",
+   "Type": "gloves",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 0,
+   "Ward": 8,
+   "Move": 0
+  },
+  {
+   "Id": "moulded_mitts",
+   "Name": "Manoplas de Ferro Velho",
+   "Type": "gloves",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 3
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "riveted_mitts",
+   "Name": "Luvas de Pelica de Couro Cru",
+   "Type": "gloves",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "stocky_mitts",
+   "Name": "Luvas de Malha de Ferro Velho",
+   "Type": "gloves",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 3
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "tempered_mitts",
+   "Name": "Luvas de Seda Bordadas de Linho Gasto",
+   "Type": "gloves",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "bronze_greaves",
+   "Name": "Botas de Peregrino do Noviço",
+   "Type": "boots",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 4,
+    "Vit": 3
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 0,
+   "Ward": 8,
+   "Move": 0.05
+  },
+  {
+   "Id": "iron_greaves",
+   "Name": "Botinas de Cano Curto de Couro Cru",
+   "Type": "boots",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 1,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0.05
+  },
+  {
+   "Id": "rough_greaves",
+   "Name": "Botas de Montaria de Ferro Velho",
+   "Type": "boots",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 3,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.05
+  },
+  {
+   "Id": "stone_greaves",
+   "Name": "Grevas de Ferro Velho",
+   "Type": "boots",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.05
+  },
+  {
+   "Id": "trimmed_greaves",
+   "Name": "Sapatos de Verniz de Linho Gasto",
+   "Type": "boots",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 2,
+   "Ward": 0,
+   "Move": 0.05
+  },
+  {
+   "Id": "blaster_comum",
+   "Name": "Varinha de Freixo",
+   "Type": "handR",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 22,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "blaster_incomum",
+   "Name": "Pistola de Pederneira de Sucata",
+   "Type": "handR",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 28,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 4
+   },
+   "AttrTotal": 5,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "breach_hammer",
+   "Name": "Machado de Carrasco de Sucata",
+   "Type": "melee2H",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 35,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 4,
+    "Int": 2,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "plasma_glaive",
+   "Name": "Foice de Ceifador de Sucata",
+   "Type": "melee2H",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 35,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 3,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "shock_baton",
+   "Name": "Sabre de Cavalaria de Sucata",
+   "Type": "melee1H",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 28,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 2,
+    "Int": 1,
+    "Vit": 4
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "super_blaster",
+   "Name": "Cajado de Freixo",
+   "Type": "twoHand",
+   "Tier": 1,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 35,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 8,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "vibro_blade",
+   "Name": "Bengala-Espada de Sucata",
+   "Type": "melee1H",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 28,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 5,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 5,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "buckler",
+   "Name": "Broquel de Couro Cru",
+   "Type": "handL",
+   "Tier": 1,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 3,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "energy_shield",
+   "Name": "Escudo Bento do Noviço",
+   "Type": "handL",
+   "Tier": 1,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 2
+   },
+   "AttrTotal": 3,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 11,
+   "Move": 0
+  },
+  {
+   "Id": "escudao",
+   "Name": "Escudo de Carvalho de Ferro Velho",
+   "Type": "handL",
+   "Tier": 1,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 3,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "forca_extra",
+   "Name": "Medalha do Regimento de Latão",
+   "Type": "accMajor",
+   "Tier": 1,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "inti_extra",
+   "Name": "Monóculo de Ocultista de Latão",
+   "Type": "accMajor",
+   "Tier": 1,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 4,
+    "Vit": 1
+   },
+   "AttrTotal": 4,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "dex_extra",
+   "Name": "Abotoaduras de Latão",
+   "Type": "accMinor",
+   "Tier": 1,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrTotal": 2,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "vit_extra",
+   "Name": "Rosário de Latão",
+   "Type": "accMinor",
+   "Tier": 1,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrTotal": 2,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_head_arcane",
+   "Name": "Cartola de Lã Negra",
+   "Type": "head",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 7,
+    "Vit": 4
+   },
+   "AttrTotal": 8,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_head_sacred",
+   "Name": "Chapéu de Inquisidor do Pároco",
+   "Type": "head",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 5,
+    "Int": 6,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 14,
+   "Move": 0
+  },
+  {
+   "Id": "t2_head_scout",
+   "Name": "Chapéu de Abas Largas de Couro Curtido",
+   "Type": "head",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 3,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_head_vanguard",
+   "Name": "Elmo de Cavalaria de Ferro Batido",
+   "Type": "head",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 5,
+    "Int": 2,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_chest_arcane",
+   "Name": "Sobrecasaca Ocultista de Lã Negra",
+   "Type": "chest",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 8,
+    "Int": 11,
+    "Vit": 5
+   },
+   "AttrTotal": 12,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_chest_sacred",
+   "Name": "Batina do Pároco",
+   "Type": "chest",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 10,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 45,
+   "Move": 0
+  },
+  {
+   "Id": "t2_chest_scout",
+   "Name": "Sobretudo de Couro Curtido",
+   "Type": "chest",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 8,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_chest_vanguard",
+   "Name": "Couraça de Ferro Batido",
+   "Type": "chest",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 5,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 10,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas de Lã Negra",
+   "Type": "gloves",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_gloves_sacred",
+   "Name": "Luvas de Capelão do Pároco",
+   "Type": "gloves",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 14,
+   "Move": 0
+  },
+  {
+   "Id": "t2_gloves_scout",
+   "Name": "Luvas de Pelica de Couro Curtido",
+   "Type": "gloves",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 5,
+    "Int": 1,
+    "Vit": 4
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 3,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_gloves_vanguard",
+   "Name": "Manoplas de Ferro Batido",
+   "Type": "gloves",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 3,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_boots_arcane",
+   "Name": "Sapatos de Verniz de Lã Negra",
+   "Type": "boots",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 5,
+    "Int": 6,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0.07
+  },
+  {
+   "Id": "t2_boots_sacred",
+   "Name": "Botas de Peregrino do Pároco",
+   "Type": "boots",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 0,
+   "Ward": 14,
+   "Move": 0.07
+  },
+  {
+   "Id": "t2_boots_scout",
+   "Name": "Botinas de Cano Curto de Couro Curtido",
+   "Type": "boots",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 5,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 2,
+   "Evasion": 3,
+   "Ward": 0,
+   "Move": 0.07
+  },
+  {
+   "Id": "t2_boots_vanguard",
+   "Name": "Botas de Montaria de Ferro Batido",
+   "Type": "boots",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 3,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.07
+  },
+  {
+   "Id": "t2_handr_arcane",
+   "Name": "Varinha de Teixo",
+   "Type": "handR",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 7,
+    "Int": 9,
+    "Vit": 5
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handr_sacred",
+   "Name": "Crucifixo do Pároco",
+   "Type": "handR",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 8,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handr_scout",
+   "Name": "Revólver de Ferro",
+   "Type": "handR",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 8,
+    "Int": 2,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handr_vanguard",
+   "Name": "Pistola de Pederneira de Ferro",
+   "Type": "handR",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 7,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_melee1h_scout",
+   "Name": "Bengala-Espada de Ferro",
+   "Type": "melee1H",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 9,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria de Ferro",
+   "Type": "melee1H",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 34,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 4,
+    "Int": 2,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_melee2h_scout",
+   "Name": "Foice de Ceifador de Ferro",
+   "Type": "melee2H",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 44,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 16,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_melee2h_vanguard",
+   "Name": "Machado de Carrasco de Ferro",
+   "Type": "melee2H",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 44,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 7,
+    "Int": 4,
+    "Vit": 11
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_twohand_arcane",
+   "Name": "Cajado de Teixo",
+   "Type": "twoHand",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 44,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_twohand_vanguard",
+   "Name": "Mosquete de Ferro",
+   "Type": "twoHand",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 44,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 8,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handl_arcane",
+   "Name": "Grimório de Lã Negra",
+   "Type": "handL",
+   "Tier": 2,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 5,
+    "Vit": 3
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handl_buckler",
+   "Name": "Broquel de Couro Curtido",
+   "Type": "handL",
+   "Tier": 2,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 5,
+    "Int": 1,
+    "Vit": 2
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handl_energy",
+   "Name": "Escudo Bento do Pároco",
+   "Type": "handL",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 6,
+    "Vit": 5
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 19,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handl_sacred",
+   "Name": "Relicário de Mão do Pároco",
+   "Type": "handL",
+   "Tier": 2,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 3,
+    "Int": 5,
+    "Vit": 4
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 14,
+   "Move": 0
+  },
+  {
+   "Id": "t2_handl_vanguard",
+   "Name": "Escudo de Carvalho de Ferro Batido",
+   "Type": "handL",
+   "Tier": 2,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 5,
+    "Int": 2,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accmajor_dex",
+   "Name": "Relógio de Bolso de Cobre",
+   "Type": "accMajor",
+   "Tier": 2,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 6,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 6,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accmajor_int",
+   "Name": "Monóculo de Ocultista de Cobre",
+   "Type": "accMajor",
+   "Tier": 2,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 6,
+    "Vit": 1
+   },
+   "AttrTotal": 6,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accmajor_str",
+   "Name": "Medalha do Regimento de Cobre",
+   "Type": "accMajor",
+   "Tier": 2,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Cobre",
+   "Type": "accMajor",
+   "Tier": 2,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 8
+   },
+   "AttrTotal": 8,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accminor_dex",
+   "Name": "Abotoaduras de Cobre",
+   "Type": "accMinor",
+   "Tier": 2,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 4,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accminor_int",
+   "Name": "Broche de Camafeu de Cobre",
+   "Type": "accMinor",
+   "Tier": 2,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 4,
+    "Vit": 1
+   },
+   "AttrTotal": 4,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accminor_str",
+   "Name": "Anel de Sinete de Cobre",
+   "Type": "accMinor",
+   "Tier": 2,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 3,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t2_accminor_vit",
+   "Name": "Rosário de Cobre",
+   "Type": "accMinor",
+   "Tier": 2,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 4
+   },
+   "AttrTotal": 4,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_head_arcane",
+   "Name": "Cartola de Algodão Egípcio",
+   "Type": "head",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 8,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_head_sacred",
+   "Name": "Chapéu de Inquisidor do Capelão",
+   "Type": "head",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 8,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 20,
+   "Move": 0
+  },
+  {
+   "Id": "t3_head_scout",
+   "Name": "Chapéu de Abas Largas de Couro de Cervo",
+   "Type": "head",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 10,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_head_vanguard",
+   "Name": "Elmo de Cavalaria de Aço",
+   "Type": "head",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 4,
+    "Int": 2,
+    "Vit": 6
+   },
+   "AttrTotal": 8,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_chest_arcane",
+   "Name": "Sobrecasaca Ocultista de Algodão Egípcio",
+   "Type": "chest",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 14,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_chest_sacred",
+   "Name": "Batina do Capelão",
+   "Type": "chest",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 15,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 0,
+   "Ward": 65,
+   "Move": 0
+  },
+  {
+   "Id": "t3_chest_scout",
+   "Name": "Sobretudo de Couro de Cervo",
+   "Type": "chest",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 15,
+    "Int": 4,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_chest_vanguard",
+   "Name": "Couraça de Aço",
+   "Type": "chest",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 11,
+    "Dex": 8,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 14,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas de Algodão Egípcio",
+   "Type": "gloves",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 7,
+    "Vit": 4
+   },
+   "AttrTotal": 8,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_gloves_sacred",
+   "Name": "Luvas de Capelão do Capelão",
+   "Type": "gloves",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 7,
+    "Vit": 6
+   },
+   "AttrTotal": 8,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 20,
+   "Move": 0
+  },
+  {
+   "Id": "t3_gloves_scout",
+   "Name": "Luvas de Pelica de Couro de Cervo",
+   "Type": "gloves",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 8,
+    "Int": 2,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_gloves_vanguard",
+   "Name": "Manoplas de Aço",
+   "Type": "gloves",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 3,
+    "Int": 2,
+    "Vit": 5
+   },
+   "AttrTotal": 7,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_boots_arcane",
+   "Name": "Sapatos de Verniz de Algodão Egípcio",
+   "Type": "boots",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 8,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0.09
+  },
+  {
+   "Id": "t3_boots_sacred",
+   "Name": "Botas de Peregrino do Capelão",
+   "Type": "boots",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 8,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 20,
+   "Move": 0.09
+  },
+  {
+   "Id": "t3_boots_scout",
+   "Name": "Botinas de Cano Curto de Couro de Cervo",
+   "Type": "boots",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 3,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 4,
+   "Ward": 0,
+   "Move": 0.09
+  },
+  {
+   "Id": "t3_boots_vanguard",
+   "Name": "Botas de Montaria de Aço",
+   "Type": "boots",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 5,
+    "Int": 2,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.09
+  },
+  {
+   "Id": "t3_handr_arcane",
+   "Name": "Varinha de Ébano",
+   "Type": "handR",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 6,
+    "Int": 12,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handr_sacred",
+   "Name": "Crucifixo do Capelão",
+   "Type": "handR",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 6,
+    "Int": 12,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handr_scout",
+   "Name": "Revólver de Aço",
+   "Type": "handR",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 11,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 12,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handr_vanguard",
+   "Name": "Pistola de Pederneira de Aço",
+   "Type": "handR",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 11,
+    "Dex": 5,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_melee1h_scout",
+   "Name": "Bengala-Espada de Aço",
+   "Type": "melee1H",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 11,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria de Aço",
+   "Type": "melee1H",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 42,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 10,
+    "Int": 4,
+    "Vit": 6
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_melee2h_scout",
+   "Name": "Foice de Ceifador de Aço",
+   "Type": "melee2H",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 55,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 17,
+    "Dex": 22,
+    "Int": 6,
+    "Vit": 11
+   },
+   "AttrTotal": 24,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_melee2h_vanguard",
+   "Name": "Machado de Carrasco de Aço",
+   "Type": "melee2H",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 55,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 20,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 15
+   },
+   "AttrTotal": 22,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_twohand_arcane",
+   "Name": "Cajado de Ébano",
+   "Type": "twoHand",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 55,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 12,
+    "Int": 23,
+    "Vit": 18
+   },
+   "AttrTotal": 26,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_twohand_vanguard",
+   "Name": "Mosquete de Aço",
+   "Type": "twoHand",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 55,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 18,
+    "Dex": 9,
+    "Int": 5,
+    "Vit": 14
+   },
+   "AttrTotal": 20,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handl_arcane",
+   "Name": "Grimório de Algodão Egípcio",
+   "Type": "handL",
+   "Tier": 3,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 8,
+    "Vit": 4
+   },
+   "AttrTotal": 9,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handl_buckler",
+   "Name": "Broquel de Couro de Cervo",
+   "Type": "handL",
+   "Tier": 3,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 3,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handl_energy",
+   "Name": "Escudo Bento do Capelão",
+   "Type": "handL",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 8,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 26,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handl_sacred",
+   "Name": "Relicário de Mão do Capelão",
+   "Type": "handL",
+   "Tier": 3,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 5,
+    "Int": 6,
+    "Vit": 3
+   },
+   "AttrTotal": 7,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 20,
+   "Move": 0
+  },
+  {
+   "Id": "t3_handl_vanguard",
+   "Name": "Escudo de Carvalho de Aço",
+   "Type": "handL",
+   "Tier": 3,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 4,
+    "Int": 2,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 11,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accmajor_dex",
+   "Name": "Relógio de Bolso de Estanho Polido",
+   "Type": "accMajor",
+   "Tier": 3,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 8,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 8,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accmajor_int",
+   "Name": "Monóculo de Ocultista de Estanho Polido",
+   "Type": "accMajor",
+   "Tier": 3,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 11,
+    "Vit": 2
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accmajor_str",
+   "Name": "Medalha do Regimento de Estanho Polido",
+   "Type": "accMajor",
+   "Tier": 3,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 9,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Estanho Polido",
+   "Type": "accMajor",
+   "Tier": 3,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 10
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accminor_dex",
+   "Name": "Abotoaduras de Estanho Polido",
+   "Type": "accMinor",
+   "Tier": 3,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 5,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accminor_int",
+   "Name": "Broche de Camafeu de Estanho Polido",
+   "Type": "accMinor",
+   "Tier": 3,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 5,
+    "Vit": 1
+   },
+   "AttrTotal": 5,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accminor_str",
+   "Name": "Anel de Sinete de Estanho Polido",
+   "Type": "accMinor",
+   "Tier": 3,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 6,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t3_accminor_vit",
+   "Name": "Rosário de Estanho Polido",
+   "Type": "accMinor",
+   "Tier": 3,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 5
+   },
+   "AttrTotal": 5,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_head_arcane",
+   "Name": "Cartola de Veludo",
+   "Type": "head",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 8,
+    "Int": 11,
+    "Vit": 5
+   },
+   "AttrTotal": 12,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_head_sacred",
+   "Name": "Chapéu de Inquisidor do Cônego",
+   "Type": "head",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 9,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0
+  },
+  {
+   "Id": "t4_head_scout",
+   "Name": "Chapéu de Abas Largas de Couro Encerado",
+   "Type": "head",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 11,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_head_vanguard",
+   "Name": "Elmo de Cavalaria de Aço de Sheffield",
+   "Type": "head",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 6,
+    "Int": 4,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_chest_arcane",
+   "Name": "Sobrecasaca Ocultista de Veludo",
+   "Type": "chest",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 17,
+    "Vit": 13
+   },
+   "AttrTotal": 19,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 16,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_chest_sacred",
+   "Name": "Batina do Cônego",
+   "Type": "chest",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 7,
+    "Int": 14,
+    "Vit": 11
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 90,
+   "Move": 0
+  },
+  {
+   "Id": "t4_chest_scout",
+   "Name": "Sobretudo de Couro Encerado",
+   "Type": "chest",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 17,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_chest_vanguard",
+   "Name": "Couraça de Aço de Sheffield",
+   "Type": "chest",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 20,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 15
+   },
+   "AttrTotal": 22,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 16,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas de Veludo",
+   "Type": "gloves",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 7,
+    "Int": 9,
+    "Vit": 5
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_gloves_sacred",
+   "Name": "Luvas de Capelão do Cônego",
+   "Type": "gloves",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 6,
+    "Int": 7,
+    "Vit": 4
+   },
+   "AttrTotal": 8,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0
+  },
+  {
+   "Id": "t4_gloves_scout",
+   "Name": "Luvas de Pelica de Couro Encerado",
+   "Type": "gloves",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 3,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_gloves_vanguard",
+   "Name": "Manoplas de Aço de Sheffield",
+   "Type": "gloves",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 8,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_boots_arcane",
+   "Name": "Sapatos de Verniz de Veludo",
+   "Type": "boots",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 10,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0.11
+  },
+  {
+   "Id": "t4_boots_sacred",
+   "Name": "Botas de Peregrino do Cônego",
+   "Type": "boots",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 8,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0.11
+  },
+  {
+   "Id": "t4_boots_scout",
+   "Name": "Botinas de Cano Curto de Couro Encerado",
+   "Type": "boots",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 10,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0.11
+  },
+  {
+   "Id": "t4_boots_vanguard",
+   "Name": "Botas de Montaria de Aço de Sheffield",
+   "Type": "boots",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 12,
+    "Dex": 6,
+    "Int": 3,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.11
+  },
+  {
+   "Id": "t4_handr_arcane",
+   "Name": "Varinha de Marfim",
+   "Type": "handR",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 12,
+    "Int": 15,
+    "Vit": 8
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handr_sacred",
+   "Name": "Crucifixo do Cônego",
+   "Type": "handR",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 6,
+    "Int": 13,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handr_scout",
+   "Name": "Revólver de Sheffield",
+   "Type": "handR",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 13,
+    "Int": 4,
+    "Vit": 6
+   },
+   "AttrTotal": 14,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handr_vanguard",
+   "Name": "Pistola de Pederneira de Sheffield",
+   "Type": "handR",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 15,
+    "Dex": 8,
+    "Int": 4,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_melee1h_scout",
+   "Name": "Bengala-Espada de Sheffield",
+   "Type": "melee1H",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 15,
+    "Int": 4,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria de Sheffield",
+   "Type": "melee1H",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 60,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 6,
+    "Int": 4,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_melee2h_scout",
+   "Name": "Foice de Ceifador de Sheffield",
+   "Type": "melee2H",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 78,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 5,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 28,
+    "Int": 8,
+    "Vit": 22
+   },
+   "AttrTotal": 31,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_melee2h_vanguard",
+   "Name": "Machado de Carrasco de Sheffield",
+   "Type": "melee2H",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 78,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 23,
+    "Dex": 18,
+    "Int": 7,
+    "Vit": 12
+   },
+   "AttrTotal": 26,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_twohand_arcane",
+   "Name": "Cajado de Marfim",
+   "Type": "twoHand",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 78,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 18,
+    "Int": 23,
+    "Vit": 12
+   },
+   "AttrTotal": 26,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_twohand_vanguard",
+   "Name": "Mosquete de Sheffield",
+   "Type": "twoHand",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 78,
+   "Attrs": {
+    "Str": 5,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 28,
+    "Dex": 22,
+    "Int": 8,
+    "Vit": 14
+   },
+   "AttrTotal": 31,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handl_arcane",
+   "Name": "Grimório de Veludo",
+   "Type": "handL",
+   "Tier": 4,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 8,
+    "Vit": 6
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handl_buckler",
+   "Name": "Broquel de Couro Encerado",
+   "Type": "handL",
+   "Tier": 4,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 10,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handl_energy",
+   "Name": "Escudo Bento do Cônego",
+   "Type": "handL",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 8,
+    "Int": 10,
+    "Vit": 5
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 0,
+   "Ward": 37,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handl_sacred",
+   "Name": "Relicário de Mão do Cônego",
+   "Type": "handL",
+   "Tier": 4,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 6,
+    "Int": 12,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 28,
+   "Move": 0
+  },
+  {
+   "Id": "t4_handl_vanguard",
+   "Name": "Escudo de Carvalho de Aço de Sheffield",
+   "Type": "handL",
+   "Tier": 4,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 5,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 13,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accmajor_dex",
+   "Name": "Relógio de Bolso de Prata",
+   "Type": "accMajor",
+   "Tier": 4,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 14,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accmajor_int",
+   "Name": "Monóculo de Ocultista de Prata",
+   "Type": "accMajor",
+   "Tier": 4,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 13,
+    "Vit": 3
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accmajor_str",
+   "Name": "Medalha do Regimento de Prata",
+   "Type": "accMajor",
+   "Tier": 4,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 10,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Prata",
+   "Type": "accMajor",
+   "Tier": 4,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 11
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accminor_dex",
+   "Name": "Abotoaduras de Prata",
+   "Type": "accMinor",
+   "Tier": 4,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 7,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 7,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accminor_int",
+   "Name": "Broche de Camafeu de Prata",
+   "Type": "accMinor",
+   "Tier": 4,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 1,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 1,
+    "Dex": 1,
+    "Int": 6,
+    "Vit": 1
+   },
+   "AttrTotal": 6,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accminor_str",
+   "Name": "Anel de Sinete de Prata",
+   "Type": "accMinor",
+   "Tier": 4,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 1,
+    "Int": 1,
+    "Vit": 1
+   },
+   "AttrTotal": 7,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t4_accminor_vit",
+   "Name": "Rosário de Prata",
+   "Type": "accMinor",
+   "Tier": 4,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 8
+   },
+   "AttrTotal": 8,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_head_arcane",
+   "Name": "Cartola de Seda",
+   "Type": "head",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 9,
+    "Int": 12,
+    "Vit": 6
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 8,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_head_sacred",
+   "Name": "Chapéu de Inquisidor do Bispo",
+   "Type": "head",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 12,
+    "Int": 15,
+    "Vit": 8
+   },
+   "AttrTotal": 17,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 36,
+   "Move": 0
+  },
+  {
+   "Id": "t5_head_scout",
+   "Name": "Chapéu de Abas Largas de Couro Inglês",
+   "Type": "head",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 14,
+    "Int": 4,
+    "Vit": 11
+   },
+   "AttrTotal": 15,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_head_vanguard",
+   "Name": "Elmo de Cavalaria de Bronze Lavrado",
+   "Type": "head",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 11,
+    "Int": 4,
+    "Vit": 7
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_chest_arcane",
+   "Name": "Sobrecasaca Ocultista de Seda",
+   "Type": "chest",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 13,
+    "Int": 17,
+    "Vit": 9
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 18,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_chest_sacred",
+   "Name": "Batina do Bispo",
+   "Type": "chest",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 12,
+    "Int": 23,
+    "Vit": 18
+   },
+   "AttrTotal": 26,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 0,
+   "Ward": 120,
+   "Move": 0
+  },
+  {
+   "Id": "t5_chest_scout",
+   "Name": "Sobretudo de Couro Inglês",
+   "Type": "chest",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 21,
+    "Int": 6,
+    "Vit": 10
+   },
+   "AttrTotal": 23,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_chest_vanguard",
+   "Name": "Couraça de Bronze Lavrado",
+   "Type": "chest",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 21,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 18,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas de Seda",
+   "Type": "gloves",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 9,
+    "Vit": 7
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 8,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_gloves_sacred",
+   "Name": "Luvas de Capelão do Bispo",
+   "Type": "gloves",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 6,
+    "Int": 13,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 36,
+   "Move": 0
+  },
+  {
+   "Id": "t5_gloves_scout",
+   "Name": "Luvas de Pelica de Couro Inglês",
+   "Type": "gloves",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 11,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 12,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_gloves_vanguard",
+   "Name": "Manoplas de Bronze Lavrado",
+   "Type": "gloves",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 11,
+    "Dex": 5,
+    "Int": 3,
+    "Vit": 8
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_boots_arcane",
+   "Name": "Sapatos de Verniz de Seda",
+   "Type": "boots",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 8,
+    "Int": 10,
+    "Vit": 5
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 8,
+   "Ward": 0,
+   "Move": 0.14
+  },
+  {
+   "Id": "t5_boots_sacred",
+   "Name": "Botas de Peregrino do Bispo",
+   "Type": "boots",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 7,
+    "Int": 14,
+    "Vit": 11
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 3,
+   "Evasion": 0,
+   "Ward": 36,
+   "Move": 0.14
+  },
+  {
+   "Id": "t5_boots_scout",
+   "Name": "Botinas de Cano Curto de Couro Inglês",
+   "Type": "boots",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 12,
+    "Int": 3,
+    "Vit": 6
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 5,
+   "Ward": 0,
+   "Move": 0.14
+  },
+  {
+   "Id": "t5_boots_vanguard",
+   "Name": "Botas de Montaria de Bronze Lavrado",
+   "Type": "boots",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 12,
+    "Dex": 6,
+    "Int": 3,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.14
+  },
+  {
+   "Id": "t5_handr_arcane",
+   "Name": "Varinha de Osso Entalhado",
+   "Type": "handR",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handr_sacred",
+   "Name": "Crucifixo do Bispo",
+   "Type": "handR",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 14,
+    "Int": 18,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handr_scout",
+   "Name": "Revólver de Birmingham",
+   "Type": "handR",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 17,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 19,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handr_vanguard",
+   "Name": "Pistola de Pederneira de Birmingham",
+   "Type": "handR",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 17,
+    "Dex": 13,
+    "Int": 5,
+    "Vit": 9
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_melee1h_scout",
+   "Name": "Bengala-Espada de Birmingham",
+   "Type": "melee1H",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 17,
+    "Int": 5,
+    "Vit": 9
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria de Birmingham",
+   "Type": "melee1H",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 85,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 15,
+    "Dex": 8,
+    "Int": 4,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_melee2h_scout",
+   "Name": "Foice de Ceifador de Birmingham",
+   "Type": "melee2H",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 26,
+    "Int": 7,
+    "Vit": 20
+   },
+   "AttrTotal": 29,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_melee2h_vanguard",
+   "Name": "Machado de Carrasco de Birmingham",
+   "Type": "melee2H",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 32,
+    "Dex": 16,
+    "Int": 9,
+    "Vit": 25
+   },
+   "AttrTotal": 35,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_twohand_arcane",
+   "Name": "Cajado de Osso Entalhado",
+   "Type": "twoHand",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 5,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 22,
+    "Int": 29,
+    "Vit": 14
+   },
+   "AttrTotal": 32,
+   "CardSlots": 3,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_twohand_vanguard",
+   "Name": "Mosquete de Birmingham",
+   "Type": "twoHand",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 5,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 29,
+    "Dex": 14,
+    "Int": 8,
+    "Vit": 22
+   },
+   "AttrTotal": 32,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handl_arcane",
+   "Name": "Grimório de Seda",
+   "Type": "handL",
+   "Tier": 5,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 8,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handl_buckler",
+   "Name": "Broquel de Couro Inglês",
+   "Type": "handL",
+   "Tier": 5,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 12,
+    "Int": 3,
+    "Vit": 6
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 12,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handl_energy",
+   "Name": "Escudo Bento do Bispo",
+   "Type": "handL",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 5,
+    "Int": 10,
+    "Vit": 8
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 0,
+   "Ward": 47,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handl_sacred",
+   "Name": "Relicário de Mão do Bispo",
+   "Type": "handL",
+   "Tier": 5,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 6,
+    "Int": 12,
+    "Vit": 9
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 36,
+   "Move": 0
+  },
+  {
+   "Id": "t5_handl_vanguard",
+   "Name": "Escudo de Carvalho de Bronze Lavrado",
+   "Type": "handL",
+   "Tier": 5,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 8,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 14,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accmajor_dex",
+   "Name": "Relógio de Bolso de Prata Lavrada",
+   "Type": "accMajor",
+   "Tier": 5,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 16,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accmajor_int",
+   "Name": "Monóculo de Ocultista de Prata Lavrada",
+   "Type": "accMajor",
+   "Tier": 5,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 14,
+    "Vit": 3
+   },
+   "AttrTotal": 14,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accmajor_str",
+   "Name": "Medalha do Regimento de Prata Lavrada",
+   "Type": "accMajor",
+   "Tier": 5,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 17,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 17,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Prata Lavrada",
+   "Type": "accMajor",
+   "Tier": 5,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 14
+   },
+   "AttrTotal": 14,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accminor_dex",
+   "Name": "Abotoaduras de Prata Lavrada",
+   "Type": "accMinor",
+   "Tier": 5,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 8,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 8,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accminor_int",
+   "Name": "Broche de Camafeu de Prata Lavrada",
+   "Type": "accMinor",
+   "Tier": 5,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 9,
+    "Vit": 2
+   },
+   "AttrTotal": 9,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accminor_str",
+   "Name": "Anel de Sinete de Prata Lavrada",
+   "Type": "accMinor",
+   "Tier": 5,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 8,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t5_accminor_vit",
+   "Name": "Rosário de Prata Lavrada",
+   "Type": "accMinor",
+   "Tier": 5,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 8
+   },
+   "AttrTotal": 8,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_head_arcane",
+   "Name": "Cartola de Seda Bordada",
+   "Type": "head",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 18,
+    "Vit": 14
+   },
+   "AttrTotal": 20,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_head_sacred",
+   "Name": "Chapéu de Inquisidor do Arcebispo",
+   "Type": "head",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 46,
+   "Move": 0
+  },
+  {
+   "Id": "t6_head_scout",
+   "Name": "Chapéu de Abas Largas de Couro de Lobo",
+   "Type": "head",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 14,
+    "Int": 4,
+    "Vit": 11
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_head_vanguard",
+   "Name": "Elmo de Cavalaria de Prata",
+   "Type": "head",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 8,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_chest_arcane",
+   "Name": "Sobrecasaca Ocultista de Seda Bordada",
+   "Type": "chest",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 5,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 22,
+    "Int": 28,
+    "Vit": 14
+   },
+   "AttrTotal": 31,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 20,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_chest_sacred",
+   "Name": "Batina do Arcebispo",
+   "Type": "chest",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 19,
+    "Int": 24,
+    "Vit": 12
+   },
+   "AttrTotal": 27,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 7,
+   "Evasion": 0,
+   "Ward": 155,
+   "Move": 0
+  },
+  {
+   "Id": "t6_chest_scout",
+   "Name": "Sobretudo de Couro de Lobo",
+   "Type": "chest",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 21,
+    "Int": 6,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 10,
+   "Evasion": 12,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_chest_vanguard",
+   "Name": "Couraça de Prata",
+   "Type": "chest",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 24,
+    "Dex": 19,
+    "Int": 7,
+    "Vit": 12
+   },
+   "AttrTotal": 27,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 20,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas de Seda Bordada",
+   "Type": "gloves",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_gloves_sacred",
+   "Name": "Luvas de Capelão do Arcebispo",
+   "Type": "gloves",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 6,
+    "Int": 13,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 46,
+   "Move": 0
+  },
+  {
+   "Id": "t6_gloves_scout",
+   "Name": "Luvas de Pelica de Couro de Lobo",
+   "Type": "gloves",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 11,
+    "Int": 3,
+    "Vit": 5
+   },
+   "AttrTotal": 12,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_gloves_vanguard",
+   "Name": "Manoplas de Prata",
+   "Type": "gloves",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 6,
+    "Int": 4,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_boots_arcane",
+   "Name": "Sapatos de Verniz de Seda Bordada",
+   "Type": "boots",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 13,
+    "Int": 16,
+    "Vit": 8
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0.16
+  },
+  {
+   "Id": "t6_boots_sacred",
+   "Name": "Botas de Peregrino do Arcebispo",
+   "Type": "boots",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 46,
+   "Move": 0.16
+  },
+  {
+   "Id": "t6_boots_scout",
+   "Name": "Botinas de Cano Curto de Couro de Lobo",
+   "Type": "boots",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 13,
+    "Int": 4,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0.16
+  },
+  {
+   "Id": "t6_boots_vanguard",
+   "Name": "Botas de Montaria de Prata",
+   "Type": "boots",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 11,
+    "Int": 4,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.16
+  },
+  {
+   "Id": "t6_handr_arcane",
+   "Name": "Varinha de Prata Rúnica",
+   "Type": "handR",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 11,
+    "Int": 22,
+    "Vit": 17
+   },
+   "AttrTotal": 24,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handr_sacred",
+   "Name": "Crucifixo do Arcebispo",
+   "Type": "handR",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 18,
+    "Vit": 14
+   },
+   "AttrTotal": 20,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handr_scout",
+   "Name": "Revólver de Prata",
+   "Type": "handR",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 16,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handr_vanguard",
+   "Name": "Pistola de Pederneira de Prata",
+   "Type": "handR",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 20,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 15
+   },
+   "AttrTotal": 22,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_melee1h_scout",
+   "Name": "Bengala-Espada de Prata",
+   "Type": "melee1H",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 20,
+    "Int": 6,
+    "Vit": 15
+   },
+   "AttrTotal": 22,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria de Prata",
+   "Type": "melee1H",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 110,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 20,
+    "Dex": 15,
+    "Int": 6,
+    "Vit": 10
+   },
+   "AttrTotal": 22,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_melee2h_scout",
+   "Name": "Foice de Ceifador de Prata",
+   "Type": "melee2H",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 143,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 7,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 31,
+    "Dex": 40,
+    "Int": 11,
+    "Vit": 20
+   },
+   "AttrTotal": 44,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_melee2h_vanguard",
+   "Name": "Machado de Carrasco de Prata",
+   "Type": "melee2H",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 143,
+   "Attrs": {
+    "Str": 5,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 31,
+    "Dex": 15,
+    "Int": 9,
+    "Vit": 24
+   },
+   "AttrTotal": 34,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_twohand_arcane",
+   "Name": "Cajado de Prata Rúnica",
+   "Type": "twoHand",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 143,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 6,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 18,
+    "Int": 37,
+    "Vit": 29
+   },
+   "AttrTotal": 41,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_twohand_vanguard",
+   "Name": "Mosquete de Prata",
+   "Type": "twoHand",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 143,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 34,
+    "Dex": 17,
+    "Int": 10,
+    "Vit": 27
+   },
+   "AttrTotal": 38,
+   "CardSlots": 3,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handl_arcane",
+   "Name": "Grimório de Seda Bordada",
+   "Type": "handL",
+   "Tier": 6,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 9,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handl_buckler",
+   "Name": "Broquel de Couro de Lobo",
+   "Type": "handL",
+   "Tier": 6,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 13,
+    "Int": 4,
+    "Vit": 10
+   },
+   "AttrTotal": 14,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 14,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handl_energy",
+   "Name": "Escudo Bento do Arcebispo",
+   "Type": "handL",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 60,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handl_sacred",
+   "Name": "Relicário de Mão do Arcebispo",
+   "Type": "handL",
+   "Tier": 6,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 46,
+   "Move": 0
+  },
+  {
+   "Id": "t6_handl_vanguard",
+   "Name": "Escudo de Carvalho de Prata",
+   "Type": "handL",
+   "Tier": 6,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 8,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 15,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accmajor_dex",
+   "Name": "Relógio de Bolso de Ouro",
+   "Type": "accMajor",
+   "Tier": 6,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 17,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accmajor_int",
+   "Name": "Monóculo de Ocultista de Ouro",
+   "Type": "accMajor",
+   "Tier": 6,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 17,
+    "Vit": 3
+   },
+   "AttrTotal": 17,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accmajor_str",
+   "Name": "Medalha do Regimento de Ouro",
+   "Type": "accMajor",
+   "Tier": 6,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 18,
+    "Dex": 4,
+    "Int": 4,
+    "Vit": 4
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Ouro",
+   "Type": "accMajor",
+   "Tier": 6,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 15
+   },
+   "AttrTotal": 15,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accminor_dex",
+   "Name": "Abotoaduras de Ouro",
+   "Type": "accMinor",
+   "Tier": 6,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 11,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accminor_int",
+   "Name": "Broche de Camafeu de Ouro",
+   "Type": "accMinor",
+   "Tier": 6,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 10,
+    "Vit": 2
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accminor_str",
+   "Name": "Anel de Sinete de Ouro",
+   "Type": "accMinor",
+   "Tier": 6,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 9,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t6_accminor_vit",
+   "Name": "Rosário de Ouro",
+   "Type": "accMinor",
+   "Tier": 6,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 10
+   },
+   "AttrTotal": 10,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_head_arcane",
+   "Name": "Cartola da Ordem Hermética",
+   "Type": "head",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 14,
+    "Int": 18,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_head_sacred",
+   "Name": "Chapéu de Inquisidor do Cardeal",
+   "Type": "head",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 18,
+    "Vit": 14
+   },
+   "AttrTotal": 20,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 58,
+   "Move": 0
+  },
+  {
+   "Id": "t7_head_scout",
+   "Name": "Chapéu de Abas Largas do Caçador Real",
+   "Type": "head",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 21,
+    "Int": 6,
+    "Vit": 10
+   },
+   "AttrTotal": 23,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_head_vanguard",
+   "Name": "Elmo de Cavalaria da Guarda Real",
+   "Type": "head",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 15,
+    "Dex": 8,
+    "Int": 4,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 10,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_chest_arcane",
+   "Name": "Sobrecasaca Ocultista da Ordem Hermética",
+   "Type": "chest",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 5,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 14,
+    "Int": 28,
+    "Vit": 22
+   },
+   "AttrTotal": 31,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 22,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_chest_sacred",
+   "Name": "Batina do Cardeal",
+   "Type": "chest",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 5,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 14,
+    "Int": 28,
+    "Vit": 22
+   },
+   "AttrTotal": 31,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 0,
+   "Ward": 195,
+   "Move": 0
+  },
+  {
+   "Id": "t7_chest_scout",
+   "Name": "Sobretudo do Caçador Real",
+   "Type": "chest",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 6,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 32,
+    "Int": 9,
+    "Vit": 25
+   },
+   "AttrTotal": 36,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 11,
+   "Evasion": 14,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_chest_vanguard",
+   "Name": "Couraça da Guarda Real",
+   "Type": "chest",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 23,
+    "Dex": 12,
+    "Int": 7,
+    "Vit": 18
+   },
+   "AttrTotal": 26,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 22,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas da Ordem Hermética",
+   "Type": "gloves",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_gloves_sacred",
+   "Name": "Luvas de Capelão do Cardeal",
+   "Type": "gloves",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 11,
+    "Int": 14,
+    "Vit": 7
+   },
+   "AttrTotal": 16,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 58,
+   "Move": 0
+  },
+  {
+   "Id": "t7_gloves_scout",
+   "Name": "Luvas de Pelica do Caçador Real",
+   "Type": "gloves",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 17,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 19,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_gloves_vanguard",
+   "Name": "Manoplas da Guarda Real",
+   "Type": "gloves",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 10,
+    "Int": 4,
+    "Vit": 6
+   },
+   "AttrTotal": 14,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 10,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_boots_arcane",
+   "Name": "Sapatos de Verniz da Ordem Hermética",
+   "Type": "boots",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0.18
+  },
+  {
+   "Id": "t7_boots_sacred",
+   "Name": "Botas de Peregrino do Cardeal",
+   "Type": "boots",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 58,
+   "Move": 0.18
+  },
+  {
+   "Id": "t7_boots_scout",
+   "Name": "Botinas de Cano Curto do Caçador Real",
+   "Type": "boots",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 19,
+    "Int": 5,
+    "Vit": 15
+   },
+   "AttrTotal": 21,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 5,
+   "Evasion": 6,
+   "Ward": 0,
+   "Move": 0.18
+  },
+  {
+   "Id": "t7_boots_vanguard",
+   "Name": "Botas de Montaria da Guarda Real",
+   "Type": "boots",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 7,
+    "Int": 4,
+    "Vit": 11
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 10,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.18
+  },
+  {
+   "Id": "t7_handr_arcane",
+   "Name": "Varinha da Ordem Hermética",
+   "Type": "handR",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 15,
+    "Int": 19,
+    "Vit": 9
+   },
+   "AttrTotal": 21,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handr_sacred",
+   "Name": "Crucifixo do Cardeal",
+   "Type": "handR",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 11,
+    "Int": 23,
+    "Vit": 18
+   },
+   "AttrTotal": 25,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handr_scout",
+   "Name": "Revólver da Guarda Real",
+   "Type": "handR",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 18,
+    "Dex": 23,
+    "Int": 6,
+    "Vit": 11
+   },
+   "AttrTotal": 25,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handr_vanguard",
+   "Name": "Pistola de Pederneira da Guarda Real",
+   "Type": "handR",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 19,
+    "Dex": 9,
+    "Int": 5,
+    "Vit": 15
+   },
+   "AttrTotal": 21,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_melee1h_scout",
+   "Name": "Bengala-Espada da Guarda Real",
+   "Type": "melee1H",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 19,
+    "Int": 5,
+    "Vit": 15
+   },
+   "AttrTotal": 21,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria da Guarda Real",
+   "Type": "melee1H",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 140,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 23,
+    "Dex": 11,
+    "Int": 6,
+    "Vit": 18
+   },
+   "AttrTotal": 25,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_melee2h_scout",
+   "Name": "Foice de Ceifador da Guarda Real",
+   "Type": "melee2H",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 182,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 6,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 32,
+    "Int": 9,
+    "Vit": 25
+   },
+   "AttrTotal": 35,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_melee2h_vanguard",
+   "Name": "Machado de Carrasco da Guarda Real",
+   "Type": "melee2H",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 182,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 35,
+    "Dex": 27,
+    "Int": 10,
+    "Vit": 18
+   },
+   "AttrTotal": 39,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_twohand_arcane",
+   "Name": "Cajado da Ordem Hermética",
+   "Type": "twoHand",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 182,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 6,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 27,
+    "Int": 35,
+    "Vit": 18
+   },
+   "AttrTotal": 39,
+   "CardSlots": 4,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_twohand_vanguard",
+   "Name": "Mosquete da Guarda Real",
+   "Type": "twoHand",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 182,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 32,
+    "Dex": 25,
+    "Int": 9,
+    "Vit": 16
+   },
+   "AttrTotal": 35,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handl_arcane",
+   "Name": "Grimório da Ordem Hermética",
+   "Type": "handL",
+   "Tier": 7,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 10,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handl_buckler",
+   "Name": "Broquel do Caçador Real",
+   "Type": "handL",
+   "Tier": 7,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 19,
+    "Int": 5,
+    "Vit": 15
+   },
+   "AttrTotal": 21,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 8,
+   "Evasion": 15,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handl_energy",
+   "Name": "Escudo Bento do Cardeal",
+   "Type": "handL",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 13,
+    "Int": 16,
+    "Vit": 8
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 76,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handl_sacred",
+   "Name": "Relicário de Mão do Cardeal",
+   "Type": "handL",
+   "Tier": 7,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 7,
+    "Int": 14,
+    "Vit": 11
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 58,
+   "Move": 0
+  },
+  {
+   "Id": "t7_handl_vanguard",
+   "Name": "Escudo de Carvalho da Guarda Real",
+   "Type": "handL",
+   "Tier": 7,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 16,
+    "Dex": 8,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 16,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accmajor_dex",
+   "Name": "Relógio de Bolso de Ouro Branco",
+   "Type": "accMajor",
+   "Tier": 7,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 19,
+    "Int": 4,
+    "Vit": 4
+   },
+   "AttrTotal": 19,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accmajor_int",
+   "Name": "Monóculo de Ocultista de Ouro Branco",
+   "Type": "accMajor",
+   "Tier": 7,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 17,
+    "Vit": 3
+   },
+   "AttrTotal": 17,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accmajor_str",
+   "Name": "Medalha do Regimento de Ouro Branco",
+   "Type": "accMajor",
+   "Tier": 7,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 19,
+    "Dex": 4,
+    "Int": 4,
+    "Vit": 4
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accmajor_vit",
+   "Name": "Frasco de Tônico Vital de Ouro Branco",
+   "Type": "accMajor",
+   "Tier": 7,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 5
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 5,
+    "Int": 5,
+    "Vit": 23
+   },
+   "AttrTotal": 23,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accminor_dex",
+   "Name": "Abotoaduras de Ouro Branco",
+   "Type": "accMinor",
+   "Tier": 7,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 11,
+    "Int": 2,
+    "Vit": 2
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accminor_int",
+   "Name": "Broche de Camafeu de Ouro Branco",
+   "Type": "accMinor",
+   "Tier": 7,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 11,
+    "Vit": 2
+   },
+   "AttrTotal": 11,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accminor_str",
+   "Name": "Anel de Sinete de Ouro Branco",
+   "Type": "accMinor",
+   "Tier": 7,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t7_accminor_vit",
+   "Name": "Rosário de Ouro Branco",
+   "Type": "accMinor",
+   "Tier": 7,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 2,
+    "Vit": 10
+   },
+   "AttrTotal": 10,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_head_arcane",
+   "Name": "Cartola da Coroa Imperial",
+   "Type": "head",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 15,
+    "Int": 20,
+    "Vit": 10
+   },
+   "AttrTotal": 22,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_head_sacred",
+   "Name": "Chapéu de Inquisidor do Sumo Pontífice",
+   "Type": "head",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 13,
+    "Int": 17,
+    "Vit": 9
+   },
+   "AttrTotal": 19,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 72,
+   "Move": 0
+  },
+  {
+   "Id": "t8_head_scout",
+   "Name": "Chapéu de Abas Largas da Coroa Imperial",
+   "Type": "head",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 20,
+    "Int": 6,
+    "Vit": 15
+   },
+   "AttrTotal": 22,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_head_vanguard",
+   "Name": "Elmo de Cavalaria da Coroa Imperial",
+   "Type": "head",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 2,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 23,
+    "Dex": 18,
+    "Int": 6,
+    "Vit": 11
+   },
+   "AttrTotal": 25,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 11,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_chest_arcane",
+   "Name": "Sobrecasaca Ocultista da Coroa Imperial",
+   "Type": "chest",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 5,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 9,
+    "Dex": 24,
+    "Int": 31,
+    "Vit": 15
+   },
+   "AttrTotal": 34,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 24,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_chest_sacred",
+   "Name": "Batina do Sumo Pontífice",
+   "Type": "chest",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 2
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 13,
+    "Int": 26,
+    "Vit": 20
+   },
+   "AttrTotal": 29,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 0,
+   "Ward": 240,
+   "Move": 0
+  },
+  {
+   "Id": "t8_chest_scout",
+   "Name": "Sobretudo da Coroa Imperial",
+   "Type": "chest",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 5,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 24,
+    "Dex": 31,
+    "Int": 9,
+    "Vit": 15
+   },
+   "AttrTotal": 34,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 12,
+   "Evasion": 15,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_chest_vanguard",
+   "Name": "Couraça da Coroa Imperial",
+   "Type": "chest",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 35,
+    "Dex": 18,
+    "Int": 10,
+    "Vit": 27
+   },
+   "AttrTotal": 39,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 24,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_gloves_arcane",
+   "Name": "Luvas de Seda Bordadas da Coroa Imperial",
+   "Type": "gloves",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 8,
+    "Int": 16,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_gloves_sacred",
+   "Name": "Luvas de Capelão do Sumo Pontífice",
+   "Type": "gloves",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 7,
+    "Int": 14,
+    "Vit": 11
+   },
+   "AttrTotal": 15,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 72,
+   "Move": 0
+  },
+  {
+   "Id": "t8_gloves_scout",
+   "Name": "Luvas de Pelica da Coroa Imperial",
+   "Type": "gloves",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 8,
+    "Dex": 16,
+    "Int": 5,
+    "Vit": 13
+   },
+   "AttrTotal": 18,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_gloves_vanguard",
+   "Name": "Manoplas da Coroa Imperial",
+   "Type": "gloves",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 19,
+    "Dex": 9,
+    "Int": 5,
+    "Vit": 15
+   },
+   "AttrTotal": 21,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 11,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_boots_arcane",
+   "Name": "Sapatos de Verniz da Coroa Imperial",
+   "Type": "boots",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 14,
+    "Int": 18,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0.2
+  },
+  {
+   "Id": "t8_boots_sacred",
+   "Name": "Botas de Peregrino do Sumo Pontífice",
+   "Type": "boots",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 8,
+    "Int": 15,
+    "Vit": 12
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 4,
+   "Evasion": 0,
+   "Ward": 72,
+   "Move": 0.2
+  },
+  {
+   "Id": "t8_boots_scout",
+   "Name": "Botinas de Cano Curto da Coroa Imperial",
+   "Type": "boots",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 18,
+    "Int": 5,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 7,
+   "Ward": 0,
+   "Move": 0.2
+  },
+  {
+   "Id": "t8_boots_vanguard",
+   "Name": "Botas de Montaria da Coroa Imperial",
+   "Type": "boots",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 21,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 11,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0.2
+  },
+  {
+   "Id": "t8_handr_arcane",
+   "Name": "Varinha da Coroa Imperial",
+   "Type": "handR",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 2,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 7,
+    "Dex": 20,
+    "Int": 25,
+    "Vit": 13
+   },
+   "AttrTotal": 28,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handr_sacred",
+   "Name": "Crucifixo do Sumo Pontífice",
+   "Type": "handR",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 4,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 16,
+    "Int": 21,
+    "Vit": 10
+   },
+   "AttrTotal": 23,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handr_scout",
+   "Name": "Revólver da Coroa Imperial",
+   "Type": "handR",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 21,
+    "Int": 6,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handr_vanguard",
+   "Name": "Pistola de Pederneira da Coroa Imperial",
+   "Type": "handR",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 21,
+    "Dex": 16,
+    "Int": 6,
+    "Vit": 10
+   },
+   "AttrTotal": 23,
+   "CardSlots": 4,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_melee1h_scout",
+   "Name": "Bengala-Espada da Coroa Imperial",
+   "Type": "melee1H",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 2,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 20,
+    "Dex": 25,
+    "Int": 7,
+    "Vit": 13
+   },
+   "AttrTotal": 28,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_melee1h_vanguard",
+   "Name": "Sabre de Cavalaria da Coroa Imperial",
+   "Type": "melee1H",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 180,
+   "Attrs": {
+    "Str": 4,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 21,
+    "Dex": 10,
+    "Int": 6,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 3,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_melee2h_scout",
+   "Name": "Foice de Ceifador da Coroa Imperial",
+   "Type": "melee2H",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "",
+   "Dmg": 234,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 6,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 19,
+    "Dex": 39,
+    "Int": 11,
+    "Vit": 30
+   },
+   "AttrTotal": 43,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_melee2h_vanguard",
+   "Name": "Machado de Carrasco da Coroa Imperial",
+   "Type": "melee2H",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 234,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 35,
+    "Dex": 18,
+    "Int": 10,
+    "Vit": 27
+   },
+   "AttrTotal": 39,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_twohand_arcane",
+   "Name": "Cajado da Coroa Imperial",
+   "Type": "twoHand",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 234,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 6,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 10,
+    "Dex": 27,
+    "Int": 35,
+    "Vit": 18
+   },
+   "AttrTotal": 39,
+   "CardSlots": 4,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_twohand_vanguard",
+   "Name": "Mosquete da Coroa Imperial",
+   "Type": "twoHand",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "",
+   "Dmg": 234,
+   "Attrs": {
+    "Str": 6,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 39,
+    "Dex": 19,
+    "Int": 11,
+    "Vit": 30
+   },
+   "AttrTotal": 43,
+   "CardSlots": 4,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handl_arcane",
+   "Name": "Grimório da Coroa Imperial",
+   "Type": "handL",
+   "Tier": 8,
+   "Focus": "arcane",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 1,
+    "Int": 3,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 12,
+    "Int": 15,
+    "Vit": 8
+   },
+   "AttrTotal": 17,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 11,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handl_buckler",
+   "Name": "Broquel da Coroa Imperial",
+   "Type": "handL",
+   "Tier": 8,
+   "Focus": "scout",
+   "ShieldKind": "buckler",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 1,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 14,
+    "Dex": 18,
+    "Int": 5,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 9,
+   "Evasion": 17,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handl_energy",
+   "Name": "Escudo Bento do Sumo Pontífice",
+   "Type": "handL",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "energy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 3,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 9,
+    "Int": 18,
+    "Vit": 14
+   },
+   "AttrTotal": 20,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 6,
+   "Evasion": 0,
+   "Ward": 94,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handl_sacred",
+   "Name": "Relicário de Mão do Sumo Pontífice",
+   "Type": "handL",
+   "Tier": 8,
+   "Focus": "sacred",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 4,
+    "Vit": 1
+   },
+   "AttrCap": {
+    "Str": 6,
+    "Dex": 10,
+    "Int": 21,
+    "Vit": 16
+   },
+   "AttrTotal": 23,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": true,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 72,
+   "Move": 0
+  },
+  {
+   "Id": "t8_handl_vanguard",
+   "Name": "Escudo de Carvalho da Coroa Imperial",
+   "Type": "handL",
+   "Tier": 8,
+   "Focus": "vanguard",
+   "ShieldKind": "heavy",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 1,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 18,
+    "Dex": 14,
+    "Int": 5,
+    "Vit": 9
+   },
+   "AttrTotal": 20,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": true,
+   "Armour": 17,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accmajor_dex",
+   "Name": "Relógio de Bolso da Coroa Imperial",
+   "Type": "accMajor",
+   "Tier": 8,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 4,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 4,
+    "Dex": 18,
+    "Int": 4,
+    "Vit": 4
+   },
+   "AttrTotal": 18,
+   "CardSlots": 2,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accmajor_int",
+   "Name": "Monóculo de Ocultista da Coroa Imperial",
+   "Type": "accMajor",
+   "Tier": 8,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 6,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 5,
+    "Int": 25,
+    "Vit": 5
+   },
+   "AttrTotal": 25,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accmajor_str",
+   "Name": "Medalha do Regimento da Coroa Imperial",
+   "Type": "accMajor",
+   "Tier": 8,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 5,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 21,
+    "Dex": 4,
+    "Int": 4,
+    "Vit": 4
+   },
+   "AttrTotal": 21,
+   "CardSlots": 2,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accmajor_vit",
+   "Name": "Frasco de Tônico Vital da Coroa Imperial",
+   "Type": "accMajor",
+   "Tier": 8,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 5
+   },
+   "AttrCap": {
+    "Str": 5,
+    "Dex": 5,
+    "Int": 5,
+    "Vit": 23
+   },
+   "AttrTotal": 23,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accminor_dex",
+   "Name": "Abotoaduras da Coroa Imperial",
+   "Type": "accMinor",
+   "Tier": 8,
+   "Focus": "dex",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 3,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 13,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 13,
+   "CardSlots": 0,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accminor_int",
+   "Name": "Broche de Camafeu da Coroa Imperial",
+   "Type": "accMinor",
+   "Tier": 8,
+   "Focus": "int",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 2,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 2,
+    "Dex": 2,
+    "Int": 11,
+    "Vit": 2
+   },
+   "AttrTotal": 11,
+   "CardSlots": 1,
+   "GemSlot": 1,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accminor_str",
+   "Name": "Anel de Sinete da Coroa Imperial",
+   "Type": "accMinor",
+   "Tier": 8,
+   "Focus": "str",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 3,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 0
+   },
+   "AttrCap": {
+    "Str": 13,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 3
+   },
+   "AttrTotal": 13,
+   "CardSlots": 1,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  },
+  {
+   "Id": "t8_accminor_vit",
+   "Name": "Rosário da Coroa Imperial",
+   "Type": "accMinor",
+   "Tier": 8,
+   "Focus": "vit",
+   "ShieldKind": "",
+   "Dmg": 0,
+   "Attrs": {
+    "Str": 0,
+    "Dex": 0,
+    "Int": 0,
+    "Vit": 3
+   },
+   "AttrCap": {
+    "Str": 3,
+    "Dex": 3,
+    "Int": 3,
+    "Vit": 14
+   },
+   "AttrTotal": 14,
+   "CardSlots": 0,
+   "GemSlot": 0,
+   "Refinable": false,
+   "Armour": 0,
+   "Evasion": 0,
+   "Ward": 0,
+   "Move": 0
+  }
+ ],
+ "Materials": [
+  {
+   "Id": "ore_refine_weapon",
+   "Name": "Lingote de Aço de Sheffield",
+   "Category": "Material de refino",
+   "Kind": "refine",
+   "Target": "weapon",
+   "Desc": "Refina uma arma (+1, até +{max}). Do +5 em diante pode falhar — e a arma QUEBRA.",
+   "Color": "#ff8a3d",
+   "Attr": "",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "ore_refine_armor",
+   "Name": "Rebites de Latão Temperado",
+   "Category": "Material de refino",
+   "Kind": "refine",
+   "Target": "armor",
+   "Desc": "Refina uma peça de armadura ou mão esquerda (+1, até +{max}). Do +5 em diante pode falhar — e a peça QUEBRA.",
+   "Color": "#7fb2ff",
+   "Attr": "",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "crystal_str",
+   "Name": "Tônico de Força",
+   "Category": "Tônico de atributo",
+   "Kind": "enchant",
+   "Target": "any",
+   "Attr": "Str",
+   "Desc": "+1 de Força numa peça (até o teto do atributo e o total de pontos da peça).",
+   "Color": "#e0782f",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "crystal_dex",
+   "Name": "Tônico de Destreza",
+   "Category": "Tônico de atributo",
+   "Kind": "enchant",
+   "Target": "any",
+   "Attr": "Dex",
+   "Desc": "+1 de Destreza numa peça (até o teto do atributo e o total de pontos da peça).",
+   "Color": "#2ec4a6",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "crystal_int",
+   "Name": "Tônico de Intelecto",
+   "Category": "Tônico de atributo",
+   "Kind": "enchant",
+   "Target": "any",
+   "Attr": "Int",
+   "Desc": "+1 de Inteligência numa peça (até o teto do atributo e o total de pontos da peça).",
+   "Color": "#9b6bff",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "crystal_vit",
+   "Name": "Tônico de Vitalidade",
+   "Category": "Tônico de atributo",
+   "Kind": "enchant",
+   "Target": "any",
+   "Attr": "Vit",
+   "Desc": "+1 de Vitalidade numa peça (até o teto do atributo e o total de pontos da peça).",
+   "Color": "#f2d27a",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "key_card_weapon",
+   "Name": "Chave de Relojoeiro · Arma",
+   "Category": "Chave de encaixe",
+   "Kind": "unlockCard",
+   "Target": "weapon",
+   "Slot": 1,
+   "Desc": "Abre o 1º encaixe de carta de uma arma.",
+   "Color": "#ffd36b",
+   "Attr": "",
+   "Amount": 0
+  },
+  {
+   "Id": "key_card_armor",
+   "Name": "Chave de Relojoeiro · Armadura",
+   "Category": "Chave de encaixe",
+   "Kind": "unlockCard",
+   "Target": "armor",
+   "Slot": 1,
+   "Desc": "Abre o 1º encaixe de carta de uma peça de armadura.",
+   "Color": "#ffd36b",
+   "Attr": "",
+   "Amount": 0
+  },
+  {
+   "Id": "key_card_acc",
+   "Name": "Chave de Relojoeiro · Joia",
+   "Category": "Chave de encaixe",
+   "Kind": "unlockCard",
+   "Target": "accessory",
+   "Slot": 1,
+   "Desc": "Abre o 1º encaixe de carta de uma joia ou relíquia.",
+   "Color": "#ffd36b",
+   "Attr": "",
+   "Amount": 0
+  },
+  {
+   "Id": "key_gem",
+   "Name": "Pinça de Joalheiro",
+   "Category": "Chave de encaixe",
+   "Kind": "unlockGem",
+   "Target": "any",
+   "Desc": "Abre o encaixe de gema de um equipamento (se ele tiver).",
+   "Color": "#59d8ff",
+   "Attr": "",
+   "Slot": 0,
+   "Amount": 0
+  },
+  {
+   "Id": "gem_ruby",
+   "Name": "Rubi",
+   "Category": "Gema",
+   "Kind": "gem",
+   "Target": "any",
+   "Attr": "Str",
+   "Amount": 3,
+   "Desc": "Gema: +3 de Força (passa do teto da peça). Vai num encaixe de gema aberto.",
+   "Color": "#e8203a",
+   "Slot": 0
+  },
+  {
+   "Id": "gem_emerald",
+   "Name": "Esmeralda",
+   "Category": "Gema",
+   "Kind": "gem",
+   "Target": "any",
+   "Attr": "Dex",
+   "Amount": 3,
+   "Desc": "Gema: +3 de Destreza (passa do teto da peça). Vai num encaixe de gema aberto.",
+   "Color": "#2ecc71",
+   "Slot": 0
+  },
+  {
+   "Id": "gem_sapphire",
+   "Name": "Safira",
+   "Category": "Gema",
+   "Kind": "gem",
+   "Target": "any",
+   "Attr": "Int",
+   "Amount": 3,
+   "Desc": "Gema: +3 de Inteligência (passa do teto da peça). Vai num encaixe de gema aberto.",
+   "Color": "#3d6bff",
+   "Slot": 0
+  },
+  {
+   "Id": "gem_amber",
+   "Name": "Âmbar",
+   "Category": "Gema",
+   "Kind": "gem",
+   "Target": "any",
+   "Attr": "Vit",
+   "Amount": 3,
+   "Desc": "Gema: +3 de Vitalidade (passa do teto da peça). Vai num encaixe de gema aberto.",
+   "Color": "#ffb02e",
+   "Slot": 0
+  }
+ ]
+}

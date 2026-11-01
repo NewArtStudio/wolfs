@@ -22,6 +22,9 @@ namespace VampWolfs
 
         readonly Dictionary<ItemType, int> items = new Dictionary<ItemType, int>();
 
+        /// <summary>Equipment pieces and upgrade materials found in this run (also at risk).</summary>
+        public readonly List<ItemInstance> Items = new List<ItemInstance>();
+
         public int TotalItems
         {
             get
@@ -35,6 +38,48 @@ namespace VampWolfs
         public int TotalValue
         {
             get { return ValueOf(items); }
+        }
+
+        /// <summary>Adds a found piece or material (materials stack).</summary>
+        public void AddItem(GearCatalog catalog, ItemInstance item)
+        {
+            if (item == null) return;
+
+            if (catalog.GetMaterial(item.DefId) != null)
+            {
+                ItemInstance stack = Items.Find(i => i.DefId == item.DefId);
+                if (stack != null)
+                {
+                    stack.Qty += item.Qty;
+                    return;
+                }
+            }
+
+            Items.Add(item);
+        }
+
+        public void AddItems(GearCatalog catalog, List<ItemInstance> list)
+        {
+            foreach (ItemInstance item in list) AddItem(catalog, item);
+        }
+
+        /// <summary>Empties the found items and returns them.</summary>
+        public List<ItemInstance> TakeAllItems()
+        {
+            List<ItemInstance> copy = new List<ItemInstance>(Items);
+            Items.Clear();
+            return copy;
+        }
+
+        /// <summary>Number of found pieces and material units.</summary>
+        public int ItemCount
+        {
+            get
+            {
+                int total = 0;
+                foreach (ItemInstance i in Items) total += i.Qty;
+                return total;
+            }
         }
 
         public void Add(ItemType type, int amount)

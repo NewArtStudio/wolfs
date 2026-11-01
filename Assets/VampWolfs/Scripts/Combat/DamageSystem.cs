@@ -13,6 +13,9 @@ namespace VampWolfs
     {
         public float Damage;
 
+        [Tooltip("Which attribute scales this damage and which defense reduces it.")]
+        public DamageType Type = DamageType.Magic;
+
         [Tooltip("Fraction of the damage healed back to the caster (vampire identity).")]
         public float Lifesteal;
 
@@ -22,7 +25,7 @@ namespace VampWolfs
 
         public void Apply(CombatUnit caster, Health target)
         {
-            bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal);
+            bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal, Type);
             if (!landed || target.IsDead)
             {
                 return;
@@ -52,12 +55,15 @@ namespace VampWolfs
         static readonly Color EnemyDamageColor = new Color(1f, 0.3f, 0.25f);
 
         /// <summary>Returns true if the hit landed (not blocked by invulnerability or counter).</summary>
-        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal)
+        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal, DamageType type = DamageType.Magic)
         {
             if (target == null || target.IsDead)
             {
                 return false;
             }
+
+            float attackerMult;
+            amount = ApplyGear(caster, target, amount, type, out attackerMult);
 
             float dealt;
             if (!target.TryTakeDamage(amount, caster, out dealt))
@@ -82,7 +88,8 @@ namespace VampWolfs
             if (caster != null && !caster.IsDead)
             {
                 float rate = target.Team == Team.Neutral ? EnergyPerNeutralDamage : EnergyPerDamage;
-                caster.Energy.Add(dealt * rate);
+                // Energy from the damage BEFORE the gear multiplier, so EX/ultimate pacing is the same at every tier.
+                caster.Energy.Add(dealt / Mathf.Max(0.01f, attackerMult) * rate);
 
                 if (lifesteal > 0f)
                 {
@@ -91,6 +98,30 @@ namespace VampWolfs
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Attributes and gear: the caster's ATK/MATK (from STR/DEX/INT + weapon) multiplies the damage,
+        /// the target's armour, evasion and flat defense reduce it. Creatures without gear are unaffected.
+        /// </summary>
+        static float ApplyGear(CombatUnit caster, Health target, float amount, DamageType type, out float attackerMult)
+        {
+            GearRulesData rules = GearCatalog.Instance.Rules;
+            attackerMult = 1f;
+
+            if (caster != null && caster.Equipment != null)
+            {
+                attackerMult = caster.Equipment.Stats.DamageMult(type, rules);
+                amount *= attackerMult;
+            }
+
+            Equipment targetGear = target.GetComponent<Equipment>();
+            if (targetGear != null)
+            {
+                amount = targetGear.Stats.Mitigate(amount, type);
+            }
+
+            return amount;
         }
     }
 
