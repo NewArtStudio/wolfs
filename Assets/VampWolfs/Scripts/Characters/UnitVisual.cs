@@ -79,7 +79,7 @@ namespace VampWolfs
         /// Uses a 3D model (e.g. an imported FBX): scaled to art.Height, feet on the ground,
         /// centered on the character, with a material built from the art textures.
         /// </summary>
-        public void UseModel(CharacterArt art)
+        public void UseModel(CharacterArt art, float sizeMultiplier = 1f)
         {
             GameObject instance = Instantiate(art.Model, pose, false);
             instance.name = art.Model.name;
@@ -120,7 +120,7 @@ namespace VampWolfs
                 renderers.Add(modelRenderers[i]);
             }
 
-            FitToHeight(instance.transform, modelRenderers, art.Height);
+            FitToHeight(instance.transform, modelRenderers, art.Height * sizeMultiplier);
 
             // Rigged model (auto-rigged FBX): animate its joints procedurally.
             rig = ProceduralRig.TryCreate(transform, instance.transform);

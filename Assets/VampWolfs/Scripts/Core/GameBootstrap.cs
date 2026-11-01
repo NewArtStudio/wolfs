@@ -52,9 +52,10 @@ namespace VampWolfs
             Transform root = worldRoot.transform;
 
             FarmLayout layout = FarmBuilder.Build(root, Settings);
+            CharacterFactory.SizeMultiplier = Mathf.Max(0.1f, Settings.CharacterSize);
 
             CombatUnit player = CharacterFactory.CreateVampire(root, layout.PlayerSpawn);
-            Camera cam = TopDownCamera.Create(root, player.transform);
+            Camera cam = TopDownCamera.Create(root, player.transform, Settings);
             player.gameObject.AddComponent<PlayerController>().Init(cam);
 
             ExtractionPoint extraction = ExtractionPoint.Create(root, layout.ExtractionPosition, Settings);

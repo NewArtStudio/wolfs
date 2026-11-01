@@ -34,6 +34,19 @@ namespace VampWolfs
         public float ExtractionChannelTime = 4f;
         public float ExtractionRadius = 2.2f;
 
+        [Header("Camera & proportions (Battlerite-like)")]
+        [Tooltip("Camera height above the player, in meters.")]
+        public float CameraHeight = 13f;
+
+        [Tooltip("How far behind the player the camera sits, in meters (height/back sets the angle, ~57° by default).")]
+        public float CameraBack = 8.5f;
+
+        [Tooltip("Vertical field of view in degrees. Lower = closer / bigger characters.")]
+        public float CameraFieldOfView = 40f;
+
+        [Tooltip("Multiplies character model size and collision radius.")]
+        public float CharacterSize = 1.2f;
+
         [Header("Werewolf AI")]
         [Range(0f, 1f)]
         [Tooltip("Chance the AI tries to dash away from a projectile about to hit it.")]
