@@ -56,6 +56,28 @@ namespace VampWolfs
             return unit;
         }
 
+        /// <summary>
+        /// Vampire look only (no combat, no collision): used by the lobby stage and portraits.
+        /// The rigged model still breathes/idles through ProceduralRig.
+        /// </summary>
+        public static GameObject CreateDisplayVampire(Transform parent, float sizeMultiplier = 1f)
+        {
+            GameObject go = new GameObject("Vampiro (vitrine)");
+            go.transform.SetParent(parent, false);
+            UnitVisual v = go.AddComponent<UnitVisual>();
+
+            if (ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid)
+            {
+                v.UseModel(ArtLibrary.Vampire, sizeMultiplier);
+            }
+            else
+            {
+                BuildVampirePlaceholder(v);
+            }
+
+            return go;
+        }
+
         /// <summary>Primitive look used when no 3D model is assigned.</summary>
         static void BuildVampirePlaceholder(UnitVisual v)
         {

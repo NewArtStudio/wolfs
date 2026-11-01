@@ -2,7 +2,7 @@
 
 Protótipo de **combate estilo Battlerite** + **loop estilo Brumas de Avalon (Albion)**, em Unity 6 / URP.
 
-O jogo abre na **Base** (baú, equipamento, refino, tônicos e gemas — sistema vindo do projeto Space, com nomes vitorianos; veja [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Em **Entrar na Fazenda**, você é o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s um **Lobisomem (IA)** invade o mapa.
+O jogo abre no **lobby** (cópia da Base do projeto Space em estilo vitoriano: card do vampiro, Arsenal com baú, equipamento, refino, cristais e gemas — veja [`docs/LOBBY.md`](docs/LOBBY.md) e [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Em **EXPLORAR**, você entra direto na Fazenda como o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s um **Lobisomem (IA)** invade o mapa.
 Quem morre perde **só a bag** (o que foi farmado na partida) — o **equipamento nunca cai**.
 Para garantir o loot, fique 4 s no **portal roxo de extração** (levar dano interrompe).
 
@@ -42,8 +42,9 @@ Sem modelo na pasta, o personagem usa o boneco de primitivas.
 | F | Ultimate — Banquete Carmesim (custa 100) |
 | C | cancelar conjuração (devolve cooldown e energia) |
 | H | mostrar/esconder ajuda |
-| I | ver equipamento e atributos (trocar só na Base) |
-| Enter | entrar na fazenda (Base) / voltar à Base (tela final) |
+| I | ver equipamento e atributos (na Base abre o Arsenal) |
+| Esc | fechar o Arsenal / a janela de melhoria (Base) |
+| Enter | EXPLORAR (Base) / voltar à Base (tela final) |
 
 Todos os números (tempo de invasão, % da bag que cai, dificuldade da IA…) ficam no **Inspector do objeto GameBootstrap**. Os números das habilidades ficam em `VampireKit.cs` e `WerewolfKit.cs`.
 
@@ -66,7 +67,11 @@ Assets/VampWolfs/
     AI/          WerewolfAI (usa a mesma API do jogador: mesmos cooldowns e telegraphs)
     World/       FarmBuilder (mapa), Sheep, ExtractionPoint, Obstacle
     Loot/        Inventory (a BAG, em risco), Equipment (seguro), LootBag (bag no chão)
-    UI/          GameHUD (IMGUI), FloatingText
+    UI/          GameHUD (IMGUI), FloatingText, BaseScreen (Base antiga em IMGUI, reserva se o lobby faltar)
+    Lobby/       lobby copiado do Space (UI Toolkit): LobbyUI, BaseScreen, ArsenalScreen, BaseStage, PortraitStudio…
+  Resources/Lobby/   Lobby.uss (estilos), fontes vitorianas, botão EXPLORAR
+  Resources/Base/    fundo pintado do palco (ainda o hangar do Space) + shaders
+  Resources/ItemIcons/  ícones pintados dos equipamentos (ainda os do Space)
 ```
 
 Design e decisões: [`docs/DESIGN.md`](docs/DESIGN.md).

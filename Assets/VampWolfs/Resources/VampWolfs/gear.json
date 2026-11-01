@@ -189,6 +189,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -218,6 +219,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -247,6 +249,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -276,6 +279,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -305,6 +309,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -334,6 +339,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -363,6 +369,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -392,6 +399,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -421,6 +429,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -450,6 +459,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -479,6 +489,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -508,6 +519,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -537,6 +549,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -566,6 +579,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -595,6 +609,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -624,6 +639,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -653,6 +669,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -682,6 +699,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -711,6 +729,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -740,6 +759,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -769,6 +789,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 22,
    "Attrs": {
     "Str": 0,
@@ -798,6 +819,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 28,
    "Attrs": {
     "Str": 1,
@@ -827,6 +849,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 35,
    "Attrs": {
     "Str": 2,
@@ -856,6 +879,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 35,
    "Attrs": {
     "Str": 0,
@@ -885,6 +909,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 28,
    "Attrs": {
     "Str": 1,
@@ -914,6 +939,7 @@
    "Tier": 1,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 35,
    "Attrs": {
     "Str": 0,
@@ -943,6 +969,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 28,
    "Attrs": {
     "Str": 0,
@@ -972,6 +999,7 @@
    "Tier": 1,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1001,6 +1029,7 @@
    "Tier": 1,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1030,6 +1059,7 @@
    "Tier": 1,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -1059,6 +1089,7 @@
    "Tier": 1,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -1088,6 +1119,7 @@
    "Tier": 1,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1117,6 +1149,7 @@
    "Tier": 1,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1146,6 +1179,7 @@
    "Tier": 1,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1175,6 +1209,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1204,6 +1239,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1233,6 +1269,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1262,6 +1299,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -1291,6 +1329,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1320,6 +1359,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1349,6 +1389,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1378,6 +1419,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -1407,6 +1449,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1436,6 +1479,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1465,6 +1509,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1494,6 +1539,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -1523,6 +1569,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1552,6 +1599,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1581,6 +1629,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1610,6 +1659,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -1639,6 +1689,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 34,
    "Attrs": {
     "Str": 0,
@@ -1668,6 +1719,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 34,
    "Attrs": {
     "Str": 0,
@@ -1697,6 +1749,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 34,
    "Attrs": {
     "Str": 0,
@@ -1726,6 +1779,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 34,
    "Attrs": {
     "Str": 2,
@@ -1755,6 +1809,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 34,
    "Attrs": {
     "Str": 0,
@@ -1784,6 +1839,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 34,
    "Attrs": {
     "Str": 2,
@@ -1813,6 +1869,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 44,
    "Attrs": {
     "Str": 0,
@@ -1842,6 +1899,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 44,
    "Attrs": {
     "Str": 3,
@@ -1871,6 +1929,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 44,
    "Attrs": {
     "Str": 0,
@@ -1900,6 +1959,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 44,
    "Attrs": {
     "Str": 3,
@@ -1929,6 +1989,7 @@
    "Tier": 2,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1958,6 +2019,7 @@
    "Tier": 2,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -1987,6 +2049,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2016,6 +2079,7 @@
    "Tier": 2,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2045,6 +2109,7 @@
    "Tier": 2,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -2074,6 +2139,7 @@
    "Tier": 2,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2103,6 +2169,7 @@
    "Tier": 2,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2132,6 +2199,7 @@
    "Tier": 2,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -2161,6 +2229,7 @@
    "Tier": 2,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2190,6 +2259,7 @@
    "Tier": 2,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2219,6 +2289,7 @@
    "Tier": 2,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2248,6 +2319,7 @@
    "Tier": 2,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -2277,6 +2349,7 @@
    "Tier": 2,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2306,6 +2379,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2335,6 +2409,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2364,6 +2439,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2393,6 +2469,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -2422,6 +2499,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2451,6 +2529,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2480,6 +2559,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2509,6 +2589,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -2538,6 +2619,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2567,6 +2649,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2596,6 +2679,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2625,6 +2709,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -2654,6 +2739,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2683,6 +2769,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2712,6 +2799,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -2741,6 +2829,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -2770,6 +2859,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 42,
    "Attrs": {
     "Str": 0,
@@ -2799,6 +2889,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 42,
    "Attrs": {
     "Str": 0,
@@ -2828,6 +2919,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 42,
    "Attrs": {
     "Str": 0,
@@ -2857,6 +2949,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 42,
    "Attrs": {
     "Str": 2,
@@ -2886,6 +2979,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 42,
    "Attrs": {
     "Str": 0,
@@ -2915,6 +3009,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 42,
    "Attrs": {
     "Str": 2,
@@ -2944,6 +3039,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 55,
    "Attrs": {
     "Str": 1,
@@ -2973,6 +3069,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 55,
    "Attrs": {
     "Str": 4,
@@ -3002,6 +3099,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 55,
    "Attrs": {
     "Str": 0,
@@ -3031,6 +3129,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 55,
    "Attrs": {
     "Str": 3,
@@ -3060,6 +3159,7 @@
    "Tier": 3,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3089,6 +3189,7 @@
    "Tier": 3,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3118,6 +3219,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3147,6 +3249,7 @@
    "Tier": 3,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3176,6 +3279,7 @@
    "Tier": 3,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -3205,6 +3309,7 @@
    "Tier": 3,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3234,6 +3339,7 @@
    "Tier": 3,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3263,6 +3369,7 @@
    "Tier": 3,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -3292,6 +3399,7 @@
    "Tier": 3,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3321,6 +3429,7 @@
    "Tier": 3,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3350,6 +3459,7 @@
    "Tier": 3,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3379,6 +3489,7 @@
    "Tier": 3,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -3408,6 +3519,7 @@
    "Tier": 3,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3437,6 +3549,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3466,6 +3579,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3495,6 +3609,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -3524,6 +3639,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -3553,6 +3669,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3582,6 +3699,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3611,6 +3729,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3640,6 +3759,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -3669,6 +3789,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3698,6 +3819,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3727,6 +3849,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3756,6 +3879,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -3785,6 +3909,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3814,6 +3939,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3843,6 +3969,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -3872,6 +3999,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -3901,6 +4029,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 60,
    "Attrs": {
     "Str": 0,
@@ -3930,6 +4059,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 60,
    "Attrs": {
     "Str": 0,
@@ -3959,6 +4089,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 60,
    "Attrs": {
     "Str": 1,
@@ -3988,6 +4119,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 60,
    "Attrs": {
     "Str": 3,
@@ -4017,6 +4149,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 60,
    "Attrs": {
     "Str": 0,
@@ -4046,6 +4179,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 60,
    "Attrs": {
     "Str": 2,
@@ -4075,6 +4209,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 78,
    "Attrs": {
     "Str": 0,
@@ -4104,6 +4239,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 78,
    "Attrs": {
     "Str": 4,
@@ -4133,6 +4269,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 78,
    "Attrs": {
     "Str": 0,
@@ -4162,6 +4299,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 78,
    "Attrs": {
     "Str": 5,
@@ -4191,6 +4329,7 @@
    "Tier": 4,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4220,6 +4359,7 @@
    "Tier": 4,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4249,6 +4389,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4278,6 +4419,7 @@
    "Tier": 4,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4307,6 +4449,7 @@
    "Tier": 4,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -4336,6 +4479,7 @@
    "Tier": 4,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4365,6 +4509,7 @@
    "Tier": 4,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4394,6 +4539,7 @@
    "Tier": 4,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -4423,6 +4569,7 @@
    "Tier": 4,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4452,6 +4599,7 @@
    "Tier": 4,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4481,6 +4629,7 @@
    "Tier": 4,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4510,6 +4659,7 @@
    "Tier": 4,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -4539,6 +4689,7 @@
    "Tier": 4,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4568,6 +4719,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4597,6 +4749,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4626,6 +4779,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4655,6 +4809,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -4684,6 +4839,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4713,6 +4869,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4742,6 +4899,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -4771,6 +4929,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -4800,6 +4959,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4829,6 +4989,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4858,6 +5019,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4887,6 +5049,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -4916,6 +5079,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4945,6 +5109,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -4974,6 +5139,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -5003,6 +5169,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -5032,6 +5199,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 85,
    "Attrs": {
     "Str": 0,
@@ -5061,6 +5229,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 85,
    "Attrs": {
     "Str": 0,
@@ -5090,6 +5259,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 85,
    "Attrs": {
     "Str": 0,
@@ -5119,6 +5289,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 85,
    "Attrs": {
     "Str": 3,
@@ -5148,6 +5319,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 85,
    "Attrs": {
     "Str": 1,
@@ -5177,6 +5349,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 85,
    "Attrs": {
     "Str": 3,
@@ -5206,6 +5379,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -5235,6 +5409,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 110,
    "Attrs": {
     "Str": 6,
@@ -5264,6 +5439,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -5293,6 +5469,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 110,
    "Attrs": {
     "Str": 5,
@@ -5322,6 +5499,7 @@
    "Tier": 5,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5351,6 +5529,7 @@
    "Tier": 5,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -5380,6 +5559,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5409,6 +5589,7 @@
    "Tier": 5,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5438,6 +5619,7 @@
    "Tier": 5,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -5467,6 +5649,7 @@
    "Tier": 5,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5496,6 +5679,7 @@
    "Tier": 5,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5525,6 +5709,7 @@
    "Tier": 5,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -5554,6 +5739,7 @@
    "Tier": 5,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5583,6 +5769,7 @@
    "Tier": 5,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5612,6 +5799,7 @@
    "Tier": 5,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5641,6 +5829,7 @@
    "Tier": 5,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -5670,6 +5859,7 @@
    "Tier": 5,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5699,6 +5889,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5728,6 +5919,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5757,6 +5949,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5786,6 +5979,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -5815,6 +6009,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5844,6 +6039,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5873,6 +6069,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5902,6 +6099,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -5931,6 +6129,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5960,6 +6159,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -5989,6 +6189,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -6018,6 +6219,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -6047,6 +6249,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6076,6 +6279,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6105,6 +6309,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6134,6 +6339,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -6163,6 +6369,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -6192,6 +6399,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -6221,6 +6429,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -6250,6 +6459,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 110,
    "Attrs": {
     "Str": 4,
@@ -6279,6 +6489,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 110,
    "Attrs": {
     "Str": 0,
@@ -6308,6 +6519,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 110,
    "Attrs": {
     "Str": 4,
@@ -6337,6 +6549,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 143,
    "Attrs": {
     "Str": 3,
@@ -6366,6 +6579,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 143,
    "Attrs": {
     "Str": 5,
@@ -6395,6 +6609,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 143,
    "Attrs": {
     "Str": 0,
@@ -6424,6 +6639,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 143,
    "Attrs": {
     "Str": 6,
@@ -6453,6 +6669,7 @@
    "Tier": 6,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6482,6 +6699,7 @@
    "Tier": 6,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6511,6 +6729,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6540,6 +6759,7 @@
    "Tier": 6,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6569,6 +6789,7 @@
    "Tier": 6,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -6598,6 +6819,7 @@
    "Tier": 6,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6627,6 +6849,7 @@
    "Tier": 6,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6656,6 +6879,7 @@
    "Tier": 6,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -6685,6 +6909,7 @@
    "Tier": 6,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6714,6 +6939,7 @@
    "Tier": 6,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6743,6 +6969,7 @@
    "Tier": 6,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6772,6 +6999,7 @@
    "Tier": 6,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -6801,6 +7029,7 @@
    "Tier": 6,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6830,6 +7059,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6859,6 +7089,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6888,6 +7119,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -6917,6 +7149,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -6946,6 +7179,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -6975,6 +7209,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7004,6 +7239,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7033,6 +7269,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -7062,6 +7299,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7091,6 +7329,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7120,6 +7359,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7149,6 +7389,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -7178,6 +7419,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7207,6 +7449,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7236,6 +7479,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7265,6 +7509,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -7294,6 +7539,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 140,
    "Attrs": {
     "Str": 0,
@@ -7323,6 +7569,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 140,
    "Attrs": {
     "Str": 0,
@@ -7352,6 +7599,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 140,
    "Attrs": {
     "Str": 2,
@@ -7381,6 +7629,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 140,
    "Attrs": {
     "Str": 4,
@@ -7410,6 +7659,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 140,
    "Attrs": {
     "Str": 0,
@@ -7439,6 +7689,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 140,
    "Attrs": {
     "Str": 4,
@@ -7468,6 +7719,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 182,
    "Attrs": {
     "Str": 0,
@@ -7497,6 +7749,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 182,
    "Attrs": {
     "Str": 6,
@@ -7526,6 +7779,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 182,
    "Attrs": {
     "Str": 0,
@@ -7555,6 +7809,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 182,
    "Attrs": {
     "Str": 6,
@@ -7584,6 +7839,7 @@
    "Tier": 7,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7613,6 +7869,7 @@
    "Tier": 7,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7642,6 +7899,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7671,6 +7929,7 @@
    "Tier": 7,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7700,6 +7959,7 @@
    "Tier": 7,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -7729,6 +7989,7 @@
    "Tier": 7,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7758,6 +8019,7 @@
    "Tier": 7,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7787,6 +8049,7 @@
    "Tier": 7,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -7816,6 +8079,7 @@
    "Tier": 7,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7845,6 +8109,7 @@
    "Tier": 7,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7874,6 +8139,7 @@
    "Tier": 7,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7903,6 +8169,7 @@
    "Tier": 7,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -7932,6 +8199,7 @@
    "Tier": 7,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7961,6 +8229,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "wrapped_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -7990,6 +8259,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "spired_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8019,6 +8289,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "soldier_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8048,6 +8319,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "elite_greathelm",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -8077,6 +8349,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "leather_vest",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8106,6 +8379,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "tattered_robe",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8135,6 +8409,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "chain_mail",
    "Dmg": 0,
    "Attrs": {
     "Str": 2,
@@ -8164,6 +8439,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "rusted_cuirass",
    "Dmg": 0,
    "Attrs": {
     "Str": 6,
@@ -8193,6 +8469,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "tempered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8222,6 +8499,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bolstered_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8251,6 +8529,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "riveted_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8280,6 +8559,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "moulded_mitts",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -8309,6 +8589,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "trimmed_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8338,6 +8619,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "bronze_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8367,6 +8649,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "iron_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -8396,6 +8679,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "stone_greaves",
    "Dmg": 0,
    "Attrs": {
     "Str": 4,
@@ -8425,6 +8709,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 180,
    "Attrs": {
     "Str": 0,
@@ -8454,6 +8739,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "blaster_comum",
    "Dmg": 180,
    "Attrs": {
     "Str": 0,
@@ -8483,6 +8769,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 180,
    "Attrs": {
     "Str": 0,
@@ -8512,6 +8799,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "blaster_incomum",
    "Dmg": 180,
    "Attrs": {
     "Str": 4,
@@ -8541,6 +8829,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "vibro_blade",
    "Dmg": 180,
    "Attrs": {
     "Str": 2,
@@ -8570,6 +8859,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "shock_baton",
    "Dmg": 180,
    "Attrs": {
     "Str": 4,
@@ -8599,6 +8889,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "",
+   "Model": "plasma_glaive",
    "Dmg": 234,
    "Attrs": {
     "Str": 0,
@@ -8628,6 +8919,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "breach_hammer",
    "Dmg": 234,
    "Attrs": {
     "Str": 6,
@@ -8657,6 +8949,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 234,
    "Attrs": {
     "Str": 0,
@@ -8686,6 +8979,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "",
+   "Model": "super_blaster",
    "Dmg": 234,
    "Attrs": {
     "Str": 6,
@@ -8715,6 +9009,7 @@
    "Tier": 8,
    "Focus": "arcane",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8744,6 +9039,7 @@
    "Tier": 8,
    "Focus": "scout",
    "ShieldKind": "buckler",
+   "Model": "buckler",
    "Dmg": 0,
    "Attrs": {
     "Str": 1,
@@ -8773,6 +9069,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "energy",
+   "Model": "energy_shield",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8802,6 +9099,7 @@
    "Tier": 8,
    "Focus": "sacred",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8831,6 +9129,7 @@
    "Tier": 8,
    "Focus": "vanguard",
    "ShieldKind": "heavy",
+   "Model": "escudao",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -8860,6 +9159,7 @@
    "Tier": 8,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8889,6 +9189,7 @@
    "Tier": 8,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8918,6 +9219,7 @@
    "Tier": 8,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 5,
@@ -8947,6 +9249,7 @@
    "Tier": 8,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -8976,6 +9279,7 @@
    "Tier": 8,
    "Focus": "dex",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -9005,6 +9309,7 @@
    "Tier": 8,
    "Focus": "int",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,
@@ -9034,6 +9339,7 @@
    "Tier": 8,
    "Focus": "str",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 3,
@@ -9063,6 +9369,7 @@
    "Tier": 8,
    "Focus": "vit",
    "ShieldKind": "",
+   "Model": "",
    "Dmg": 0,
    "Attrs": {
     "Str": 0,

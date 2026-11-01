@@ -24,7 +24,8 @@ namespace VampWolfs
 
         GameObject worldRoot;
         GameObject baseCamera;
-        BaseScreen baseScreen;
+        BaseScreen baseScreen;          // old IMGUI Base (fallback when the lobby style is missing)
+        Lobby.LobbyUI lobby;            // lobby copied from the Space project (UI Toolkit + painted stage)
 
         /// <summary>Saved progress: worn gear, stash, resources.</summary>
         public PlayerProfile Profile { get; private set; }
@@ -37,8 +38,18 @@ namespace VampWolfs
             ArtLibrary.MonsterHunter = MonsterHunterArt;
 
             Profile = PlayerProfile.LoadOrCreate(GearCatalog.Instance);
-            baseScreen = gameObject.AddComponent<BaseScreen>();
-            baseScreen.Init(this);
+            SetBaseCamera(false);
+            if (Lobby.LobbyUI.Available)
+            {
+                lobby = gameObject.AddComponent<Lobby.LobbyUI>();
+                lobby.Init(this, baseCamera.GetComponent<Camera>());
+            }
+            else
+            {
+                baseScreen = gameObject.AddComponent<BaseScreen>();
+                baseScreen.Init(this);
+            }
+
             ShowBase();
         }
 
@@ -46,7 +57,8 @@ namespace VampWolfs
         public void StartMatch()
         {
             Profile.Save();
-            baseScreen.enabled = false;
+            if (lobby != null) lobby.Show(false);
+            if (baseScreen != null) baseScreen.enabled = false;
             SetBaseCamera(false);
             DestroyWorld();
             Build();
@@ -74,7 +86,8 @@ namespace VampWolfs
         void ShowBase()
         {
             SetBaseCamera(true);
-            baseScreen.enabled = true;
+            if (lobby != null) lobby.Show(true);
+            if (baseScreen != null) baseScreen.enabled = true;
         }
 
         void DestroyWorld()
@@ -90,7 +103,7 @@ namespace VampWolfs
             FloatingText.Clear();
         }
 
-        /// <summary>Simple camera so the Base screen has something to draw over.</summary>
+        /// <summary>Camera of the Base: draws the lobby stage (the portrait studio layer is left out).</summary>
         void SetBaseCamera(bool on)
         {
             if (baseCamera == null)
@@ -100,7 +113,7 @@ namespace VampWolfs
                 Camera cam = baseCamera.AddComponent<Camera>();
                 cam.clearFlags = CameraClearFlags.SolidColor;
                 cam.backgroundColor = new Color(0.07f, 0.05f, 0.1f);
-                cam.cullingMask = 0;
+                cam.cullingMask = ~(1 << Lobby.PortraitStudio.Layer);
                 baseCamera.AddComponent<AudioListener>();
             }
 

@@ -51,6 +51,8 @@ namespace VampWolfs
         /// <summary>vanguard / scout / arcane / sacred, or the attribute of accessories (str/dex/int/vit).</summary>
         public string Focus;
         public string ShieldKind;
+        /// <summary>Tier-I piece whose drawing this piece reuses for its lobby icon (empty = its own).</summary>
+        public string Model;
 
         /// <summary>Weapon damage (0 for non-weapons).</summary>
         public float Dmg;

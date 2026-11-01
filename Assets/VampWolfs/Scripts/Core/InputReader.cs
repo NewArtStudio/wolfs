@@ -62,6 +62,7 @@ namespace VampWolfs
         public static bool HelpPressed() { return Pressed(Key.H); }
         public static bool InventoryPressed() { return Pressed(Key.I); }
         public static bool RestartPressed() { return Pressed(Key.Enter); }
+        public static bool EscapePressed() { return Pressed(Key.Escape); }
 #else
         public static Vector2 Move()
         {
@@ -85,6 +86,7 @@ namespace VampWolfs
         public static bool HelpPressed() { return Input.GetKeyDown(KeyCode.H); }
         public static bool InventoryPressed() { return Input.GetKeyDown(KeyCode.I); }
         public static bool RestartPressed() { return Input.GetKeyDown(KeyCode.Return); }
+        public static bool EscapePressed() { return Input.GetKeyDown(KeyCode.Escape); }
 #endif
     }
 }
