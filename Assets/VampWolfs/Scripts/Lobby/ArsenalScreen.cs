@@ -337,9 +337,10 @@ namespace VampWolfs.Lobby
             var s = CharacterStats.Compute(C, eq);
             var rules = C.Rules;
             var cls = SkillCatalog.Instance.Class(P.Current.ClassId);
-            int hp = Mathf.RoundToInt(cls.Health * s.HpMult);
+            float passiveHp = SkillFactory.PassivesOf(SkillCatalog.Instance, P.Current).Hp;
+            int hp = Mathf.RoundToInt(cls.Health * s.HpMult * (1f + passiveHp));
             UiKit.Lbl("STATUS · " + cls.Name.ToUpperInvariant(), "ars-sec-title", stats);
-            StatRow("st_heart", "Vida", hp.ToString(), hp / 600f, "base " + cls.Health + " · faixa " + s.PowerTier.ToString("0.0") + " · +" + Mathf.RoundToInt(s.Eff.Vit) + "% pela VIT");
+            StatRow("st_heart", "Vida", hp.ToString(), hp / 600f, "base " + cls.Health + " · faixa " + s.PowerTier.ToString("0.0") + " · +" + Mathf.RoundToInt(s.Eff.Vit) + "% pela VIT" + (passiveHp > 0f ? " · +" + Mathf.RoundToInt(passiveHp * 100f) + "% passivas" : ""));
             StatRow("st_bolt", "Dano mágico", Pct(s.DamageMult(DamageType.Magic, rules)), s.DamageMult(DamageType.Magic, rules) / 3f, "arma " + Mathf.RoundToInt(s.WeaponDmg) + " + MATK " + Mathf.RoundToInt(s.Matk) + " (INT)");
             StatRow("st_shield", "Armour", Mathf.RoundToInt(s.Armour) + "%", s.Armour / GearBalance.ArmourCap, "redução física total " + Mathf.RoundToInt(s.PhysReductionPct) + "% · teto " + GearBalance.ArmourCap + "%");
             StatRow("st_dodge", "Evasion", Mathf.RoundToInt(s.Evasion).ToString(), s.Evasion / 60f, "cada ponto: −0,5% de dano físico e +0,3% de velocidade");

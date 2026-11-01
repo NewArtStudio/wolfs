@@ -91,7 +91,7 @@ namespace VampWolfs
         /// Returns false when the hit was blocked (invulnerable or countered): in that case
         /// on-hit effects such as stuns must not be applied either.
         /// </summary>
-        public bool TryTakeDamage(float amount, CombatUnit source, out float dealt)
+        public bool TryTakeDamage(float amount, CombatUnit source, out float dealt, bool isTick = false)
         {
             dealt = 0f;
 
@@ -104,11 +104,12 @@ namespace VampWolfs
             {
                 if (status.IsInvulnerable)
                 {
-                    FloatingText.Spawn(transform.position + Vector3.up * 2.4f, "Imune", new Color(0.8f, 0.8f, 1f));
+                    if (!isTick) FloatingText.Spawn(transform.position + Vector3.up * 2.4f, "Imune", new Color(0.8f, 0.8f, 1f));
                     return false;
                 }
 
-                if (status.IsCountering)
+                // bleeding/zone ticks don't pop the counter (it answers real hits only)
+                if (status.IsCountering && !isTick)
                 {
                     status.TriggerCounter(source);
                     return false;
@@ -124,15 +125,15 @@ namespace VampWolfs
 
             lastDamageTime = Time.time;
 
+            // order: skill shield → Égide (ward) → health
             float shielded = Mathf.Min(Shield, amount);
             shield -= shielded;
             amount -= shielded;
             float absorbed = Mathf.Min(Ward, amount);
             Ward -= absorbed;
-            absorbed += shielded;
-            float toHealth = Mathf.Min(amount - absorbed, Current);
+            float toHealth = Mathf.Max(0f, Mathf.Min(amount - absorbed, Current));
             Current -= toHealth;
-            dealt = absorbed + toHealth;
+            dealt = shielded + absorbed + toHealth;
 
             if (Damaged != null)
             {

@@ -35,10 +35,21 @@ namespace VampWolfs
         public float VulnDuration;
         [Tooltip("Basic attack (LMB): applies the class passive bleeding.")]
         public bool IsBasic;
+        [Tooltip("Repeating tick (zones): never triggers counters, no 'Imune' spam.")]
+        public bool IsTick;
 
         public void Apply(CombatUnit caster, Health target)
         {
-            bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal, Type);
+            // Status-only hits (slow/root zones, marks with 0 damage) don't go through the damage path,
+            // so they never trigger a counter; invulnerable targets ignore them.
+            bool landed;
+            if (Damage > 0f) landed = DamageSystem.Deal(caster, target, Damage, Lifesteal, Type, IsTick);
+            else
+            {
+                StatusEffects s0 = target.GetComponent<StatusEffects>();
+                landed = s0 == null || !s0.IsInvulnerable;
+            }
+
             if (!landed || target.IsDead)
             {
                 return;
@@ -71,6 +82,7 @@ namespace VampWolfs
             float meters = Knockback;
             if (meters < 0f) meters = -Mathf.Min(-meters, Mathf.Max(0f, distance - 1.4f));   // pull stops in front of the caster
             if (Mathf.Abs(meters) < 0.1f) return;
+            if (unit.IsInForcedMove || unit.Status.IsInvulnerable) return;   // don't cancel a dash (its landing hit) mid-air
             const float time = 0.2f;
             unit.CancelCast(false);
             unit.StartForcedMove(dir * (meters / time), time, null);
@@ -102,7 +114,7 @@ namespace VampWolfs
             amount = ApplyGear(caster, target, amount, type, out attackerMult);
 
             float dealt;
-            if (!target.TryTakeDamage(amount, caster, out dealt))
+            if (!target.TryTakeDamage(amount, caster, out dealt, isDot))
             {
                 return false;
             }

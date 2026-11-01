@@ -90,6 +90,14 @@ namespace VampWolfs
         /// <summary>Gives the unit its bar (gear + class skills) and passives, then wears the gear.</summary>
         public static void ApplyLoadout(CombatUnit unit, CharacterSave character, IDictionary<string, ItemInstance> equipped)
         {
+            if (!SkillCatalog.Instance.IsLoaded)
+            {
+                // skills.json missing: keep the old hand-made kits so the match is still playable
+                Debug.LogWarning("[VampWolfs] skills.json não carregou — usando os kits antigos.");
+                unit.SetAbilities(character != null && character.ClassId == "werewolf" ? WerewolfKit.Create() : VampireKit.Create());
+                unit.ApplyGear(GearCatalog.Instance, equipped);
+                return;
+            }
             PassiveStats passives;
             Ability[] bar = SkillFactory.BuildBar(SkillCatalog.Instance, GearCatalog.Instance, character, equipped, out passives);
             unit.SetAbilities(bar);

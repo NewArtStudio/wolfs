@@ -181,13 +181,22 @@ namespace VampWolfs
                         bar[(int)AbilitySlot.Class1 + i] = Build(s, level);
                 }
 
-                foreach (SkillDef s in sc.ClassSkills(ch.ClassId))
-                {
-                    if (s.IsPassive) passives.Add(s, ch.SkillLevel(s.Id));
-                }
+                passives = PassivesOf(sc, ch);
             }
 
             return bar;
+        }
+
+        /// <summary>Sum of the class passives the character learned (also used by the lobby to show real HP).</summary>
+        public static PassiveStats PassivesOf(SkillCatalog sc, CharacterSave ch)
+        {
+            PassiveStats passives = new PassiveStats();
+            if (sc == null || ch == null) return passives;
+            foreach (SkillDef s in sc.ClassSkills(ch.ClassId))
+            {
+                if (s.IsPassive) passives.Add(s, ch.SkillLevel(s.Id));
+            }
+            return passives;
         }
     }
 }

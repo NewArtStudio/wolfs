@@ -123,6 +123,7 @@ namespace VampWolfs
         {
             while (Actives.Count < SkillCatalog.ActiveSlots) Actives.Add("");
             if (i < 0 || i >= SkillCatalog.ActiveSlots) return;
+            if (string.IsNullOrEmpty(id)) { Actives[i] = ""; return; }
             int other = Actives.IndexOf(id);
             if (other >= 0 && other != i) Actives[other] = Actives[i];
             Actives[i] = id ?? "";

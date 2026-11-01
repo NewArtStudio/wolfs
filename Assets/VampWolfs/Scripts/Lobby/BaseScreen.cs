@@ -151,7 +151,7 @@ namespace VampWolfs.Lobby
             // poder do equipamento (o que a invasão usa para escolher o invasor)
             var catalog = ui.Catalog;
             var st = CharacterStats.Compute(catalog, ui.Profile.EquippedMap());
-            int hp = Mathf.RoundToInt(cls.Health * st.HpMult);
+            int hp = Mathf.RoundToInt(cls.Health * st.HpMult * (1f + SkillFactory.PassivesOf(SkillCatalog.Instance, ch).Hp));
             UiKit.Lbl("Faixa de poder " + st.PowerTier.ToString("0.0") + " · Vida " + hp, "bs-power", card);
 
             var btns = UiKit.El("bs-btns", card);

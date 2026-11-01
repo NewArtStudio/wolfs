@@ -9,7 +9,20 @@ namespace VampWolfs
     /// </summary>
     public static class SkillText
     {
-        static readonly CultureInfo Pt = new CultureInfo("pt-BR");
+        static readonly CultureInfo Pt = MakePt();
+
+        /// <summary>pt-BR may be missing on some builds (invariant globalization): fall back to a comma-decimal copy.</summary>
+        static CultureInfo MakePt()
+        {
+            try { return new CultureInfo("pt-BR"); }
+            catch (System.Exception)
+            {
+                CultureInfo c = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+                c.NumberFormat.NumberDecimalSeparator = ",";
+                c.NumberFormat.NumberGroupSeparator = ".";
+                return c;
+            }
+        }
 
         static string N(float v) { return v.ToString(v % 1f == 0f ? "0" : "0.#", Pt); }
         static string Pct(float v) { return N(v * 100f) + "%"; }
@@ -45,7 +58,7 @@ namespace VampWolfs
             if (s.Damage > 0f)
             {
                 string dmg = "Dano " + N(s.Damage * g) + (s.Count > 1 ? " × " + s.Count : "");
-                if (s.Kind == "zone") dmg += " a cada 0,5 s";
+                if (s.Kind == "zone") dmg = "Dano " + N(s.Damage * g) + " por segundo dentro";
                 p.Add(dmg);
             }
             if (s.DotDps > 0f) p.Add("Sangra " + N(s.DotDps * g) + "/s por " + N(s.DotDuration) + " s");

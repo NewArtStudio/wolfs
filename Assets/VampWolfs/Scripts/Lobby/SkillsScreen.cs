@@ -38,7 +38,9 @@ namespace VampWolfs.Lobby
             subtitle = UiKit.Lbl("", "sk-sub", head);
             tabs = UiKit.El("sk-tabs", top);
             var tools = UiKit.El("sk-tools", top);
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             UiKit.Btn("+1 nível (teste)", () => { Ch.AddXp(SkillCatalog.XpToNext(Ch.Level) - Ch.Xp); Changed(); }, "btn sm ghost", tools);
+#endif
             UiKit.Btn("Devolver pontos", () => { Ch.ResetSkills(); Changed(); }, "btn sm ghost", tools);
             UiKit.Btn("Fechar (Esc)", Close, "btn sm", tools);
 

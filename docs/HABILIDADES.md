@@ -10,7 +10,7 @@ Decidido com o criador (nov/2026), inspirado no **Albion Online**. Todos os núm
 - No lobby: clique numa vaga livre da grade **MANSÃO** para criar (classe + nome); clique num personagem para escolhê-lo.
   O escolhido é o que vai para a Fazenda no EXPLORAR.
 - XP na Fazenda: ovelha **8**, invasor derrotado **120**, extração **60**. Do nível 1 ao 50 ≈ **58 mil XP**
-  (`50 + 15·(N−1) + (N−1)²` por nível). Na tela de Habilidades há um botão **+1 nível (teste)**.
+  (`50 + 15·(N−1) + (N−1)²` por nível). Na tela de Habilidades há um botão **+1 nível (teste)** (só no Editor/Development Build).
 - O **invasor é sempre de outra classe** (sorteada), com equipamento da sua faixa de poder e o seu nível.
 
 | Classe | Vida | Velocidade | Dano das habilidades de classe |
@@ -54,7 +54,7 @@ As versões EX (Shift + tecla) saíram: o Shift agora é das botas.
 
 Sangramento/queimadura (dano por segundo), prender (não anda, mas conjura), marca (recebe mais dano), empurrar e puxar,
 escudo temporário (faixa dourada na barra de vida), bônus de dano, remover lentidão/atordoamento, zonas no chão
-e armadilhas. Passivas: dano, vida, velocidade, roubo de vida, recarga, energia, redução de dano, cura recebida,
+e armadilhas (o dano das zonas é **por segundo** dentro; ticks de zona/sangramento não disparam contra-ataque). Passivas: dano, vida, velocidade, roubo de vida, recarga, energia, redução de dano, cura recebida,
 dano com pouca vida, cura ao matar, sangramento no ataque básico, dano em alvo lento/preso e regeneração.
 
 ## Onde mexer
@@ -62,5 +62,5 @@ dano com pouca vida, cura ao matar, sangramento no ataque básico, dano em alvo 
 - Números e habilidades: `Tools/Data/build_skill_data.py` → gera `Resources/VampWolfs/skills.json`
   (`python3 Tools/Data/build_skill_data.py Assets/VampWolfs/Resources/VampWolfs/skills.json`).
 - As descrições são montadas dos números (`Scripts/Skills/SkillText.cs`): mude o número, não o texto.
-- Código: `Scripts/Skills/` (SkillCatalog, SkillFactory, SkillText, ZoneAbility, TrapAbility), `Scripts/Gear/CharacterSave.cs`,
+- Código: `Scripts/Skills/` (SkillCatalog, SkillFactory, SkillText, ZoneAbility + Zone, TrapAbility + Trap), `Scripts/Gear/CharacterSave.cs`,
   `Scripts/Combat/PassiveStats.cs`, tela `Scripts/Lobby/SkillsScreen.cs`.

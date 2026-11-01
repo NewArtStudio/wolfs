@@ -80,6 +80,7 @@ def buff(sid, name, desc, **kw):
 
 
 def zone(sid, name, desc, **kw):
+    """Zones: Damage is PER SECOND while inside (ticks every 0.5 s)."""
     kw.setdefault("CastTime", 0.35); kw.setdefault("Radius", 3.0); kw.setdefault("ZoneDuration", 4.0)
     if kw.get("AtAim"): kw.setdefault("Range", 10.0)
     return add("zone", sid, name, desc, **kw)
@@ -135,7 +136,7 @@ family("handR_arcane", "Varinha", "weapon", "magic", "#b46cff", {
         buff("w_wand_shield", "Escudo de Éter", "Bolha que absorve dano.", ShieldPct=0.22, ShieldDuration=3, Cooldown=12),
         zone("w_wand_fog", "Névoa Arcana", "Área que deixa os inimigos lentos.", AtAim=True, Radius=3, ZoneDuration=4, SlowAmount=0.35, SlowDuration=0.6, Cooldown=12),
     ],
-    "ult": [zone("w_wand_ult", "Tempestade de Éter", "Tempestade arcana sobre o ponto mirado.", AtAim=True, Radius=3.6, ZoneDuration=4, Damage=6, SlowAmount=0.3, SlowDuration=0.6, CastTime=0.6, **ULT)],
+    "ult": [zone("w_wand_ult", "Tempestade de Éter", "Tempestade arcana sobre o ponto mirado.", AtAim=True, Radius=3.6, ZoneDuration=4, Damage=10, SlowAmount=0.3, SlowDuration=0.6, CastTime=0.6, **ULT)],
 })
 
 family("handR_sacred", "Crucifixo", "weapon", "magic", "#ffd27a", {
@@ -295,7 +296,7 @@ family("twoHand_arcane", "Cajado", "weapon", "magic", "#7ad8ff", {
         buff("w_staff_barrier", "Barreira Espectral", "Escudo grande e curto.", ShieldPct=0.3, ShieldDuration=2.5, Cooldown=14),
         buff("w_staff_cleanse", "Purificação", "Remove lentidão e atordoamento e acelera.", Cleanse=True, SelfHaste=0.3, SelfHasteDuration=1.5, Cooldown=14),
     ],
-    "ult": [zone("w_staff_ult", "Sabá", "Círculo de bruxaria que consome os inimigos.", AtAim=True, Radius=4.5, ZoneDuration=5, Damage=7, SlowAmount=0.3, SlowDuration=0.6, CastTime=0.7, **ULT)],
+    "ult": [zone("w_staff_ult", "Sabá", "Círculo de bruxaria que consome os inimigos.", AtAim=True, Radius=4.5, ZoneDuration=5, Damage=9, SlowAmount=0.3, SlowDuration=0.6, CastTime=0.7, **ULT)],
 })
 
 family("twoHand_vanguard", "Mosquete", "weapon", "ranged", "#e0b060", {

@@ -111,8 +111,10 @@ namespace VampWolfs
             {
                 AbilitySlot slot = OffenseOrder[(start + k) % OffenseOrder.Length];
                 Ability a = unit.GetAbility(slot);
-                if (a == null || !a.IsReady || a.IsDefensive || a.AiRange <= 0f) continue;
-                if (distance > a.AiRange) continue;
+                if (a == null || !a.IsReady || a.IsDefensive) continue;
+                // self buffs (damage/haste) have no range: use them when the fight is close
+                float range = a.AiRange > 0f ? a.AiRange : (a is BuffAbility ? 6f : 0f);
+                if (range <= 0f || distance > range) continue;
                 if (a is DashAbility && distance < 3f) continue;   // gap closers are for closing gaps
                 if (Random.value < 0.75f && unit.TryCast(slot, false)) return;
             }
