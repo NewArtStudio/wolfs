@@ -17,13 +17,18 @@ namespace VampWolfs
             get { return MaxHealth > 0f ? Current / MaxHealth : 0f; }
         }
 
-        /// <summary>amount actually lost, attacker (may be null).</summary>
+        /// <summary>Égide (Ward): absorb shield that takes damage before health and refills after a pause.</summary>
+        public float Ward { get; private set; }
+        public float MaxWard { get; private set; }
+
+        /// <summary>amount taken (health + ward), attacker (may be null).</summary>
         public event Action<float, CombatUnit> Damaged;
 
         /// <summary>killer (may be null).</summary>
         public event Action<CombatUnit> Died;
 
         StatusEffects status;
+        float lastDamageTime = -100f;
 
         public void Init(float maxHealth, Team team)
         {
@@ -32,6 +37,26 @@ namespace VampWolfs
             Team = team;
             IsDead = false;
             status = GetComponent<StatusEffects>();
+        }
+
+        /// <summary>Changes max health (gear) keeping the same health fraction, and sets the ward size.</summary>
+        public void SetMaxHealth(float maxHealth, float maxWard)
+        {
+            float fraction = Normalized;
+            MaxHealth = Mathf.Max(1f, maxHealth);
+            Current = MaxHealth * fraction;
+            MaxWard = Mathf.Max(0f, maxWard);
+            Ward = MaxWard;
+        }
+
+        void Update()
+        {
+            if (IsDead || Ward >= MaxWard || Time.time - lastDamageTime < GearBalance.WardRegenDelay)
+            {
+                return;
+            }
+
+            Ward = Mathf.Min(MaxWard, Ward + MaxWard * GearBalance.WardRegenPctPerSecond * Time.deltaTime);
         }
 
         /// <summary>
@@ -69,8 +94,13 @@ namespace VampWolfs
                 return true;
             }
 
-            dealt = Mathf.Min(amount, Current);
-            Current -= dealt;
+            lastDamageTime = Time.time;
+
+            float absorbed = Mathf.Min(Ward, amount);
+            Ward -= absorbed;
+            float toHealth = Mathf.Min(amount - absorbed, Current);
+            Current -= toHealth;
+            dealt = absorbed + toHealth;
 
             if (Damaged != null)
             {

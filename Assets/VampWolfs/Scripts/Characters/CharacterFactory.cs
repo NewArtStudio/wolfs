@@ -14,9 +14,13 @@ namespace VampWolfs
         /// <summary>Scales models and collision (MatchSettings.CharacterSize). Set by GameBootstrap.</summary>
         public static float SizeMultiplier = 1f;
 
+        /// <summary>Vampire stats before gear (the Base screen previews gear on top of these).</summary>
+        public const float VampireHealth = 160f;
+        public const float VampireSpeed = 6.2f;
+
         public static CombatUnit CreateVampire(Transform parent, Vector3 position)
         {
-            CombatUnit unit = CreateUnit(parent, "Vampiro", position, Team.Vampires, 160f, 6.2f, 0.5f, 2.2f, VampireTeamColor);
+            CombatUnit unit = CreateUnit(parent, "Vampiro", position, Team.Vampires, VampireHealth, VampireSpeed, 0.5f, 2.2f, VampireTeamColor);
             UnitVisual v = unit.Visual;
 
             if (ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid)

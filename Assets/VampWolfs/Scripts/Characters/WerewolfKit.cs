@@ -23,7 +23,7 @@ namespace VampWolfs
                 Reach = 2.4f,
                 Angle = 110f,
                 Color = Claw,
-                Hit = new HitEffect { Damage = 11f }
+                Hit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 11f }
             };
 
             DashAbility pounce = new DashAbility
@@ -37,7 +37,7 @@ namespace VampWolfs
                 Duration = 0.35f,
                 LandingRadius = 2.2f,
                 Color = Feral,
-                LandingHit = new HitEffect { Damage = 14f, SlowAmount = 0.4f, SlowDuration = 1.5f },
+                LandingHit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 14f, SlowAmount = 0.4f, SlowDuration = 1.5f },
                 Ex = new DashAbility
                 {
                     Name = "EX Bote Selvagem",
@@ -50,7 +50,7 @@ namespace VampWolfs
                     Duration = 0.35f,
                     LandingRadius = 2.4f,
                     Color = Feral,
-                    LandingHit = new HitEffect { Damage = 16f, StunDuration = 0.8f }
+                    LandingHit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 16f, StunDuration = 0.8f }
                 }
             };
 
@@ -86,7 +86,7 @@ namespace VampWolfs
                 Radius = 4f,
                 CenteredOnCaster = true,
                 Color = Howl,
-                Hit = new HitEffect { Damage = 5f, SlowAmount = 0.5f, SlowDuration = 2f }
+                Hit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 5f, SlowAmount = 0.5f, SlowDuration = 2f }
             };
 
             BuffAbility thickHide = new BuffAbility
@@ -109,7 +109,7 @@ namespace VampWolfs
                 Reach = 2.8f,
                 Angle = 140f,
                 Color = Moon,
-                Hit = new HitEffect { Damage = 22f }
+                Hit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 22f }
             };
 
             AreaAbility bloodMoon = new AreaAbility
@@ -125,7 +125,7 @@ namespace VampWolfs
                 SelfHaste = 0.4f,
                 SelfHasteDuration = 4f,
                 Color = Moon,
-                Hit = new HitEffect { Damage = 20f }
+                Hit = new HitEffect { Type = DamageType.PhysicalMelee, Damage = 20f }
             };
 
             return new Ability[] { claws, pounce, rush, howl, thickHide, rend, bloodMoon };

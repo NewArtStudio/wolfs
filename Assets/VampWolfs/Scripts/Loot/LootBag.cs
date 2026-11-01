@@ -14,6 +14,7 @@ namespace VampWolfs
         const float PickupDelay = 0.8f;
 
         Dictionary<ItemType, int> contents;
+        List<ItemInstance> gear = new List<ItemInstance>();
         Transform model;
         float spawnTime;
         bool picked;
@@ -26,11 +27,12 @@ namespace VampWolfs
             {
                 int total = 0;
                 foreach (KeyValuePair<ItemType, int> pair in contents) total += pair.Value;
+                foreach (ItemInstance item in gear) total += item.Qty;
                 return total;
             }
         }
 
-        public static LootBag Spawn(Transform parent, Vector3 position, Dictionary<ItemType, int> items, string droppedBy)
+        public static LootBag Spawn(Transform parent, Vector3 position, Dictionary<ItemType, int> items, List<ItemInstance> gearItems, string droppedBy)
         {
             GameObject go = new GameObject("LootBag (" + droppedBy + ")");
             go.transform.SetParent(parent, false);
@@ -55,6 +57,7 @@ namespace VampWolfs
 
             LootBag bag = go.AddComponent<LootBag>();
             bag.contents = new Dictionary<ItemType, int>(items);
+            if (gearItems != null) bag.gear = new List<ItemInstance>(gearItems);
             bag.model = modelGo.transform;
             bag.spawnTime = Time.time;
             bag.DroppedBy = droppedBy;
@@ -98,6 +101,7 @@ namespace VampWolfs
         {
             picked = true;
             unit.Inventory.AddAll(contents);
+            unit.Inventory.AddItems(GearCatalog.Instance, gear);
             Effects.Puff(transform.position, new Color(1f, 0.8f, 0.25f), 10);
 
             if (MatchManager.Instance != null)

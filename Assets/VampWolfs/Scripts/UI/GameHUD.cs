@@ -25,6 +25,7 @@ namespace VampWolfs
         MatchManager match;
         Camera cam;
         bool showHelp = true;
+        bool showGear;
 
         float scale = 1f;
         int stylesBuiltForHeight = -1;
@@ -51,6 +52,11 @@ namespace VampWolfs
             if (InputReader.HelpPressed())
             {
                 showHelp = !showHelp;
+            }
+
+            if (InputReader.InventoryPressed())
+            {
+                showGear = !showGear;
             }
 
             if (match != null && match.IsOver && InputReader.RestartPressed())
@@ -81,6 +87,11 @@ namespace VampWolfs
             if (showHelp)
             {
                 DrawHelp();
+            }
+
+            if (showGear && !match.IsOver)
+            {
+                DrawGearWindow();
             }
 
             if (match.IsOver)
@@ -114,6 +125,7 @@ namespace VampWolfs
 
                 ShadowLabel(new Rect(x - Px(40), y - Px(22), w + Px(80), Px(20)), unit.DisplayName, smallCenter, Color.white);
                 Bar(new Rect(x, y, w, h), unit.Health.Normalized, unit.IsPlayer ? PlayerHealth : EnemyHealth);
+                DrawWard(new Rect(x, y, w, h), unit.Health);
                 EnergySegments(new Rect(x, y + h + Px(2), w, Px(5)), unit.Energy.Current);
 
                 float nextY = y + h + Px(9);
@@ -265,7 +277,9 @@ namespace VampWolfs
             float w = Px(290);
             float x = Px(12);
             float lineH = Px(22);
-            float h = Px(40) + Inventory.AllTypes.Length * lineH + Px(78);
+            List<ItemInstance> found = player.Inventory.Items;
+            int itemLines = Mathf.Min(found.Count, 4) + (found.Count > 4 ? 1 : 0);
+            float h = Px(40) + (Inventory.AllTypes.Length + itemLines) * lineH + Px(78);
             float y = Screen.height - h - Px(12);
 
             DrawRect(new Rect(x, y, w, h), PanelColor);
@@ -279,8 +293,20 @@ namespace VampWolfs
                 ly += lineH;
             }
 
+            for (int i = 0; i < found.Count && i < 4; i++)
+            {
+                GUI.Label(new Rect(x + Px(16), ly, w - Px(20), lineH), "<color=#ffd24d>" + GearCatalog.Instance.NameOf(found[i]) + "</color>", small);
+                ly += lineH;
+            }
+
+            if (found.Count > 4)
+            {
+                GUI.Label(new Rect(x + Px(16), ly, w, lineH), "… e mais " + (found.Count - 4), small);
+                ly += lineH;
+            }
+
             ly += Px(6);
-            GUI.Label(new Rect(x + Px(10), ly, w, lineH), "<b>EQUIPAMENTO</b> <color=#80ff80>(seguro)</color>  IP " + player.Equipment.ItemPower, label);
+            GUI.Label(new Rect(x + Px(10), ly, w, lineH), "<b>EQUIPAMENTO</b> <color=#80ff80>(seguro)</color>  Faixa " + player.Equipment.Stats.PowerTier.ToString("0.0") + "  (I)", label);
             GUI.Label(new Rect(x + Px(16), ly + lineH, w, lineH), player.Equipment.Weapon, small);
             GUI.Label(new Rect(x + Px(16), ly + lineH * 1.8f, w, lineH), player.Equipment.Armor, small);
         }
@@ -313,6 +339,7 @@ namespace VampWolfs
 
             Rect healthRect = new Rect(x, y, w, Px(16));
             Bar(healthRect, player.Health.Normalized, PlayerHealth);
+            DrawWard(healthRect, player.Health);
             ShadowLabel(healthRect, Mathf.CeilToInt(player.Health.Current) + " / " + Mathf.RoundToInt(player.Health.MaxHealth), smallCenter, Color.white);
 
             Rect energyRect = new Rect(x, y + Px(20), w, Px(10));
@@ -388,6 +415,37 @@ namespace VampWolfs
             }
         }
 
+        /// <summary>Read-only view of the worn gear and stats during a match (changes only at the Base).</summary>
+        void DrawGearWindow()
+        {
+            CombatUnit player = match.Player;
+            if (player == null) return;
+
+            GearCatalog catalog = GearCatalog.Instance;
+            CharacterStats st = player.Equipment.Stats;
+
+            float w = Px(430);
+            float h = Px(520);
+            Rect r = new Rect(Screen.width - w - Px(12), Px(80), w, h);
+            DrawRect(r, new Color(0.05f, 0.04f, 0.08f, 0.9f));
+
+            string text = "<b>EQUIPAMENTO</b>  (I fecha · trocar só na Base)\n\n";
+            foreach (SlotDef slot in catalog.Slots)
+            {
+                ItemInstance item;
+                player.Equipment.Worn.TryGetValue(slot.Id, out item);
+                text += "<color=#a99fbf>" + slot.Name + ":</color> " + (item != null ? catalog.NameOf(item) : "—") + "\n";
+            }
+
+            text += "\nFOR " + st.Eff.Str + "  DES " + st.Eff.Dex + "  INT " + st.Eff.Int + "  VIT " + st.Eff.Vit + "\n" +
+                    "Vida " + Mathf.RoundToInt(player.Health.MaxHealth) + "  ·  Égide " + Mathf.RoundToInt(player.Health.MaxWard) + "\n" +
+                    "Dano mágico " + Mathf.RoundToInt(st.DamageMult(DamageType.Magic, catalog.Rules) * 100f) + "%  ·  " +
+                    "Redução física " + Mathf.RoundToInt(st.PhysReductionPct) + "%\n" +
+                    "Conjuração " + Mathf.RoundToInt(st.CastMult * 100f) + "% do tempo  ·  Velocidade " + Mathf.RoundToInt(st.MoveMult * 100f) + "%";
+
+            GUI.Label(new Rect(r.x + Px(12), r.y + Px(10), w - Px(24), h - Px(20)), text, small);
+        }
+
         void DrawHelp()
         {
             string text =
@@ -397,7 +455,7 @@ namespace VampWolfs
                 "RMB / Space / Q / E: habilidades\n" +
                 "Shift + RMB/Space (ou 1/2): versão EX\n" +
                 "R: habilidade de energia · F: ultimate (100)\n" +
-                "C: cancelar conjuração\n\n" +
+                "C: cancelar conjuração · I: equipamento\n\n" +
                 "<b>OBJETIVO</b>\n" +
                 "Mate ovelhas → itens vão para a BAG.\n" +
                 "Morrer = perde a bag, mantém o equipamento.\n" +
@@ -414,8 +472,8 @@ namespace VampWolfs
         {
             DrawRect(new Rect(0f, 0f, Screen.width, Screen.height), new Color(0f, 0f, 0f, 0.6f));
 
-            float w = Px(560);
-            float h = Px(330);
+            float w = Px(600);
+            float h = Px(440);
             Rect panel = new Rect((Screen.width - w) * 0.5f, (Screen.height - h) * 0.5f, w, h);
             DrawRect(panel, new Color(0.07f, 0.05f, 0.1f, 0.95f));
 
@@ -434,6 +492,14 @@ namespace VampWolfs
                     match.FinalLoot.TryGetValue(type, out count);
                     body += Inventory.DisplayName(type) + ": " + count + "\n";
                 }
+                for (int i = 0; i < match.FinalItems.Count && i < 6; i++)
+                {
+                    body += "<color=#ffd24d>" + GearCatalog.Instance.NameOf(match.FinalItems[i]) + "</color>\n";
+                }
+
+                if (match.FinalItems.Count > 6) body += "… e mais " + (match.FinalItems.Count - 6) + "\n";
+                if (match.FinalItems.Count > 0) body += "<color=#80ff80>Tudo guardado no baú da Base.</color>\n";
+
                 body += "\nValor total: <b>" + Inventory.ValueOf(match.FinalLoot) + "</b>" +
                         (match.InvaderDefeated ? "\nVocê derrotou o invasor!" : "");
             }
@@ -449,7 +515,7 @@ namespace VampWolfs
             GUI.Label(new Rect(panel.x + Px(30), panel.y + Px(76), w - Px(60), h - Px(140)), body, labelCenter);
 
             Rect buttonRect = new Rect(panel.x + (w - Px(260)) * 0.5f, panel.yMax - Px(62), Px(260), Px(42));
-            if (GUI.Button(buttonRect, "Jogar de novo (Enter)", button))
+            if (GUI.Button(buttonRect, "Voltar à Base (Enter)", button))
             {
                 match.RequestRestart();
             }
@@ -474,6 +540,14 @@ namespace VampWolfs
                 float fill = Mathf.Clamp01((energy - s * Energy.BarSize) / Energy.BarSize);
                 Bar(segment, fill, fill >= 1f ? EnergyColor : new Color(0.35f, 0.3f, 0.6f));
             }
+        }
+
+        /// <summary>Égide (ward) drawn as a light-blue strip on the top half of a health bar.</summary>
+        void DrawWard(Rect healthRect, Health health)
+        {
+            if (health.MaxWard <= 0f || health.Ward <= 0f) return;
+            float fill = Mathf.Clamp01(health.Ward / health.MaxHealth);
+            DrawRect(new Rect(healthRect.x, healthRect.y, healthRect.width * fill, healthRect.height * 0.45f), new Color(0.55f, 0.85f, 1f, 0.9f));
         }
 
         void Bar(Rect rect, float fill, Color color)

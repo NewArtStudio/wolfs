@@ -31,6 +31,12 @@ namespace VampWolfs
         /// <summary>Bag contents the player kept (only valid when Extracted).</summary>
         public Dictionary<ItemType, int> FinalLoot { get; private set; }
 
+        /// <summary>Equipment and materials the player extracted (now in the stash).</summary>
+        public List<ItemInstance> FinalItems { get; private set; }
+
+        /// <summary>Saved progress (worn gear, stash). Extraction deposits the bag here.</summary>
+        public PlayerProfile Profile { get; private set; }
+
         /// <summary>How many items were on the ground and how many were destroyed by the last death.</summary>
         public int LastDropOnGround { get; private set; }
         public int LastDropDestroyed { get; private set; }
@@ -54,7 +60,7 @@ namespace VampWolfs
         bool invasionWarned;
         readonly List<float> sheepRespawnTimes = new List<float>();
 
-        public void Init(GameBootstrap owner, MatchSettings settings, FarmLayout farmLayout, CombatUnit player, ExtractionPoint extraction)
+        public void Init(GameBootstrap owner, MatchSettings settings, FarmLayout farmLayout, CombatUnit player, ExtractionPoint extraction, PlayerProfile profile)
         {
             Instance = this;
             bootstrap = owner;
@@ -64,6 +70,13 @@ namespace VampWolfs
             Extraction = extraction;
             State = MatchState.Farming;
             FinalLoot = new Dictionary<ItemType, int>();
+            FinalItems = new List<ItemInstance>();
+            Profile = profile;
+            if (Profile != null)
+            {
+                Profile.Runs++;
+                Profile.Save();
+            }
 
             Player.Died += OnUnitDied;
 
@@ -116,9 +129,10 @@ namespace VampWolfs
             BannerUntil = Time.time + duration;
         }
 
+        /// <summary>Leaves the match and goes back to the Base screen.</summary>
         public void RequestRestart()
         {
-            bootstrap.Restart();
+            bootstrap.ReturnToBase();
         }
 
         // ---------------------------------------------------------------- invasion
@@ -135,6 +149,15 @@ namespace VampWolfs
             Invader.Inventory.Add(ItemType.Blood, 5);
             Invader.Inventory.Add(ItemType.Wool, 4);
             Invader.Inventory.Add(ItemType.MoonShard, 2);
+
+            // Invasion by power bracket: the invader wears gear of the player's tier and carries some loot of it.
+            GearCatalog catalog = GearCatalog.Instance;
+            int tier = Mathf.Clamp(Mathf.RoundToInt(Player.Equipment.Stats.PowerTier), 1, 8);
+            Invader.ApplyGear(catalog, GearLoadouts.WerewolfLoadout(catalog, tier));
+            Invader.Inventory.AddItem(catalog, GearLoadouts.RandomEquipment(catalog, tier));
+            Invader.Inventory.AddItem(catalog, GearLoadouts.RandomEquipment(catalog, tier));
+            Invader.Inventory.AddItem(catalog, GearLoadouts.RandomMaterial(catalog));
+            Invader.Inventory.AddItem(catalog, GearLoadouts.RandomMaterial(catalog));
 
             State = MatchState.Invaded;
             Effects.Burst(spawn, 3.5f, new Color(0.55f, 0.25f, 0.9f), 0.8f);
@@ -180,6 +203,7 @@ namespace VampWolfs
             if (unit == Player)
             {
                 State = MatchState.PlayerDead;
+                if (Profile != null) Profile.Save(); // the bag is lost; worn gear stays in the profile
             }
             else if (unit == Invader)
             {
@@ -207,6 +231,17 @@ namespace VampWolfs
                 }
             }
 
+            // Found equipment and materials: each piece drops with the same chance, stacks keep the same share.
+            List<ItemInstance> droppedItems = new List<ItemInstance>();
+            foreach (ItemInstance item in unit.Inventory.TakeAllItems())
+            {
+                total += item.Qty;
+                int amount = item.Qty == 1 ? (Random.value < Settings.BagDropShare ? 1 : 0) : Mathf.FloorToInt(item.Qty * Settings.BagDropShare + 0.5f);
+                if (amount <= 0) continue;
+                droppedItems.Add(amount == item.Qty ? item : item.CloneWithQty(amount));
+                onGround += amount;
+            }
+
             if (recordStats)
             {
                 LastDropOnGround = onGround;
@@ -215,7 +250,7 @@ namespace VampWolfs
 
             if (onGround > 0)
             {
-                LootBag.Spawn(layout.Root, unit.Position, dropped, unit.DisplayName);
+                LootBag.Spawn(layout.Root, unit.Position, dropped, droppedItems, unit.DisplayName);
             }
         }
 
@@ -243,7 +278,15 @@ namespace VampWolfs
             Player.Status.ApplyInvulnerable(9999f);
 
             FinalLoot = Player.Inventory.Snapshot();
+            FinalItems = new List<ItemInstance>(Player.Inventory.Items);
             State = MatchState.Extracted;
+
+            if (Profile != null)
+            {
+                Profile.DepositBag(GearCatalog.Instance, Player.Inventory);
+                Profile.Extractions++;
+                Profile.Save();
+            }
         }
 
         // ---------------------------------------------------------------- sheep

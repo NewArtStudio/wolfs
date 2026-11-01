@@ -13,6 +13,9 @@ namespace VampWolfs
     {
         public float Damage;
 
+        [Tooltip("Which attribute scales this damage and which defense reduces it.")]
+        public DamageType Type = DamageType.Magic;
+
         [Tooltip("Fraction of the damage healed back to the caster (vampire identity).")]
         public float Lifesteal;
 
@@ -22,7 +25,7 @@ namespace VampWolfs
 
         public void Apply(CombatUnit caster, Health target)
         {
-            bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal);
+            bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal, Type);
             if (!landed || target.IsDead)
             {
                 return;
@@ -34,8 +37,12 @@ namespace VampWolfs
                 return;
             }
 
-            if (SlowDuration > 0f) status.ApplySlow(SlowAmount, SlowDuration);
-            if (StunDuration > 0f) status.ApplyStun(StunDuration);
+            // VIT gives status resistance: shorter slows and stuns.
+            Equipment targetGear = target.GetComponent<Equipment>();
+            float resist = targetGear != null ? 1f - targetGear.Stats.StatusResist : 1f;
+
+            if (SlowDuration > 0f) status.ApplySlow(SlowAmount, SlowDuration * resist);
+            if (StunDuration > 0f) status.ApplyStun(StunDuration * resist);
         }
     }
 
@@ -52,12 +59,14 @@ namespace VampWolfs
         static readonly Color EnemyDamageColor = new Color(1f, 0.3f, 0.25f);
 
         /// <summary>Returns true if the hit landed (not blocked by invulnerability or counter).</summary>
-        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal)
+        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal, DamageType type = DamageType.Magic)
         {
             if (target == null || target.IsDead)
             {
                 return false;
             }
+
+            amount = ApplyGear(caster, target, amount, type);
 
             float dealt;
             if (!target.TryTakeDamage(amount, caster, out dealt))
@@ -91,6 +100,28 @@ namespace VampWolfs
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Attributes and gear: the caster's ATK/MATK (from STR/DEX/INT + weapon) multiplies the damage,
+        /// the target's armour, evasion and flat defense reduce it. Creatures without gear are unaffected.
+        /// </summary>
+        static float ApplyGear(CombatUnit caster, Health target, float amount, DamageType type)
+        {
+            GearRulesData rules = GearCatalog.Instance.Rules;
+
+            if (caster != null && caster.Equipment != null)
+            {
+                amount *= caster.Equipment.Stats.DamageMult(type, rules);
+            }
+
+            Equipment targetGear = target.GetComponent<Equipment>();
+            if (targetGear != null)
+            {
+                amount = targetGear.Stats.Mitigate(amount, type);
+            }
+
+            return amount;
         }
     }
 
