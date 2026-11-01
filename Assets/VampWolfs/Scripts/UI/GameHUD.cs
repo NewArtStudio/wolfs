@@ -11,7 +11,17 @@ namespace VampWolfs
     /// </summary>
     public class GameHUD : MonoBehaviour
     {
-        static readonly string[] SlotKeys = { "LMB", "RMB", "Space", "Q", "E", "R", "F" };
+        static readonly string[] SlotKeys = { "LMB", "RMB", "Espaço", "Q", "E", "R", "F", "Shift", "1", "2" };
+
+        /// <summary>Bar order (nov/2026): weapon (LMB RMB Q E F) · gear (R Space Shift) · class (1 2).</summary>
+        static readonly AbilitySlot[] BarOrder =
+        {
+            AbilitySlot.Primary, AbilitySlot.Secondary, AbilitySlot.Q, AbilitySlot.E, AbilitySlot.Ultimate,
+            AbilitySlot.R, AbilitySlot.Mobility, AbilitySlot.Boots,
+            AbilitySlot.Class1, AbilitySlot.Class2,
+        };
+        static readonly string[] BarGroups = { "ARMA", "CAPACETE · PEITO · BOTAS", "CLASSE" };
+        static readonly int[] GroupStarts = { 0, 5, 8 };
 
         static readonly Color PanelColor = new Color(0f, 0f, 0f, 0.55f);
         static readonly Color BarBack = new Color(0.08f, 0.08f, 0.08f, 0.85f);
@@ -195,7 +205,7 @@ namespace VampWolfs
                     color = match.TimeUntilInvasion < match.Settings.InvasionWarning ? new Color(1f, 0.6f, 0.3f) : Color.white;
                     break;
                 case MatchState.Invaded:
-                    text = match.InvaderDefeated ? "INVASOR DERROTADO  ·  extraia para garantir o loot" : "INVADIDO  ·  derrote o lobisomem ou extraia";
+                    text = match.InvaderDefeated ? "INVASOR DERROTADO  ·  extraia para garantir o loot" : "INVADIDO  ·  derrote o " + match.InvaderClassName.ToLowerInvariant() + " ou extraia";
                     color = match.InvaderDefeated ? new Color(0.6f, 1f, 0.6f) : new Color(1f, 0.45f, 0.3f);
                     break;
                 case MatchState.Extracted:
@@ -232,7 +242,7 @@ namespace VampWolfs
 
             if (match.Invader != null && !match.Invader.IsDead)
             {
-                lines.Add("<color=#ff9a40>Lobisomem</color>: " + Mathf.RoundToInt(Vector3.Distance(player.Position, match.Invader.Position)) + " m");
+                lines.Add("<color=#ff9a40>" + match.InvaderClassName + "</color>: " + Mathf.RoundToInt(Vector3.Distance(player.Position, match.Invader.Position)) + " m");
             }
 
             for (int i = 0; i < LootBag.Active.Count; i++)
@@ -335,7 +345,7 @@ namespace VampWolfs
 
             float w = AbilityBarWidth();
             float x = (Screen.width - w) * 0.5f;
-            float y = Screen.height - Px(132);
+            float y = Screen.height - Px(142);
 
             Rect healthRect = new Rect(x, y, w, Px(16));
             Bar(healthRect, player.Health.Normalized, PlayerHealth);
@@ -354,16 +364,23 @@ namespace VampWolfs
                 return;
             }
 
-            bool exHeld = InputReader.ExHeld();
-            float size = Px(78);
-            float gap = Px(8);
+            bool exHeld = false;   // EX versions are gone (Shift is now the boots skill)
+            float size = Px(66);
+            float gap = Px(6);
             float x = (Screen.width - AbilityBarWidth()) * 0.5f;
-            float y = Screen.height - Px(96);
+            float y = Screen.height - Px(84);
 
-            for (int i = 0; i < SlotKeys.Length; i++)
+            for (int b = 0; b < BarOrder.Length; b++)
             {
+                int i = (int)BarOrder[b];
+                int group = b >= GroupStarts[2] ? 2 : b >= GroupStarts[1] ? 1 : 0;
+                Rect rect = new Rect(x + b * (size + gap) + group * Px(18), y, size, size);
+                if (b == GroupStarts[group])
+                {
+                    int count = (group < 2 ? GroupStarts[group + 1] : BarOrder.Length) - GroupStarts[group];
+                    ShadowLabel(new Rect(rect.x, y - Px(18), count * (size + gap) - gap, Px(16)), BarGroups[group], smallCenter, new Color(0.75f, 0.68f, 0.85f));
+                }
                 Ability ability = player.GetAbility((AbilitySlot)i);
-                Rect rect = new Rect(x + i * (size + gap), y, size, size);
 
                 if (ability == null)
                 {
@@ -452,9 +469,9 @@ namespace VampWolfs
                 "<b>CONTROLES</b>  (H esconde)\n" +
                 "WASD mover · mouse mira\n" +
                 "LMB segurar: ataque básico (gera energia)\n" +
-                "RMB / Space / Q / E: habilidades\n" +
-                "Shift + RMB/Space (ou 1/2): versão EX\n" +
-                "R: habilidade de energia · F: ultimate (100)\n" +
+                "Arma: RMB / Q / E · F: ultimate (100 de energia)\n" +
+                "Capacete: R · Peito: Espaço · Botas: Shift\n" +
+                "Classe: 1 e 2 (escolha no lobby)\n" +
                 "C: cancelar conjuração · I: equipamento\n\n" +
                 "<b>OBJETIVO</b>\n" +
                 "Mate ovelhas → itens vão para a BAG.\n" +
@@ -502,14 +519,15 @@ namespace VampWolfs
 
                 body += "\nValor total: <b>" + Inventory.ValueOf(match.FinalLoot) + "</b>" +
                         (match.InvaderDefeated ? "\nVocê derrotou o invasor!" : "");
+                body += "\n<color=#c8a8ff>+" + match.XpEarned + " XP nesta incursão</color>";
             }
             else
             {
                 body = "Sua BAG caiu no chão: " + match.LastDropOnGround + " itens dropados, " +
                        match.LastDropDestroyed + " destruídos.\n" +
                        "<color=#80ff80>Seu equipamento foi mantido.</color>\n\n" +
-                       "Dica: leia o telegraph vermelho do lobisomem e saia dele;\n" +
-                       "use o Espelho de Sangue (E) quando ele pular em você.";
+                       "Dica: leia o telegraph vermelho do invasor e saia dele;\n" +
+                       "guarde o deslocamento (Espaço/Shift) para quando ele pular em você.";
             }
 
             GUI.Label(new Rect(panel.x + Px(30), panel.y + Px(76), w - Px(60), h - Px(140)), body, labelCenter);
@@ -525,7 +543,7 @@ namespace VampWolfs
 
         float AbilityBarWidth()
         {
-            return SlotKeys.Length * Px(78) + (SlotKeys.Length - 1) * Px(8);
+            return BarOrder.Length * Px(66) + (BarOrder.Length - 1) * Px(6) + 2 * Px(18);
         }
 
         void EnergySegments(Rect rect, float energy)
@@ -545,9 +563,18 @@ namespace VampWolfs
         /// <summary>Égide (ward) drawn as a light-blue strip on the top half of a health bar.</summary>
         void DrawWard(Rect healthRect, Health health)
         {
-            if (health.MaxWard <= 0f || health.Ward <= 0f) return;
-            float fill = Mathf.Clamp01(health.Ward / health.MaxHealth);
-            DrawRect(new Rect(healthRect.x, healthRect.y, healthRect.width * fill, healthRect.height * 0.45f), new Color(0.55f, 0.85f, 1f, 0.9f));
+            if (health.MaxWard > 0f && health.Ward > 0f)
+            {
+                float fill = Mathf.Clamp01(health.Ward / health.MaxHealth);
+                DrawRect(new Rect(healthRect.x, healthRect.y, healthRect.width * fill, healthRect.height * 0.45f), new Color(0.55f, 0.85f, 1f, 0.9f));
+            }
+
+            // temporary shield from skills (Escudo de Éter, Halo…): golden strip at the bottom of the bar
+            if (health.Shield > 0f)
+            {
+                float fill = Mathf.Clamp01(health.Shield / health.MaxHealth);
+                DrawRect(new Rect(healthRect.x, healthRect.y + healthRect.height * 0.6f, healthRect.width * fill, healthRect.height * 0.4f), new Color(1f, 0.85f, 0.4f, 0.95f));
+            }
         }
 
         void Bar(Rect rect, float fill, Color color)

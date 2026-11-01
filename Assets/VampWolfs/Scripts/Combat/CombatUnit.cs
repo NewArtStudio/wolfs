@@ -42,7 +42,11 @@ namespace VampWolfs
         /// <summary>unit, killer (killer may be null).</summary>
         public event Action<CombatUnit, CombatUnit> Died;
 
-        readonly Ability[] abilities = new Ability[7];
+        readonly Ability[] abilities = new Ability[10];
+
+        /// <summary>Learned class passives (damage, health, speed, cooldowns…). Set before ApplyGear.</summary>
+        public PassiveStats Passives { get; private set; }
+        float regenBuffer;
 
         Ability currentCast;
         Ability currentCastSlot;   // the base ability whose cooldown was started (EX shares it)
@@ -100,6 +104,7 @@ namespace VampWolfs
             Telegraph = GetComponent<TelegraphIndicator>();
 
             AimPoint = transform.position + transform.forward;
+            if (Passives == null) Passives = new PassiveStats();
             BaseMaxHealth = Health.MaxHealth;
             Health.Died += OnHealthDied;
         }
@@ -112,10 +117,18 @@ namespace VampWolfs
         {
             Equipment.Wear(catalog, items);
             CharacterStats stats = Equipment.Stats;
-            float maxHealth = BaseMaxHealth * stats.HpMult;
+            float maxHealth = BaseMaxHealth * stats.HpMult * (1f + Passives.Hp);
             Health.SetMaxHealth(maxHealth, maxHealth * stats.WardPct);
             Health.HealScale = BaseMaxHealth > 0f ? maxHealth / BaseMaxHealth : 1f;
-            MoveSpeed = BaseMoveSpeed * stats.MoveMult;
+            MoveSpeed = BaseMoveSpeed * stats.MoveMult * (1f + Passives.Move);
+            Health.HealReceivedMult = 1f + Passives.Heal;
+        }
+
+        /// <summary>Class passives (call before ApplyGear, which uses them for health and speed).</summary>
+        public void SetPassives(PassiveStats passives)
+        {
+            Passives = passives ?? new PassiveStats();
+            Health.HealReceivedMult = 1f + Passives.Heal;
         }
 
         /// <summary>Cast time after DEX: basic attack uses attack speed, other skills use cast speed.</summary>
@@ -165,7 +178,7 @@ namespace VampWolfs
                 return false;
             }
 
-            slotAbility.StartCooldown(ability.Cooldown);
+            slotAbility.StartCooldown(ability.Cooldown * (1f - Passives.CdrCapped));
 
             currentCast = ability;
             currentCastSlot = slotAbility;
@@ -232,6 +245,13 @@ namespace VampWolfs
             }
 
             float dt = Time.deltaTime;
+
+            // Passive regeneration (Regeneração Lupina): healed once per second so the numbers stay readable.
+            if (Passives.Regen > 0f && Health.Normalized < 1f)
+            {
+                regenBuffer += Health.MaxHealth * Passives.Regen * dt;
+                if (regenBuffer >= 1f) { Health.Heal(regenBuffer); regenBuffer = 0f; }
+            }
 
             if (IsCasting)
             {

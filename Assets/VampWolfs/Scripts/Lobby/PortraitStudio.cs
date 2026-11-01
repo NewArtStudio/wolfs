@@ -1,20 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VampWolfs.Lobby
 {
     /// <summary>
-    /// Estúdio escondido (copiado do Space) que fotografa o vampiro para o lobby:
-    ///  - Portrait(): retrato de rosto e ombros em 3/4 para o card da tela inicial (desenhado uma vez; MarkDirty refaz);
-    ///  - Preview: corpo inteiro para o Arsenal, desenhado todo quadro enquanto o Arsenal está aberto; Spin gira o modelo.
-    /// Luz quente na frente e recorte vinho (cor do vampiro). Fica longe do campo, numa camada só dele,
-    /// então as luzes e câmeras do jogo não o enxergam. Sem modelo 3D usa o boneco provisório (nunca devolve null).
+    /// Estúdio escondido (copiado do Space) que fotografa os personagens para o lobby:
+    ///  - Portrait(classe): retrato de rosto e ombros em 3/4 para os cards (um por classe, desenhado uma vez);
+    ///  - Preview: corpo inteiro da classe escolhida (SetPreviewClass) para o Arsenal, desenhado todo quadro enquanto
+    ///    o Arsenal está aberto; Spin gira o modelo.
+    /// Luz quente na frente e recorte na cor da classe. Fica longe do campo, numa camada só dele, então as luzes e
+    /// câmeras do jogo não o enxergam. Sem modelo 3D usa o boneco provisório (nunca devolve null).
     /// </summary>
     public sealed class PortraitStudio : MonoBehaviour
     {
         static PortraitStudio instance;
         static readonly Vector3 StudioPos = new Vector3(0f, -700f, 0f);
-        /// <summary>O boneco do corpo inteiro fica longe do retrato para uma câmera não ver o modelo da outra.</summary>
-        static readonly Vector3 PreviewOffset = new Vector3(40f, 0f, 0f);
+        /// <summary>Cada cena do estúdio fica longe da outra para uma câmera não ver o modelo da outra.</summary>
+        const float Spacing = 40f;
         const int PortraitSize = 256;
         const int PreviewWidth = 512, PreviewHeight = 768;
         /// <summary>Altura de referência do enquadramento (o soldado do Space tinha ~1,8 m).</summary>
@@ -22,47 +24,75 @@ namespace VampWolfs.Lobby
         /// <summary>Camada só do estúdio: as luzes direcionais da cena não iluminam os retratos e a câmera do estúdio só vê o estúdio.</summary>
         public const int Layer = 30;
         static readonly Color Backdrop = new Color(0.07f, 0.035f, 0.045f, 1f);
-        static readonly Color RimColor = new Color(0.85f, 0.18f, 0.25f);
 
-        RenderTexture portraitRt, previewRt;
-        Camera portraitCam, previewCam;
-        Transform portraitModel, previewModel;
-        bool portraitDirty = true, rendering, previewOn, enabledInBase = true;
+        sealed class Shot
+        {
+            public string ClassId;
+            public Transform Root, Model;
+            public Camera Cam;
+            public RenderTexture Rt;
+            public bool Dirty = true;
+        }
+
+        readonly Dictionary<string, Shot> portraits = new Dictionary<string, Shot>();
+        Shot preview;
+        Shot rendering;   // retrato sendo desenhado neste quadro
+        bool previewOn, enabledInBase = true;
         float spin;
+        int nextSpot = 1;
 
         static PortraitStudio Instance()
         {
             if (instance != null) return instance;
             var go = new GameObject("Estúdio de retratos"); go.transform.position = StudioPos;
-            instance = go.AddComponent<PortraitStudio>(); instance.Build();
+            instance = go.AddComponent<PortraitStudio>();
+            ExcludeFromSceneLights();
             return instance;
         }
 
-        void Build()
+        static float HeightOf(string classId)
         {
-            float height = ArtLibrary.Vampire != null && ArtLibrary.Vampire.IsValid ? ArtLibrary.Vampire.Height : 2.2f;
-            float k = height / RefHeight;
+            CharacterArt art = classId == "werewolf" ? ArtLibrary.Werewolf : classId == "hunter" ? ArtLibrary.MonsterHunter : ArtLibrary.Vampire;
+            if (art != null && art.IsValid) return art.Height;
+            return classId == "werewolf" ? 2.7f : 2.3f;
+        }
 
-            // retrato: 3/4 de frente, um pouco de cima (rosto e ombros)
-            portraitModel = CharacterFactory.CreateDisplayVampire(transform).transform;
-            portraitModel.localRotation = Quaternion.Euler(0f, 18f, 0f);
-            portraitRt = new RenderTexture(PortraitSize, PortraitSize, 24) { name = "Retrato do vampiro", antiAliasing = 4 };
-            portraitRt.Create(); Clear(portraitRt);
-            portraitCam = MakeCamera("Câmera do retrato", transform, new Vector3(0.62f, 1.78f, 1.32f) * k, new Vector3(0.02f, 1.52f, 0f) * k, 26f, portraitRt);
-            Lights(transform, k);
+        static Color RimOf(string classId)
+        {
+            Color c = UiKit.ClassColor(classId);
+            return new Color(Mathf.Max(c.r, 0.2f), Mathf.Max(c.g, 0.1f), Mathf.Max(c.b, 0.1f));
+        }
 
-            // corpo inteiro (Arsenal): de frente, enquadrando da cabeça aos pés
-            var pv = new GameObject("Vitrine do Arsenal").transform; pv.SetParent(transform, false); pv.localPosition = PreviewOffset;
-            previewModel = CharacterFactory.CreateDisplayVampire(pv).transform;
-            previewRt = new RenderTexture(PreviewWidth, PreviewHeight, 24) { name = "Vampiro no Arsenal", antiAliasing = 4 };
-            previewRt.Create(); Clear(previewRt);
-            previewCam = MakeCamera("Câmera do Arsenal", pv, new Vector3(0f, 1.1f, 4.4f) * k, new Vector3(0f, 0.95f, 0f) * k, 30f, previewRt);
-            previewCam.backgroundColor = new Color(0f, 0f, 0f, 0f);   // fundo transparente: o cenário do Arsenal aparece atrás
-            Lights(pv, k);
+        /// <summary>Monta uma cena (modelo + câmera + luzes) num ponto livre do estúdio.</summary>
+        Shot Build(string classId, bool full)
+        {
+            var s = new Shot { ClassId = classId };
+            s.Root = new GameObject((full ? "Vitrine " : "Retrato ") + classId).transform;
+            s.Root.SetParent(transform, false);
+            s.Root.localPosition = new Vector3(Spacing * nextSpot++, 0f, 0f);
+            float k = HeightOf(classId) / RefHeight;
 
-            SetLayer(transform);
-            ExcludeFromSceneLights();
-            previewModel.gameObject.SetActive(false);
+            s.Model = CharacterFactory.CreateDisplay(s.Root, classId).transform;
+            if (!full) s.Model.localRotation = Quaternion.Euler(0f, 18f, 0f);
+
+            if (full)
+            {
+                s.Rt = new RenderTexture(PreviewWidth, PreviewHeight, 24) { name = "Vitrine " + classId, antiAliasing = 4 };
+                s.Rt.Create(); Clear(s.Rt);
+                s.Cam = MakeCamera("Câmera da vitrine", s.Root, new Vector3(0f, 1.1f, 4.4f) * k, new Vector3(0f, 0.95f, 0f) * k, 30f, s.Rt);
+                s.Cam.backgroundColor = new Color(0f, 0f, 0f, 0f);   // fundo transparente: o cenário do Arsenal aparece atrás
+            }
+            else
+            {
+                s.Rt = new RenderTexture(PortraitSize, PortraitSize, 24) { name = "Retrato " + classId, antiAliasing = 4 };
+                s.Rt.Create(); Clear(s.Rt);
+                s.Cam = MakeCamera("Câmera do retrato", s.Root, new Vector3(0.62f, 1.78f, 1.32f) * k, new Vector3(0.02f, 1.52f, 0f) * k, 26f, s.Rt);
+            }
+
+            Lights(s.Root, k, RimOf(classId));
+            SetLayer(s.Root);
+            s.Model.gameObject.SetActive(false);
+            return s;
         }
 
         static Camera MakeCamera(string name, Transform parent, Vector3 pos, Vector3 lookAt, float fov, RenderTexture rt)
@@ -77,11 +107,11 @@ namespace VampWolfs.Lobby
             return cam;
         }
 
-        void Lights(Transform parent, float k)
+        static void Lights(Transform parent, float k, Color rim)
         {
             Point(parent, "Luz principal", new Vector3(1.4f, 2.4f, 1.6f) * k, new Color(1f, 0.84f, 0.62f), 5.5f, 6f * k);
             Point(parent, "Luz de preenchimento", new Vector3(-1.4f, 1.6f, 1.4f) * k, new Color(0.62f, 0.55f, 0.75f), 1.6f, 6f * k);
-            Point(parent, "Recorte (vinho)", new Vector3(-0.9f, 2.1f, -1.2f) * k, RimColor, 7f, 5f * k);
+            Point(parent, "Recorte da classe", new Vector3(-0.9f, 2.1f, -1.2f) * k, rim, 7f, 5f * k);
         }
 
         static void Point(Transform parent, string name, Vector3 pos, Color c, float intensity, float range)
@@ -100,38 +130,68 @@ namespace VampWolfs.Lobby
 
         /* ======================= usado pelo lobby ======================= */
 
-        /// <summary>Retrato do vampiro para o card (a textura fica pronta no fim do quadro).</summary>
-        public static Texture Portrait()
+        /// <summary>Retrato da classe para os cards (a textura fica pronta no fim do quadro).</summary>
+        public static Texture Portrait(string classId = "vampire")
         {
             var s = Instance();
-            return s.portraitRt;
+            if (string.IsNullOrEmpty(classId)) classId = "vampire";
+            Shot shot;
+            if (!s.portraits.TryGetValue(classId, out shot)) { shot = s.Build(classId, false); s.portraits[classId] = shot; }
+            return shot.Rt;
+        }
+
+        /// <summary>Classe mostrada no Arsenal (troca o modelo quando o personagem escolhido muda).</summary>
+        public static void SetPreviewClass(string classId)
+        {
+            var s = Instance();
+            if (s.preview != null && s.preview.ClassId == classId) return;
+            if (s.preview != null) s.DestroyShot(s.preview);
+            s.preview = s.Build(classId, true);
+            s.spin = 0f;
+            s.ApplyPreview();
         }
 
         /// <summary>Corpo inteiro para o Arsenal (só é atualizado enquanto SetPreviewActive(true)).</summary>
-        public static Texture Preview { get { return Instance().previewRt; } }
+        public static Texture Preview
+        {
+            get
+            {
+                var s = Instance();
+                if (s.preview == null) SetPreviewClass("vampire");
+                return s.preview.Rt;
+            }
+        }
 
-        /// <summary>Pede um retrato novo (ex.: perfil resetado; quando o equipamento tiver visual, ao trocar peças).</summary>
+        /// <summary>Pede retratos novos (ex.: perfil resetado).</summary>
         public static void MarkDirty()
         {
-            if (instance != null) instance.portraitDirty = true;
+            if (instance == null) return;
+            foreach (var p in instance.portraits.Values) p.Dirty = true;
         }
 
         /// <summary>Liga/desliga a vitrine do Arsenal (corpo inteiro girando).</summary>
         public static void SetPreviewActive(bool on)
         {
             var s = Instance();
+            if (s.preview == null) SetPreviewClass("vampire");
             s.previewOn = on;
-            s.previewModel.gameObject.SetActive(on);
-            s.previewCam.enabled = on && s.enabledInBase;
-            if (on) { s.spin = 0f; s.previewModel.localRotation = Quaternion.identity; }
+            if (on) { s.spin = 0f; s.preview.Model.localRotation = Quaternion.identity; }
+            s.ApplyPreview();
         }
 
-        /// <summary>Gira o vampiro do Arsenal (graus; arrastar com o mouse).</summary>
+        void ApplyPreview()
+        {
+            if (preview == null) return;
+            preview.Model.gameObject.SetActive(previewOn);
+            preview.Cam.enabled = previewOn && enabledInBase;
+        }
+
+        /// <summary>Gira o personagem do Arsenal (graus; arrastar com o mouse).</summary>
         public static void Spin(float degrees)
         {
-            if (instance == null) return;
+            if (instance == null || instance.preview == null) return;
             instance.spin += degrees;
-            instance.previewModel.localRotation = Quaternion.Euler(0f, instance.spin, 0f);
+            instance.preview.Model.localRotation = Quaternion.Euler(0f, instance.spin, 0f);
         }
 
         /// <summary>Fora da Base o estúdio não desenha nada (não gasta GPU durante a partida).</summary>
@@ -139,25 +199,41 @@ namespace VampWolfs.Lobby
         {
             var s = Instance();
             s.enabledInBase = on;
-            s.previewCam.enabled = on && s.previewOn;
-            if (!on) { s.portraitCam.enabled = false; s.rendering = false; s.portraitModel.gameObject.SetActive(false); }
+            s.ApplyPreview();
+            if (!on && s.rendering != null)
+            {
+                s.rendering.Cam.enabled = false;
+                s.rendering.Model.gameObject.SetActive(false);
+                s.rendering = null;
+            }
         }
 
         void LateUpdate()
         {
-            // o quadro anterior já desenhou o retrato: desliga a câmera e o modelo
-            if (rendering)
+            // o quadro anterior já desenhou um retrato: desliga a câmera e o modelo
+            if (rendering != null)
             {
-                rendering = false; portraitCam.enabled = false;
-                portraitModel.gameObject.SetActive(false);   // parado não gasta animação
+                rendering.Cam.enabled = false;
+                rendering.Model.gameObject.SetActive(false);   // parado não gasta animação
+                rendering = null;
             }
 
-            if (portraitDirty && enabledInBase)
+            if (!enabledInBase) return;
+            foreach (var p in portraits.Values)
             {
-                portraitDirty = false;
-                portraitModel.gameObject.SetActive(true);
-                portraitCam.enabled = true; rendering = true;   // a câmera desenha no fim deste quadro
+                if (!p.Dirty) continue;
+                p.Dirty = false;
+                p.Model.gameObject.SetActive(true);
+                p.Cam.enabled = true; rendering = p;   // a câmera desenha no fim deste quadro (um retrato por quadro)
+                break;
             }
+        }
+
+        void DestroyShot(Shot s)
+        {
+            if (s == null) return;
+            if (s.Rt != null) { if (s.Cam != null) s.Cam.targetTexture = null; Destroy(s.Rt); }
+            if (s.Root != null) Destroy(s.Root.gameObject);
         }
 
         static void SetLayer(Transform t) { t.gameObject.layer = Layer; for (int i = 0; i < t.childCount; i++) SetLayer(t.GetChild(i)); }
@@ -171,8 +247,8 @@ namespace VampWolfs.Lobby
 
         void OnDestroy()
         {
-            if (portraitRt != null) Destroy(portraitRt);
-            if (previewRt != null) Destroy(previewRt);
+            foreach (var p in portraits.Values) if (p.Rt != null) Destroy(p.Rt);
+            if (preview != null && preview.Rt != null) Destroy(preview.Rt);
             if (instance == this) instance = null;
         }
     }

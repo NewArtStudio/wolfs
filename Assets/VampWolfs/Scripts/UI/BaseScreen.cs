@@ -376,7 +376,7 @@ namespace VampWolfs
             if (string.IsNullOrEmpty(uid)) return null;
             ItemInstance stashed = Profile.Stash.Find(i => i.Uid == uid);
             if (stashed != null) return stashed;
-            foreach (EquippedSlot s in Profile.Equipped)
+            foreach (EquippedSlot s in Profile.Worn)
             {
                 if (s.Item != null && s.Item.Uid == uid) return s.Item;
             }
@@ -386,7 +386,7 @@ namespace VampWolfs
 
         string WornSlotOf(ItemInstance item)
         {
-            foreach (EquippedSlot s in Profile.Equipped)
+            foreach (EquippedSlot s in Profile.Worn)
             {
                 if (s.Item == item) return s.Slot;
             }

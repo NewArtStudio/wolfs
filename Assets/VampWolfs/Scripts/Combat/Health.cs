@@ -27,6 +27,21 @@ namespace VampWolfs
         /// <summary>killer (may be null).</summary>
         public event Action<CombatUnit> Died;
 
+        /// <summary>Temporary shield from skills (Escudo de Éter, Halo…): absorbs before the Égide and health, then expires.</summary>
+        public float Shield { get { return Time.time < shieldUntil ? shield : 0f; } }
+        float shield, shieldUntil;
+
+        /// <summary>Multiplies every heal received (class passives such as Sangue Antigo). Set by CombatUnit.</summary>
+        public float HealReceivedMult = 1f;
+
+        /// <summary>Gives a temporary shield (keeps the bigger one if one is already up).</summary>
+        public void AddShield(float amount, float duration)
+        {
+            if (IsDead || amount <= 0f || duration <= 0f) return;
+            shield = Mathf.Max(Shield, amount);
+            shieldUntil = Mathf.Max(shieldUntil, Time.time + duration);
+        }
+
         /// <summary>amount actually healed (used by the VFX).</summary>
         public event Action<float> Healed;
 
@@ -109,8 +124,12 @@ namespace VampWolfs
 
             lastDamageTime = Time.time;
 
+            float shielded = Mathf.Min(Shield, amount);
+            shield -= shielded;
+            amount -= shielded;
             float absorbed = Mathf.Min(Ward, amount);
             Ward -= absorbed;
+            absorbed += shielded;
             float toHealth = Mathf.Min(amount - absorbed, Current);
             Current -= toHealth;
             dealt = absorbed + toHealth;
@@ -140,6 +159,7 @@ namespace VampWolfs
                 return;
             }
 
+            amount *= Mathf.Max(0f, HealReceivedMult);
             float healed = Mathf.Min(amount, MaxHealth - Current);
             Current += healed;
 

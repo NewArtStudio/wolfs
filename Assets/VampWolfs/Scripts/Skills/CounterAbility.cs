@@ -12,6 +12,9 @@ namespace VampWolfs
         public float StunAttacker = 1f;
         public float HealOnTrigger = 12f;
 
+        public override float AiRange { get { return 0f; } }
+        public override bool IsDefensive { get { return true; } }
+
         public override TelegraphInfo GetTelegraph(CombatUnit caster, Vector3 aimPoint)
         {
             return TelegraphInfo.Circle(caster.Position, 1.2f);

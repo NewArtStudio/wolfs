@@ -134,8 +134,11 @@ namespace VampWolfs
             FarmLayout layout = FarmBuilder.Build(root, Settings);
             CharacterFactory.SizeMultiplier = Mathf.Max(0.1f, Settings.CharacterSize);
 
-            CombatUnit player = CharacterFactory.CreateVampire(root, layout.PlayerSpawn);
-            player.ApplyGear(GearCatalog.Instance, Profile.EquippedMap());
+            // The selected character (class, skills chosen in the lobby, worn gear).
+            CharacterSave hero = Profile.Current;
+            ClassDef heroClass = SkillCatalog.Instance.Class(hero.ClassId);
+            CombatUnit player = CharacterFactory.CreateCharacter(root, layout.PlayerSpawn, heroClass, hero.Name, false);
+            CharacterFactory.ApplyLoadout(player, hero, Profile.EquippedMap());
 
             Camera cam = TopDownCamera.Create(root, player.transform, Settings);
             Vfx.VfxHub.CreateForMatch(root, cam);   // particles, telegraphs, bloom (copied from the Space project)

@@ -12,6 +12,11 @@ namespace VampWolfs
         public Color Color = Color.red;
         public float VisualScale = 0.4f;
 
+        [Tooltip("Projectiles per cast (fan). 1 = single shot.")]
+        public int Count = 1;
+        [Tooltip("Total fan angle in degrees when Count > 1.")]
+        public float Spread;
+
         public override AttackMotion Motion
         {
             get { return AttackMotion.Throw; }
@@ -27,7 +32,13 @@ namespace VampWolfs
         {
             Vector3 direction = FlatDirection(caster.Position, aimPoint, caster.transform.forward);
             Vector3 origin = caster.Position + direction * 0.6f;
-            Projectile.Spawn(caster, origin, direction, this);
+            int n = Mathf.Max(1, Count);
+            for (int i = 0; i < n; i++)
+            {
+                float angle = n == 1 ? 0f : -Spread * 0.5f + Spread * i / (n - 1);
+                Vector3 dir = Quaternion.Euler(0f, angle, 0f) * direction;
+                Projectile.Spawn(caster, origin, dir, this);
+            }
         }
     }
 }

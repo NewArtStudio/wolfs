@@ -2,7 +2,7 @@
 
 Protótipo de **combate estilo Battlerite** + **loop estilo Brumas de Avalon (Albion)**, em Unity 6 / URP.
 
-O jogo abre no **lobby** (cópia da Base do projeto Space em estilo vitoriano: card do vampiro, Arsenal com baú, equipamento, refino, cristais e gemas — veja [`docs/LOBBY.md`](docs/LOBBY.md) e [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Em **EXPLORAR**, você entra direto na Fazenda como o **Vampiro**, farmando ovelhas numa fazenda à noite. Depois de 45 s um **Lobisomem (IA)** invade o mapa.
+O jogo abre no **lobby** (cópia da Base do projeto Space em estilo vitoriano: cards dos personagens, Arsenal com baú, equipamento, refino, cristais e gemas — veja [`docs/LOBBY.md`](docs/LOBBY.md) e [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Crie vampiros, lobisomens e caçadores de recompensas, cada um com nível 1–50 e 20 habilidades de classe, e as habilidades vindas das armas e armaduras no estilo Albion — veja [`docs/HABILIDADES.md`](docs/HABILIDADES.md). Em **EXPLORAR**, você entra direto na Fazenda com o personagem escolhido, farmando ovelhas numa fazenda à noite. Depois de 45 s um **invasor (IA) de outra classe** invade o mapa.
 Quem morre perde **só a bag** (o que foi farmado na partida) — o **equipamento nunca cai**.
 Para garantir o loot, fique 4 s no **portal roxo de extração** (levar dano interrompe).
 
@@ -33,13 +33,11 @@ Sem modelo na pasta, o personagem usa o boneco de primitivas.
 |---|---|
 | WASD | mover |
 | Mouse | mirar (quase tudo é skillshot) |
-| LMB (segurar) | ataque básico — sem cooldown, gera energia |
-| RMB | Lança Carmesim · **Shift+RMB** (ou 1) = versão EX |
-| Space | Passo da Névoa (dash) · **Shift+Space** (ou 2) = versão EX |
-| Q | Olhar Hipnótico (stun) |
-| E | Espelho de Sangue (counter) |
-| R | Nova Sanguínea (custa 25 de energia) |
-| F | Ultimate — Banquete Carmesim (custa 100) |
+| LMB (segurar) | ataque básico da **arma** — sem cooldown, gera energia |
+| RMB / Q / E | habilidades da **arma** (cada tecla com 3 opções, escolha no lobby) |
+| F | ultimate da **arma** (custa 100 de energia) |
+| R / Espaço / Shift | habilidade do **capacete** / **peito** / **botas** |
+| 1 / 2 | habilidades da **classe** (as duas ativas escolhidas no lobby) |
 | C | cancelar conjuração (devolve cooldown e energia) |
 | H | mostrar/esconder ajuda |
 | Rodinha do mouse | aproximar/afastar a câmera |

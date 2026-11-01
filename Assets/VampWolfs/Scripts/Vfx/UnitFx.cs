@@ -13,7 +13,7 @@ namespace VampWolfs.Vfx
     /// </summary>
     public sealed class UnitFx : MonoBehaviour
     {
-        public enum Kind { Vampire, Beast, Creature }
+        public enum Kind { Vampire, Beast, Creature, Human }
 
         Kind kind;
         CombatUnit unit;
@@ -82,7 +82,7 @@ namespace VampWolfs.Vfx
             ReleaseShield();
             if (!VfxHub.Ready || kind == Kind.Creature) return;   // ovelhas: o Sheep chama o efeito dele
             if (kind == Kind.Vampire) SkillFx.VampireDeath(transform.position);
-            else SkillFx.BeastDeath(transform.position);
+            else SkillFx.BeastDeath(transform.position);   // fera e caçador: sangue
         }
 
         void LateUpdate()

@@ -28,6 +28,15 @@ namespace VampWolfs
         public float Elapsed { get; private set; }
         public bool InvaderDefeated { get; private set; }
 
+        /// <summary>Class name of the invader ("Lobisomem", "Caçador de Recompensas"…), for banners and the HUD.</summary>
+        public string InvaderClassName { get; private set; }
+
+        /// <summary>XP rewards [PROTÓTIPO].</summary>
+        public const int XpSheep = 8, XpInvader = 120, XpExtraction = 60;
+
+        /// <summary>XP earned by the hero this match (shown on the end screen).</summary>
+        public int XpEarned { get; private set; }
+
         /// <summary>Bag contents the player kept (only valid when Extracted).</summary>
         public Dictionary<ItemType, int> FinalLoot { get; private set; }
 
@@ -72,6 +81,7 @@ namespace VampWolfs
             FinalLoot = new Dictionary<ItemType, int>();
             FinalItems = new List<ItemInstance>();
             Profile = profile;
+            InvaderClassName = "Invasor";
             if (Profile != null)
             {
                 Profile.Runs++;
@@ -141,7 +151,24 @@ namespace VampWolfs
         {
             Vector3 spawn = FarthestSpawnFromPlayer();
 
-            Invader = CharacterFactory.CreateWerewolf(layout.Root, spawn);
+            // The invader is always of ANOTHER class (decided with the creator), with gear of the player's power tier.
+            GearCatalog catalog = GearCatalog.Instance;
+            SkillCatalog skills = SkillCatalog.Instance;
+            int tier = Mathf.Clamp(Mathf.RoundToInt(Player.Equipment.Stats.PowerTier), 1, 8);
+            string heroClass = Profile != null ? Profile.Current.ClassId : "vampire";
+            List<string> others = new List<string>();
+            foreach (ClassDef c in skills.Classes) if (c.Id != heroClass) others.Add(c.Id);
+            string invaderClass = others.Count > 0 ? others[Random.Range(0, others.Count)] : "werewolf";
+            ClassDef invaderDef = skills.Class(invaderClass);
+            InvaderClassName = invaderDef.Name;
+
+            CharacterSave brain = CharacterSave.Create(invaderClass, invaderDef.Name);
+            brain.Level = Mathf.Clamp(Profile != null ? Profile.Current.Level : 1, 1, SkillCatalog.MaxCharacterLevel);
+            brain.AutoAllocate(skills);
+            Dictionary<string, ItemInstance> invaderGear = GearLoadouts.ClassLoadout(catalog, invaderClass, tier, Random.Range(0, 5));
+
+            Invader = CharacterFactory.CreateCharacter(layout.Root, spawn, invaderDef, invaderDef.Name + " invasor", true);
+            CharacterFactory.ApplyLoadout(Invader, brain, invaderGear);
             Invader.gameObject.AddComponent<WerewolfAI>().Init(Settings);
             Invader.Died += OnUnitDied;
 
@@ -150,10 +177,7 @@ namespace VampWolfs
             Invader.Inventory.Add(ItemType.Wool, 4);
             Invader.Inventory.Add(ItemType.MoonShard, 2);
 
-            // Invasion by power bracket: the invader wears gear of the player's tier and carries some loot of it.
-            GearCatalog catalog = GearCatalog.Instance;
-            int tier = Mathf.Clamp(Mathf.RoundToInt(Player.Equipment.Stats.PowerTier), 1, 8);
-            Invader.ApplyGear(catalog, GearLoadouts.WerewolfLoadout(catalog, tier));
+            // Invasion by power bracket: the invader carries some loot of the player's tier.
             Invader.Inventory.AddItem(catalog, GearLoadouts.RandomEquipment(catalog, tier));
             Invader.Inventory.AddItem(catalog, GearLoadouts.RandomEquipment(catalog, tier));
             Invader.Inventory.AddItem(catalog, GearLoadouts.RandomMaterial(catalog));
@@ -164,7 +188,7 @@ namespace VampWolfs
             {
                 Effects.Burst(spawn, 3.5f, new Color(0.55f, 0.25f, 0.9f), 0.8f);
             }
-            ShowBanner("UM LOBISOMEM INVADIU A FAZENDA!\nLute pela bag dele ou fuja pelo portal.", new Color(1f, 0.45f, 0.25f), 4.5f);
+            ShowBanner("UM " + InvaderClassName.ToUpperInvariant() + " INVADIU A FAZENDA!\nLute pela bag dele ou fuja pelo portal.", new Color(1f, 0.45f, 0.25f), 4.5f);
         }
 
         Vector3 FarthestSpawnFromPlayer()
@@ -183,6 +207,24 @@ namespace VampWolfs
             }
 
             return best;
+        }
+
+        // ---------------------------------------------------------------- experience
+
+        /// <summary>Gives XP to the selected character (saved at once on level up).</summary>
+        public void AwardXp(int amount, string reason)
+        {
+            if (Profile == null || amount <= 0 || State == MatchState.PlayerDead) return;
+            CharacterSave hero = Profile.Current;
+            XpEarned += amount;
+            int levels = hero.AddXp(amount);
+            if (Player != null) FloatingText.Spawn(Player.Position + Vector3.up * 3.3f, "+" + amount + " XP", new Color(0.75f, 0.6f, 1f), 1.2f, 0.9f);
+            if (levels > 0)
+            {
+                ShowBanner("NÍVEL " + hero.Level + "!\n+" + levels + " ponto" + (levels > 1 ? "s" : "") + " de habilidade (use no lobby)", new Color(0.8f, 0.65f, 1f), 4f);
+                Vfx.SkillFx.LevelUp(Player != null ? Player.Position : Vector3.zero);
+                Profile.Save();
+            }
         }
 
         // ---------------------------------------------------------------- death & loot
@@ -211,7 +253,8 @@ namespace VampWolfs
             else if (unit == Invader)
             {
                 InvaderDefeated = true;
-                ShowBanner("Lobisomem derrotado!\nPegue a bag dele e extraia no portal.", new Color(0.6f, 1f, 0.6f), 4.5f);
+                ShowBanner(InvaderClassName + " derrotado!\nPegue a bag dele e extraia no portal.", new Color(0.6f, 1f, 0.6f), 4.5f);
+                if (killer == Player || killer == null) AwardXp(XpInvader, "invasor derrotado");
             }
         }
 
@@ -290,6 +333,7 @@ namespace VampWolfs
                 Player.Inventory.TakeAll();
                 Player.Inventory.TakeAllItems();
                 Profile.Extractions++;
+                AwardXp(XpExtraction, "extração");
                 Profile.Save();
             }
         }

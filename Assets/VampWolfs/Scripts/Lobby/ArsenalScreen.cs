@@ -17,6 +17,7 @@ namespace VampWolfs.Lobby
         sealed class DropTarget { public string Type, Id; } // Type: slot | grid | cell (Id = uid do item na célula)
 
         readonly LobbyUI ui;
+        readonly VisualElement chars;   // aba com o personagem escolhido (nome, classe, nível)
         readonly VisualElement modal, colL, colR, rowB, stats, ctabs, grid, detailBox, stageView;
         readonly Label invCap, stageName, stageSub, stageNote;
         readonly DollLines dollLines;
@@ -54,12 +55,7 @@ namespace VampWolfs.Lobby
             var brand = UiKit.El("ars-brand", top);
             UiKit.Lbl("Mansão · Arsenal", "kicker", brand);
             UiKit.Lbl("Equipamento & Baú", "h2", brand);
-            var chars = UiKit.El("ars-chars", top);
-            var t = UiKit.El("ars-ch on", chars); t.style.borderBottomColor = UiKit.ClassColor("vampire");
-            UiKit.Lbl("1", "key", t);
-            var n = UiKit.El("ars-ch-n", t);
-            UiKit.Lbl("<b>Vampiro</b>", "nm", n);
-            UiKit.Lbl("Magia de sangue", "rk", n);
+            chars = UiKit.El("ars-chars", top);
             UiKit.Btn("Fechar (Esc)", Close, "btn sm ghost", top);
 
             var body = UiKit.El("ars-body", card);
@@ -81,7 +77,7 @@ namespace VampWolfs.Lobby
             stageName = UiKit.Lbl("", "stage-name", who);
             stageSub = UiKit.Lbl("", "stage-sub", who);
             NoPick(who);
-            stageNote = UiKit.Lbl("Arraste o vampiro para girar.", "stage-note", stage);
+            stageNote = UiKit.Lbl("Arraste o personagem para girar.", "stage-note", stage);
             colR = UiKit.El("doll-col right", doll);
             rowB = UiKit.El("doll-row", doll);
 
@@ -138,7 +134,19 @@ namespace VampWolfs.Lobby
             return false;
         }
 
-        void Render() { RenderDoll(); RenderStats(); RenderInv(); RenderDetail(); }
+        void Render() { RenderChar(); RenderDoll(); RenderStats(); RenderInv(); RenderDetail(); }
+
+        /// <summary>Quem está vestindo (o personagem escolhido no lobby; o baú é de todos).</summary>
+        void RenderChar()
+        {
+            chars.Clear();
+            var ch = P.Current; var cls = SkillCatalog.Instance.Class(ch.ClassId);
+            var t = UiKit.El("ars-ch on", chars); t.style.borderBottomColor = UiKit.ClassColor(ch.ClassId);
+            UiKit.Lbl(ch.Level.ToString(), "key", t);
+            var n = UiKit.El("ars-ch-n", t);
+            UiKit.Lbl("<b>" + ch.Name + "</b>", "nm", n);
+            UiKit.Lbl(cls.Name + " · nível " + ch.Level, "rk", n);
+        }
         void GearChanged() { ui.Save(); Render(); }
 
         /* ---------------- ícones e cores dos itens ---------------- */
@@ -223,8 +231,9 @@ namespace VampWolfs.Lobby
             foreach (var s in C.Slots) if (!placed.Contains(s.Id)) SlotCard(s.Id, eq, rowB, true);   // slots novos nos dados
 
             var st = CharacterStats.Compute(C, eq);
-            stageName.text = "Vampiro"; stageName.style.color = UiKit.ClassColor("vampire");
-            stageSub.text = "Magia de sangue · faixa de poder " + st.PowerTier.ToString("0.0");
+            var hero = P.Current;
+            stageName.text = hero.Name; stageName.style.color = UiKit.ClassColor(hero.ClassId);
+            stageSub.text = SkillCatalog.Instance.Class(hero.ClassId).Name + " · faixa de poder " + st.PowerTier.ToString("0.0");
             var tex = PortraitStudio.Preview;
             if (tex != null)
             {
@@ -327,14 +336,15 @@ namespace VampWolfs.Lobby
             var eq = P.EquippedMap();
             var s = CharacterStats.Compute(C, eq);
             var rules = C.Rules;
-            int hp = Mathf.RoundToInt(CharacterFactory.VampireHealth * s.HpMult);
-            UiKit.Lbl("STATUS DO VAMPIRO", "ars-sec-title", stats);
-            StatRow("st_heart", "Vida", hp.ToString(), hp / 600f, "base " + CharacterFactory.VampireHealth + " · faixa " + s.PowerTier.ToString("0.0") + " · +" + Mathf.RoundToInt(s.Eff.Vit) + "% pela VIT");
+            var cls = SkillCatalog.Instance.Class(P.Current.ClassId);
+            int hp = Mathf.RoundToInt(cls.Health * s.HpMult);
+            UiKit.Lbl("STATUS · " + cls.Name.ToUpperInvariant(), "ars-sec-title", stats);
+            StatRow("st_heart", "Vida", hp.ToString(), hp / 600f, "base " + cls.Health + " · faixa " + s.PowerTier.ToString("0.0") + " · +" + Mathf.RoundToInt(s.Eff.Vit) + "% pela VIT");
             StatRow("st_bolt", "Dano mágico", Pct(s.DamageMult(DamageType.Magic, rules)), s.DamageMult(DamageType.Magic, rules) / 3f, "arma " + Mathf.RoundToInt(s.WeaponDmg) + " + MATK " + Mathf.RoundToInt(s.Matk) + " (INT)");
             StatRow("st_shield", "Armour", Mathf.RoundToInt(s.Armour) + "%", s.Armour / GearBalance.ArmourCap, "redução física total " + Mathf.RoundToInt(s.PhysReductionPct) + "% · teto " + GearBalance.ArmourCap + "%");
             StatRow("st_dodge", "Evasion", Mathf.RoundToInt(s.Evasion).ToString(), s.Evasion / 60f, "cada ponto: −0,5% de dano físico e +0,3% de velocidade");
             StatRow("st_es", "Égide", Mathf.RoundToInt(s.WardPct * hp) + " (" + Mathf.RoundToInt(s.WardPct * 100f) + "%)", s.WardPct / 0.3f, "escudo que absorve antes da vida e se recarrega");
-            StatRow("st_speed", "Velocidade", (CharacterFactory.VampireSpeed * s.MoveMult).ToString("0.0#") + " m/s", (s.MoveMult - 1f) / GearBalance.MoveBonusCap, "base " + CharacterFactory.VampireSpeed + " m/s · +" + Mathf.RoundToInt((s.MoveMult - 1f) * 100f) + "%");
+            StatRow("st_speed", "Velocidade", (cls.Speed * s.MoveMult).ToString("0.0#") + " m/s", (s.MoveMult - 1f) / GearBalance.MoveBonusCap, "base " + cls.Speed + " m/s · +" + Mathf.RoundToInt((s.MoveMult - 1f) * 100f) + "%");
             StatRow("st_star", "Conjuração", Pct(s.CastMult) + " do tempo", 1f - s.CastMult, "DEX encurta a conjuração (mínimo " + Pct(GearBalance.MinCastMult) + ")");
             StatRow("st_elem", "Resist. a efeitos", Mathf.RoundToInt(s.StatusResist * 100f) + "%", s.StatusResist / GearBalance.StatusResistCap, "atordoar e lentidão duram menos (VIT)");
 
@@ -358,8 +368,8 @@ namespace VampWolfs.Lobby
             var kv = UiKit.El("kv", stats);
             KvCell(kv, "Equipados", eq.Count + "/" + (C.Slots.Count > 0 ? C.Slots.Count : 10));
             KvCell(kv, "Encaixes de carta", s.OpenCardSockets + "/" + s.CardSockets + " abertos");
-            KvCell(kv, "Patente e XP", "em breve");
-            KvCell(kv, "Pontos de habilidade", "em breve");
+            KvCell(kv, "Nível e XP", P.Current.Level + " · " + P.Current.Xp + "/" + SkillCatalog.XpToNext(P.Current.Level));
+            KvCell(kv, "Pontos de habilidade", P.Current.PointsFree + " livres");
             UiKit.Lbl("Equipamentos dão no máximo " + GearBalance.EquipCap + " por atributo; gemas passam do teto. A faixa de poder (média das faixas dos 10 slots) escolhe o lobisomem que invade a sua Fazenda. Cartas ainda sem efeito.", "note", stats);
         }
 
@@ -489,7 +499,7 @@ namespace VampWolfs.Lobby
             detailBox.Clear();
             if (sel == null)
             {
-                UiKit.Lbl("Selecione um item ou um slot. Arraste um equipamento do baú até o slot do vampiro (ou dê duplo clique) para vestir; arraste de volta para a grade para tirar. Arraste um lingote, cristal, chave ou gema até uma peça para melhorá-la.", "dt-empty", detailBox);
+                UiKit.Lbl("Selecione um item ou um slot. Arraste um equipamento do baú até o slot do personagem (ou dê duplo clique) para vestir; arraste de volta para a grade para tirar. Arraste um lingote, cristal, chave ou gema até uma peça para melhorá-la.", "dt-empty", detailBox);
                 return;
             }
             if (sel.Kind == "slot")
@@ -502,7 +512,7 @@ namespace VampWolfs.Lobby
                     UiKit.Lbl(blocked ? "Tire a arma de duas mãos para usar a mão esquerda." : "Arraste uma peça compatível do baú.", "dt-p", detailBox);
                     return;
                 }
-                DetailHeader(IconFor(C, it), ColorFor(C, it), C.NameOf(it), C.SlotName(sel.Id) + " · vestido no vampiro");
+                DetailHeader(IconFor(C, it), ColorFor(C, it), C.NameOf(it), C.SlotName(sel.Id) + " · vestido");
                 var acts = UiKit.El("dta", detailBox);
                 string sid = sel.Id;
                 UiKit.Btn("Tirar", () => TryUnequip(sid), "btn sm", acts);
@@ -512,7 +522,7 @@ namespace VampWolfs.Lobby
             var d = C.GetEquip(item.DefId); var mat = C.GetMaterial(item.DefId);
             string bestSlot = d != null ? BestSlot(item) : null;
             DetailHeader(IconFor(C, item), ColorFor(C, item), C.NameOf(item), d != null ? (C.TypeOf(d) != null ? C.TypeOf(d).Name : d.Type) + " · faixa " + Roman(d.Tier) : (mat != null ? mat.Category : "Item") + " · ×" + item.Qty);
-            if (mat != null) UiKit.Lbl(GearUpgrades.Describe(C, mat) + "\n<color=#d9a441>Arraste até uma peça (slot do vampiro ou célula do baú) para usar.</color>", "dt-p", detailBox);
+            if (mat != null) UiKit.Lbl(GearUpgrades.Describe(C, mat) + "\n<color=#d9a441>Arraste até uma peça (slot do personagem ou célula do baú) para usar.</color>", "dt-p", detailBox);
             var a = UiKit.El("dta", detailBox);
             string uid = item.Uid;
             if (d != null) UiKit.Btn("Vestir" + (bestSlot != null ? " (" + C.SlotName(bestSlot) + ")" : ""), () => TryEquip(uid, bestSlot), "btn sm primary", a);

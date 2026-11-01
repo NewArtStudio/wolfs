@@ -19,6 +19,8 @@ namespace VampWolfs
 
         public Color Color = new Color(0.8f, 0.1f, 0.2f);
 
+        public override float AiRange { get { return CenteredOnCaster ? Radius * 0.85f : Range + Radius * 0.5f; } }
+
         Vector3 Center(CombatUnit caster, Vector3 aimPoint)
         {
             return CenteredOnCaster ? caster.Position : ClampToRange(caster.Position, aimPoint, Range);

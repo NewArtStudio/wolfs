@@ -14,6 +14,8 @@ namespace VampWolfs
 
         public Color Color = new Color(1f, 0.85f, 0.6f);
 
+        public override float AiRange { get { return Reach * 0.9f; } }
+
         public override AttackMotion Motion
         {
             get { return AttackMotion.Swing; }

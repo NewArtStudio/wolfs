@@ -8,6 +8,66 @@ namespace VampWolfs
     {
         public static readonly string[] VampirePriority = { "Int", "Vit", "Dex", "Str" };
         public static readonly string[] WerewolfPriority = { "Str", "Vit", "Dex", "Int" };
+        public static readonly string[] HunterPriority = { "Dex", "Vit", "Str", "Int" };
+
+        /// <summary>
+        /// Starting equipment of each class (tier I): the vampire is a blood mage (Varinha + arcane clothes),
+        /// the werewolf a brute (Machado de Carrasco + plate), the hunter a gunslinger (Pistola + leather).
+        /// </summary>
+        public static Dictionary<string, ItemInstance> StarterKit(GearCatalog catalog, string classId)
+        {
+            return ClassLoadout(catalog, classId, 1, 0);
+        }
+
+        /// <summary>Gear of a class at a tier (starter kits and the AI invader, which arrives with refine 0..4).</summary>
+        public static Dictionary<string, ItemInstance> ClassLoadout(GearCatalog catalog, string classId, int tier, int refine)
+        {
+            tier = Mathf.Clamp(tier, 1, 8);
+            if (classId == "vampire" && tier == 1 && refine == 0) return VampireStarter(catalog);
+            Dictionary<string, ItemInstance> gear = new Dictionary<string, ItemInstance>();
+            switch (classId)
+            {
+                case "werewolf":
+                    {
+                        string[] p = WerewolfPriority;
+                        Wear(catalog, gear, "head", "head", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "chest", "chest", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "gloves", "gloves", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "boots", "boots", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "handR", "melee2H", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "accMajor", "accMajor", "str", tier, p, 0);
+                        Wear(catalog, gear, "acc1", "accMinor", "vit", tier, p, 0);
+                        break;
+                    }
+                case "hunter":
+                    {
+                        string[] p = HunterPriority;
+                        Wear(catalog, gear, "head", "head", "scout", tier, p, refine);
+                        Wear(catalog, gear, "chest", "chest", "scout", tier, p, refine);
+                        Wear(catalog, gear, "gloves", "gloves", "scout", tier, p, refine);
+                        Wear(catalog, gear, "boots", "boots", "scout", tier, p, refine);
+                        Wear(catalog, gear, "handR", "handR", "vanguard", tier, p, refine);
+                        Wear(catalog, gear, "handL", "handL", "scout", tier, p, refine);
+                        Wear(catalog, gear, "accMajor", "accMajor", "dex", tier, p, 0);
+                        Wear(catalog, gear, "acc1", "accMinor", "vit", tier, p, 0);
+                        break;
+                    }
+                default:
+                    {
+                        string[] p = VampirePriority;
+                        Wear(catalog, gear, "head", "head", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "chest", "chest", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "gloves", "gloves", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "boots", "boots", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "handR", "handR", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "handL", "handL", "arcane", tier, p, refine);
+                        Wear(catalog, gear, "accMajor", "accMajor", "int", tier, p, 0);
+                        Wear(catalog, gear, "acc1", "accMinor", "vit", tier, p, 0);
+                        break;
+                    }
+            }
+            return gear;
+        }
 
         /// <summary>
         /// Catalog model of this type + focus at this tier; if that tier doesn't have one (e.g. grimoires
@@ -80,11 +140,7 @@ namespace VampWolfs
         public static PlayerProfile NewVampireProfile(GearCatalog catalog)
         {
             PlayerProfile profile = new PlayerProfile();
-
-            foreach (KeyValuePair<string, ItemInstance> pair in VampireStarter(catalog))
-            {
-                profile.Equipped.Add(new EquippedSlot { Slot = pair.Key, Item = pair.Value });
-            }
+            profile.AddCharacter(catalog, "vampire", "Vampiro");
 
             AddSpare(catalog, profile, "handR", "scout", 1);
             AddSpare(catalog, profile, "chest", "sacred", 1);

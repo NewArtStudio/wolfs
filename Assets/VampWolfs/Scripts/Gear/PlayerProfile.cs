@@ -14,15 +14,25 @@ namespace VampWolfs
     }
 
     /// <summary>
-    /// What the player owns between matches, saved to disk: worn equipment (never drops), the stash
-    /// (safe storage at the Base) and farmed resources. Extraction moves the bag into the stash.
+    /// What the player owns between matches, saved to disk: the characters (each with class, level, skills and
+    /// worn equipment, which never drops), the shared stash (safe storage at the Base) and farmed resources.
+    /// Extraction moves the bag into the stash. The equipment methods below act on the selected character.
     /// </summary>
     [Serializable]
     public class PlayerProfile
     {
         const string FileName = "vampwolfs_profile.json";
 
+        /// <summary>Old saves (one vampire, before nov/2026): moved into Characters on load, then left empty.</summary>
         public List<EquippedSlot> Equipped = new List<EquippedSlot>();
+
+        /// <summary>Every character of the account (vampires, werewolves, bounty hunters).</summary>
+        public List<CharacterSave> Characters = new List<CharacterSave>();
+        /// <summary>Index of the selected character (the one that goes to the Farm).</summary>
+        public int Active;
+
+        /// <summary>Most characters an account can have [PROTÓTIPO].</summary>
+        public const int MaxCharacters = 8;
         public List<ItemInstance> Stash = new List<ItemInstance>();
         public int Blood;
         public int Wool;
@@ -119,11 +129,42 @@ namespace VampWolfs
         {
             if (Stash == null) Stash = new List<ItemInstance>();
             if (Equipped == null) Equipped = new List<EquippedSlot>();
+            if (Characters == null) Characters = new List<CharacterSave>();
 
             Stash.RemoveAll(i => i == null || (catalog.GetEquip(i.DefId) == null && catalog.GetMaterial(i.DefId) == null));
 
+            SkillCatalog sc = SkillCatalog.Instance;
+
+            // Old save (one vampire): its worn gear becomes the first character.
+            if (Characters.Count == 0)
+            {
+                CharacterSave vampire = CharacterSave.Create("vampire", "Vampiro");
+                vampire.Equipped = Equipped;
+                vampire.AutoAllocate(sc);
+                Characters.Add(vampire);
+                Active = 0;
+            }
+            else if (Equipped.Count > 0)
+            {
+                Stash.AddRange(Equipped.ConvertAll(x => x.Item).FindAll(x => x != null));   // never lose items
+            }
+            Equipped = new List<EquippedSlot>();
+
+            Characters.RemoveAll(c => c == null);
+            foreach (CharacterSave c in Characters)
+            {
+                c.Sanitize(sc);
+                c.Equipped = SanitizeWorn(catalog, c.Equipped);
+            }
+            Active = Mathf.Clamp(Active, 0, Mathf.Max(0, Characters.Count - 1));
+        }
+
+        /// <summary>Worn pieces in a wrong/duplicate slot or blocked by a two-handed weapon go back to the stash.</summary>
+        List<EquippedSlot> SanitizeWorn(GearCatalog catalog, List<EquippedSlot> worn)
+        {
+            if (worn == null) return new List<EquippedSlot>();
             List<EquippedSlot> valid = new List<EquippedSlot>();
-            foreach (EquippedSlot s in Equipped)
+            foreach (EquippedSlot s in worn)
             {
                 if (s == null || s.Item == null) continue;
                 EquipDef e = catalog.GetEquip(s.Item.DefId);
@@ -142,7 +183,55 @@ namespace VampWolfs
                 Stash.Add(left.Item);
             }
 
-            Equipped = valid;
+            return valid;
+        }
+
+        // ---------------------------------------------------------------- characters
+
+        /// <summary>The selected character (creates a vampire if the list is somehow empty).</summary>
+        public CharacterSave Current
+        {
+            get
+            {
+                if (Characters == null) Characters = new List<CharacterSave>();
+                if (Characters.Count == 0) Characters.Add(CharacterSave.Create("vampire", "Vampiro"));
+                Active = Mathf.Clamp(Active, 0, Characters.Count - 1);
+                return Characters[Active];
+            }
+        }
+
+        /// <summary>Equipment worn by the selected character.</summary>
+        public List<EquippedSlot> Worn
+        {
+            get
+            {
+                CharacterSave c = Current;
+                if (c.Equipped == null) c.Equipped = new List<EquippedSlot>();
+                return c.Equipped;
+            }
+        }
+
+        public void SelectCharacter(int index)
+        {
+            if (Characters != null && index >= 0 && index < Characters.Count) Active = index;
+        }
+
+        /// <summary>Creates a character with its class starter kit and starting skills, and selects it. Null = limit reached.</summary>
+        public CharacterSave AddCharacter(GearCatalog catalog, string classId, string name)
+        {
+            if (Characters == null) Characters = new List<CharacterSave>();
+            if (Characters.Count >= MaxCharacters) return null;
+            SkillCatalog sc = SkillCatalog.Instance;
+            if (string.IsNullOrEmpty(name)) name = sc.Class(classId).Name;
+            CharacterSave c = CharacterSave.Create(classId, name.Length > 20 ? name.Substring(0, 20) : name);
+            foreach (KeyValuePair<string, ItemInstance> pair in GearLoadouts.StarterKit(catalog, classId))
+            {
+                c.Equipped.Add(new EquippedSlot { Slot = pair.Key, Item = pair.Value });
+            }
+            c.AutoAllocate(sc);
+            Characters.Add(c);
+            Active = Characters.Count - 1;
+            return c;
         }
 
         // ---------------------------------------------------------------- equipment
@@ -150,7 +239,7 @@ namespace VampWolfs
         public Dictionary<string, ItemInstance> EquippedMap()
         {
             Dictionary<string, ItemInstance> map = new Dictionary<string, ItemInstance>();
-            foreach (EquippedSlot s in Equipped)
+            foreach (EquippedSlot s in Worn)
             {
                 if (s.Item != null) map[s.Slot] = s.Item;
             }
@@ -160,7 +249,7 @@ namespace VampWolfs
 
         public ItemInstance GetEquipped(string slot)
         {
-            foreach (EquippedSlot s in Equipped)
+            foreach (EquippedSlot s in Worn)
             {
                 if (s.Slot == slot) return s.Item;
             }
@@ -170,8 +259,8 @@ namespace VampWolfs
 
         void SetEquipped(string slot, ItemInstance item)
         {
-            Equipped.RemoveAll(s => s.Slot == slot);
-            if (item != null) Equipped.Add(new EquippedSlot { Slot = slot, Item = item });
+            Worn.RemoveAll(s => s.Slot == slot);
+            if (item != null) Worn.Add(new EquippedSlot { Slot = slot, Item = item });
         }
 
         /// <summary>Best slot for a piece: a free compatible slot, else the first compatible one.</summary>
@@ -261,7 +350,7 @@ namespace VampWolfs
             ItemInstance target = Stash.Find(i => i.Uid == targetUid);
             if (target == null)
             {
-                foreach (EquippedSlot s in Equipped)
+                foreach (EquippedSlot s in Worn)
                 {
                     if (s.Item != null && s.Item.Uid == targetUid)
                     {

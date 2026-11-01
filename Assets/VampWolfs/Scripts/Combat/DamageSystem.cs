@@ -23,6 +23,19 @@ namespace VampWolfs
         public float SlowDuration;
         public float StunDuration;
 
+        // Skills system (nov/2026)
+        public float RootDuration;
+        [Tooltip("Bleeding/burning damage per second.")]
+        public float DotDps;
+        public float DotDuration;
+        [Tooltip("Meters pushed away from the caster (negative = pulled toward the caster).")]
+        public float Knockback;
+        [Tooltip("Marked: the target takes this much more damage (0.25 = +25%).")]
+        public float VulnAmount;
+        public float VulnDuration;
+        [Tooltip("Basic attack (LMB): applies the class passive bleeding.")]
+        public bool IsBasic;
+
         public void Apply(CombatUnit caster, Health target)
         {
             bool landed = DamageSystem.Deal(caster, target, Damage, Lifesteal, Type);
@@ -39,6 +52,28 @@ namespace VampWolfs
 
             if (SlowDuration > 0f) status.ApplySlow(SlowAmount, SlowDuration);
             if (StunDuration > 0f) status.ApplyStun(StunDuration);
+            if (RootDuration > 0f) status.ApplyRoot(RootDuration);
+            if (VulnDuration > 0f) status.ApplyVulnerable(VulnAmount, VulnDuration);
+            if (DotDps > 0f && DotDuration > 0f) status.ApplyDot(caster, DotDps, DotDuration, Type);
+            if (IsBasic && caster != null && caster.Passives.BasicDotDps > 0f) status.ApplyDot(caster, caster.Passives.BasicDotDps, 2f, Type);
+            if (Knockback != 0f) Push(caster, target);
+        }
+
+        /// <summary>Knockback (positive) or pull (negative): a short forced move, never past the caster.</summary>
+        void Push(CombatUnit caster, Health target)
+        {
+            CombatUnit unit = target.GetComponent<CombatUnit>();
+            if (unit == null || caster == null || unit.IsDead) return;
+            Vector3 away = unit.Position - caster.Position;
+            away.y = 0f;
+            float distance = away.magnitude;
+            Vector3 dir = distance > 0.01f ? away / distance : caster.transform.forward;
+            float meters = Knockback;
+            if (meters < 0f) meters = -Mathf.Min(-meters, Mathf.Max(0f, distance - 1.4f));   // pull stops in front of the caster
+            if (Mathf.Abs(meters) < 0.1f) return;
+            const float time = 0.2f;
+            unit.CancelCast(false);
+            unit.StartForcedMove(dir * (meters / time), time, null);
         }
     }
 
@@ -53,9 +88,10 @@ namespace VampWolfs
 
         static readonly Color PlayerDamageColor = new Color(1f, 0.85f, 0.3f);
         static readonly Color EnemyDamageColor = new Color(1f, 0.3f, 0.25f);
+        static readonly Color DotColor = new Color(0.85f, 0.25f, 0.3f);
 
         /// <summary>Returns true if the hit landed (not blocked by invulnerability or counter).</summary>
-        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal, DamageType type = DamageType.Magic)
+        public static bool Deal(CombatUnit caster, Health target, float amount, float lifesteal, DamageType type = DamageType.Magic, bool isDot = false)
         {
             if (target == null || target.IsDead)
             {
@@ -77,7 +113,7 @@ namespace VampWolfs
             }
 
             bool fromPlayer = caster != null && caster.IsPlayer;
-            FloatingText.Spawn(target.transform.position + Vector3.up * 2.2f, Mathf.RoundToInt(dealt).ToString(), fromPlayer ? PlayerDamageColor : EnemyDamageColor);
+            FloatingText.Spawn(target.transform.position + Vector3.up * (isDot ? 1.8f : 2.2f), Mathf.RoundToInt(dealt).ToString(), isDot ? DotColor : (fromPlayer ? PlayerDamageColor : EnemyDamageColor));
 
             UnitVisual visual = target.GetComponent<UnitVisual>();
             if (visual != null)
@@ -89,11 +125,18 @@ namespace VampWolfs
             {
                 float rate = target.Team == Team.Neutral ? EnergyPerNeutralDamage : EnergyPerDamage;
                 // Energy from the damage BEFORE the gear multiplier, so EX/ultimate pacing is the same at every tier.
-                caster.Energy.Add(dealt / Mathf.Max(0.01f, attackerMult) * rate);
+                caster.Energy.Add(dealt / Mathf.Max(0.01f, attackerMult) * rate * (1f + caster.Passives.Energy));
 
+                lifesteal += caster.Passives.Lifesteal;
                 if (lifesteal > 0f)
                 {
                     caster.Health.Heal(dealt * lifesteal);
+                }
+
+                // Passive "heal on kill" (Imortal, Apetite Voraz…): only for characters, not sheep.
+                if (target.IsDead && target.Team != Team.Neutral && caster.Passives.KillHeal > 0f)
+                {
+                    caster.Health.Heal(caster.Health.MaxHealth * caster.Passives.KillHeal);
                 }
             }
 
@@ -114,6 +157,22 @@ namespace VampWolfs
                 attackerMult = caster.Equipment.Stats.DamageMult(type, rules);
                 amount *= attackerMult;
             }
+
+            // Skills: passives and buffs of the attacker, marks and passives of the target.
+            if (caster != null)
+            {
+                PassiveStats p = caster.Passives;
+                float bonus = p.Damage + (caster.Status != null ? caster.Status.DamageBuffBonus : 0f);
+                if (caster.Health != null && caster.Health.Normalized < 0.4f) bonus += p.LowHpDamage;
+                StatusEffects ts = target.GetComponent<StatusEffects>();
+                if (ts != null && (ts.IsSlowed || ts.IsRooted || ts.IsStunned)) bonus += p.SlowedBonus;
+                amount *= 1f + bonus;
+            }
+
+            StatusEffects targetStatus = target.GetComponent<StatusEffects>();
+            if (targetStatus != null) amount *= 1f + targetStatus.VulnerableBonus;
+            CombatUnit targetUnit = target.GetComponent<CombatUnit>();
+            if (targetUnit != null) amount *= 1f - targetUnit.Passives.DRCapped;
 
             Equipment targetGear = target.GetComponent<Equipment>();
             if (targetGear != null)

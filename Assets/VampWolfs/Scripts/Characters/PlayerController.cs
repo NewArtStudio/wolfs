@@ -3,8 +3,9 @@ using UnityEngine;
 namespace VampWolfs
 {
     /// <summary>
-    /// Turns keyboard/mouse into orders for a CombatUnit (Battlerite controls):
-    /// WASD move, mouse aims, LMB/RMB/Space/Q/E/R/F abilities, Shift = EX version, C = cancel cast.
+    /// Turns keyboard/mouse into orders for a CombatUnit:
+    /// WASD move, mouse aims, C = cancel cast. Skills (nov/2026, Albion-style): weapon LMB/RMB/Q/E + F (ultimate),
+    /// helmet R, chest Space, boots Shift, class skills 1 and 2. (The old Shift = EX modifier is gone.)
     /// Presses made during a cast are buffered briefly so combos feel responsive.
     /// </summary>
     [RequireComponent(typeof(CombatUnit))]
@@ -58,16 +59,15 @@ namespace VampWolfs
                 hasBuffer = false;
             }
 
-            bool ex = InputReader.ExHeld();
-
-            if (InputReader.SecondaryPressed()) Buffer(AbilitySlot.Secondary, ex);
-            if (InputReader.MobilityPressed()) Buffer(AbilitySlot.Mobility, ex);
-            if (InputReader.QPressed()) Buffer(AbilitySlot.Q, ex);
-            if (InputReader.EPressed()) Buffer(AbilitySlot.E, ex);
-            if (InputReader.RPressed()) Buffer(AbilitySlot.R, ex);
+            if (InputReader.SecondaryPressed()) Buffer(AbilitySlot.Secondary, false);
+            if (InputReader.MobilityPressed()) Buffer(AbilitySlot.Mobility, false);
+            if (InputReader.QPressed()) Buffer(AbilitySlot.Q, false);
+            if (InputReader.EPressed()) Buffer(AbilitySlot.E, false);
+            if (InputReader.RPressed()) Buffer(AbilitySlot.R, false);
             if (InputReader.UltimatePressed()) Buffer(AbilitySlot.Ultimate, false);
-            if (InputReader.ExSecondaryPressed()) Buffer(AbilitySlot.Secondary, true);
-            if (InputReader.ExMobilityPressed()) Buffer(AbilitySlot.Mobility, true);
+            if (InputReader.BootsPressed()) Buffer(AbilitySlot.Boots, false);
+            if (InputReader.Class1Pressed()) Buffer(AbilitySlot.Class1, false);
+            if (InputReader.Class2Pressed()) Buffer(AbilitySlot.Class2, false);
 
             if (hasBuffer)
             {

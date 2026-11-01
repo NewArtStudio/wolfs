@@ -4,9 +4,11 @@ using UnityEngine;
 namespace VampWolfs
 {
     /// <summary>
-    /// Simple invader brain for the werewolf. Uses exactly the same CombatUnit API as the player
-    /// (MoveInput / AimPoint / TryCast), so it plays by the same rules: same cooldowns,
-    /// same cast times, same telegraphs. Difficulty: MatchSettings.AiReactionTime / AiDodgeChance.
+    /// Simple invader brain (any class since nov/2026: the name stayed from the werewolf-only days).
+    /// Uses exactly the same CombatUnit API as the player (MoveInput / AimPoint / TryCast), so it plays by the
+    /// same rules: same cooldowns, cast times and telegraphs. It reads each ability's range (Ability.AiRange)
+    /// to decide, so melee kits close in and ranged kits keep their distance.
+    /// Difficulty: MatchSettings.AiReactionTime / AiDodgeChance.
     /// </summary>
     [RequireComponent(typeof(CombatUnit))]
     public class WerewolfAI : MonoBehaviour
@@ -78,38 +80,53 @@ namespace VampWolfs
 
         // ---------------------------------------------------------------- combat decisions
 
+        /// <summary>Slots the AI tries for offense, in priority order (class skills first, then the weapon, then gear).</summary>
+        static readonly AbilitySlot[] OffenseOrder =
+        {
+            AbilitySlot.Class1, AbilitySlot.Class2, AbilitySlot.Secondary, AbilitySlot.Q, AbilitySlot.E,
+            AbilitySlot.R, AbilitySlot.Boots, AbilitySlot.Mobility,
+        };
+
         void Decide(CombatUnit target, float distance)
         {
             float health = unit.Health.Normalized;
-            float energy = unit.Energy.Current;
 
-            // Defensive: tank the incoming burst.
-            if (health < 0.5f && target.IsCasting && distance < 12f && unit.TryCast(AbilitySlot.E, false)) return;
-
-            // Ultimate when full energy and in range.
-            if (energy >= Energy.Max && distance < 4f && unit.TryCast(AbilitySlot.Ultimate, false)) return;
-
-            if (distance <= 2.6f)
+            // Defensive: shield / counter / damage reduction against an incoming burst.
+            if (health < 0.5f && target.IsCasting && distance < 12f)
             {
-                bool saveForUltimate = energy >= 75f;
-                if (!saveForUltimate && energy >= 25f && Random.value < 0.6f && unit.TryCast(AbilitySlot.R, false)) return;
-                if (Random.value < 0.25f && unit.TryCast(AbilitySlot.Q, false)) return;
-                unit.TryCast(AbilitySlot.Primary, false);
-                return;
+                foreach (AbilitySlot slot in OffenseOrder)
+                {
+                    Ability a = unit.GetAbility(slot);
+                    if (a != null && a.IsDefensive && a.IsReady && unit.TryCast(slot, false)) return;
+                }
             }
 
-            if (distance <= 7.5f)
+            // Ultimate when there is energy and the target is in its range.
+            Ability ult = unit.GetAbility(AbilitySlot.Ultimate);
+            if (ult != null && unit.Energy.Current >= ult.EnergyCost && distance <= Mathf.Max(4f, ult.AiRange) && unit.TryCast(AbilitySlot.Ultimate, false)) return;
+
+            // Any offensive skill in range (a little randomness so it isn't a fixed rotation).
+            int start = Random.Range(0, OffenseOrder.Length);
+            for (int k = 0; k < OffenseOrder.Length; k++)
             {
-                bool useEx = energy >= 50f && energy < 75f;
-                if (unit.TryCast(AbilitySlot.Secondary, useEx)) return;
-                if (distance <= 4.2f && Random.value < 0.3f && unit.TryCast(AbilitySlot.Q, false)) return;
-                return;
+                AbilitySlot slot = OffenseOrder[(start + k) % OffenseOrder.Length];
+                Ability a = unit.GetAbility(slot);
+                if (a == null || !a.IsReady || a.IsDefensive || a.AiRange <= 0f) continue;
+                if (distance > a.AiRange) continue;
+                if (a is DashAbility && distance < 3f) continue;   // gap closers are for closing gaps
+                if (Random.value < 0.75f && unit.TryCast(slot, false)) return;
             }
 
-            if (distance > 10f && Random.value < 0.35f)
-            {
-                unit.TryCast(AbilitySlot.Mobility, false);
-            }
+            Ability basic = unit.GetAbility(AbilitySlot.Primary);
+            if (basic != null && distance <= basic.AiRange) unit.TryCast(AbilitySlot.Primary, false);
+        }
+
+        /// <summary>Distance the AI likes to fight at: just inside its basic attack (melee hugs, ranged keeps away).</summary>
+        float PreferredDistance()
+        {
+            Ability basic = unit.GetAbility(AbilitySlot.Primary);
+            float r = basic != null ? basic.AiRange : 2.2f;
+            return r > 4f ? r * 0.7f : 1.6f;
         }
 
         Vector3 PredictPosition(CombatUnit target, float distance)
@@ -126,8 +143,16 @@ namespace VampWolfs
                 return;
             }
 
-            Ability mobility = unit.GetAbility(AbilitySlot.Mobility);
-            if (mobility == null || !mobility.IsReady)
+            // any ready dash (chest, boots, weapon or class) can dodge
+            AbilitySlot dodgeSlot = AbilitySlot.Mobility;
+            Ability mobility = null;
+            foreach (AbilitySlot slot in OffenseOrder)
+            {
+                Ability a = unit.GetAbility(slot);
+                if (a is DashAbility && a.IsReady) { mobility = a; dodgeSlot = slot; break; }
+            }
+
+            if (mobility == null)
             {
                 return;
             }
@@ -164,7 +189,7 @@ namespace VampWolfs
 
                 Vector3 side = Vector3.Cross(Vector3.up, projectile.Direction) * (Random.value < 0.5f ? 1f : -1f);
                 unit.AimPoint = unit.Position + side * 5f;
-                unit.TryCast(AbilitySlot.Mobility, false);
+                unit.TryCast(dodgeSlot, false);
                 return;
             }
         }
@@ -181,10 +206,12 @@ namespace VampWolfs
 
             Vector3 direction = distance > 0.01f ? toTarget / distance : Vector3.zero;
 
-            if (distance < 1.6f)
+            float preferred = PreferredDistance();
+            if (distance < preferred)
             {
-                // Too close: circle around a little instead of pushing into the target.
-                unit.MoveInput = Vector3.Cross(Vector3.up, direction) * strafeSign * 0.5f;
+                // Close enough: circle around (ranged kits also back off a little).
+                Vector3 back = preferred > 2f ? -direction * 0.5f : Vector3.zero;
+                unit.MoveInput = Steer((Vector3.Cross(Vector3.up, direction) * strafeSign * 0.7f + back).normalized) * (preferred > 2f ? 1f : 0.5f);
                 return;
             }
 

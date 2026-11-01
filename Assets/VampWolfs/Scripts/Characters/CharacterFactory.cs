@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VampWolfs
@@ -60,6 +61,89 @@ namespace VampWolfs
             unit.SetAbilities(WerewolfKit.Create());
             unit.Equipment.Set("Garras de Prata Negra T4", "Pele Ancestral T4", 840);
             return unit;
+        }
+
+        public static readonly Color HunterTeamColor = new Color(0.35f, 0.65f, 0.3f);
+
+        /// <summary>
+        /// Any playable class (nov/2026): body, stats from the class data, art or placeholder, ink outline and VFX.
+        /// The skills come from SkillFactory.BuildBar (gear + class); call ApplyLoadout after creating.
+        /// enemy = drawn with the red enemy ink (the AI invader).
+        /// </summary>
+        public static CombatUnit CreateCharacter(Transform parent, Vector3 position, ClassDef cls, string displayName, bool enemy)
+        {
+            string id = cls != null ? cls.Id : "vampire";
+            Team team = id == "werewolf" ? Team.Werewolves : id == "hunter" ? Team.Humans : Team.Vampires;
+            Color ring = id == "werewolf" ? WerewolfTeamColor : id == "hunter" ? HunterTeamColor : VampireTeamColor;
+            float radius = id == "werewolf" ? 0.65f : 0.5f;
+            float height = id == "werewolf" ? 2.6f : id == "hunter" ? 2.15f : 2.2f;
+            float health = cls != null ? cls.Health : VampireHealth;
+            float speed = cls != null ? cls.Speed : VampireSpeed;
+
+            CombatUnit unit = CreateUnit(parent, displayName, position, team, health, speed, radius, height, ring);
+            BuildLook(unit.Visual, id, SizeMultiplier);
+            Vfx.InkOutline.Attach(unit.Visual.Model.gameObject, enemy ? Vfx.InkOutline.EnemyInk : Vfx.InkOutline.Ink);
+            Vfx.UnitFx.Attach(unit.gameObject, id == "werewolf" ? Vfx.UnitFx.Kind.Beast : id == "hunter" ? Vfx.UnitFx.Kind.Human : Vfx.UnitFx.Kind.Vampire);
+            return unit;
+        }
+
+        /// <summary>Gives the unit its bar (gear + class skills) and passives, then wears the gear.</summary>
+        public static void ApplyLoadout(CombatUnit unit, CharacterSave character, IDictionary<string, ItemInstance> equipped)
+        {
+            PassiveStats passives;
+            Ability[] bar = SkillFactory.BuildBar(SkillCatalog.Instance, GearCatalog.Instance, character, equipped, out passives);
+            unit.SetAbilities(bar);
+            unit.SetPassives(passives);
+            unit.ApplyGear(GearCatalog.Instance, equipped);
+        }
+
+        static CharacterArt ArtOf(string classId)
+        {
+            return classId == "werewolf" ? ArtLibrary.Werewolf : classId == "hunter" ? ArtLibrary.MonsterHunter : ArtLibrary.Vampire;
+        }
+
+        /// <summary>3D model of the class if assigned, else the primitive placeholder.</summary>
+        static void BuildLook(UnitVisual v, string classId, float size)
+        {
+            CharacterArt art = ArtOf(classId);
+            if (art != null && art.IsValid)
+            {
+                v.UseModel(art, size);
+                return;
+            }
+
+            if (classId == "werewolf") BuildWerewolfPlaceholder(v);
+            else if (classId == "hunter") BuildHunterPlaceholder(v);
+            else BuildVampirePlaceholder(v);
+            v.Model.localScale = Vector3.one * size;   // the model only (the unit root also carries the collider)
+        }
+
+        /// <summary>Look only (lobby stage and portraits) of any class.</summary>
+        public static GameObject CreateDisplay(Transform parent, string classId, float sizeMultiplier = 1f)
+        {
+            if (classId == "vampire" || string.IsNullOrEmpty(classId)) return CreateDisplayVampire(parent, sizeMultiplier);
+            GameObject go = new GameObject("Vitrine " + classId);   // built unparented: see CreateDisplayVampire
+            UnitVisual v = go.AddComponent<UnitVisual>();
+            BuildLook(v, classId, sizeMultiplier);
+            Vfx.InkOutline.Attach(v.Model.gameObject, Vfx.InkOutline.Ink);
+            go.transform.SetParent(parent, false);
+            return go;
+        }
+
+        /// <summary>Bounty hunter placeholder: long coat, wide-brimmed hat, silver bandolier.</summary>
+        static void BuildHunterPlaceholder(UnitVisual v)
+        {
+            Color coat = new Color(0.32f, 0.24f, 0.16f);
+            Color hat = new Color(0.12f, 0.1f, 0.08f);
+            Color skin = new Color(0.86f, 0.7f, 0.58f);
+            Color silver = new Color(0.8f, 0.82f, 0.85f);
+
+            v.Part(PrimitiveType.Capsule, "Body", new Vector3(0f, 1f, 0f), new Vector3(0.75f, 0.95f, 0.7f), coat);
+            v.Part(PrimitiveType.Cube, "CoatTail", new Vector3(0f, 0.55f, -0.2f), new Vector3(0.8f, 0.8f, 0.25f), coat);
+            v.Part(PrimitiveType.Sphere, "Head", new Vector3(0f, 1.95f, 0f), new Vector3(0.45f, 0.5f, 0.45f), skin);
+            v.Part(PrimitiveType.Cylinder, "HatBrim", new Vector3(0f, 2.15f, 0f), new Vector3(0.95f, 0.03f, 0.95f), hat);
+            v.Part(PrimitiveType.Cylinder, "HatTop", new Vector3(0f, 2.3f, 0f), new Vector3(0.45f, 0.15f, 0.45f), hat);
+            v.Part(PrimitiveType.Cube, "Bandolier", new Vector3(0f, 1.25f, 0.3f), new Vector3(0.12f, 0.9f, 0.06f), silver);
         }
 
         /// <summary>

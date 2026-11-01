@@ -24,8 +24,10 @@ namespace VampWolfs.Lobby
         VisualElement root, bannerBox;
         BaseScreen baseScreen;
         ArsenalScreen arsenal;
+        SkillsScreen skills;
         BaseStage stage;
         Transform stageChar;
+        string stageClass;   // classe do personagem no palco (refaz o modelo ao trocar de personagem)
         // girar o vampiro arrastando o mouse no palco (área vazia da tela)
         bool turning; float turnX, yaw, yawVelocity, lastTurnMove;
         const float TurnPerPixel = 0.45f, TurnFriction = 5f;
@@ -72,12 +74,12 @@ namespace VampWolfs.Lobby
 
             baseScreen = new BaseScreen(this, root);
             arsenal = new ArsenalScreen(this, root);
+            skills = new SkillsScreen(this, root);
             bannerBox = UiKit.El("banner", root);
             bannerBox.pickingMode = PickingMode.Ignore;
 
             stage = BaseStage.Create(transform);
-            if (stage != null) stageChar = BuildStageCharacter(stage.transform, boot.LobbyCharacterScale, boot.LobbyCharacterForward);
-            if (stageChar != null) yaw = stageChar.localEulerAngles.y;
+            RefreshStage();
 
             // arrastar na área vazia (fora dos painéis) gira o vampiro: uma camada transparente atrás dos painéis recebe o clique
             VisualElement screen = new VisualElement { name = "lobby-drag" };
@@ -110,12 +112,24 @@ namespace VampWolfs.Lobby
         /// scale = tamanho no palco (o palco do Space foi pintado para 3 soldados; com 1 personagem ele fica maior),
         /// forward = metros para a frente (em direção à câmera). Os dois ficam no Inspector do GameBootstrap.
         /// </summary>
-        static Transform BuildStageCharacter(Transform parent, float scale, float forward)
+        static Transform BuildStageCharacter(Transform parent, string classId, float scale, float forward)
         {
-            GameObject go = CharacterFactory.CreateDisplayVampire(parent, Mathf.Max(0.2f, scale));
+            GameObject go = CharacterFactory.CreateDisplay(parent, classId, Mathf.Max(0.2f, scale));
             go.transform.localPosition = BaseStage.SlotPositions[1] + new Vector3(0f, 0f, forward);
             go.transform.localRotation = Quaternion.Euler(0f, BaseStage.SlotYaw[1], 0f);
             return go.transform;
+        }
+
+        /// <summary>Põe no palco o personagem escolhido (troca o modelo quando a classe muda).</summary>
+        void RefreshStage()
+        {
+            if (stage == null) return;
+            string cls = Profile.Current.ClassId;
+            if (stageChar != null && stageClass == cls) return;
+            if (stageChar != null) Destroy(stageChar.gameObject);
+            stageChar = BuildStageCharacter(stage.transform, cls, boot.LobbyCharacterScale, boot.LobbyCharacterForward);
+            stageClass = cls;
+            yaw = stageChar.localEulerAngles.y; yawVelocity = 0f;
         }
 
         /* ======================= ligar / desligar ======================= */
@@ -128,6 +142,7 @@ namespace VampWolfs.Lobby
             if (!on)
             {
                 arsenal.Close();
+                skills.Close();
                 baseScreen.CloseModal();
             }
 
@@ -169,13 +184,14 @@ namespace VampWolfs.Lobby
             if (InputReader.EscapePressed())
             {
                 if (arsenal.IsOpen) { if (!arsenal.Escape()) arsenal.Close(); }
+                else if (skills.IsOpen) skills.Close();
                 else baseScreen.CloseModal();
             }
-            else if (InputReader.InventoryPressed())
+            else if (InputReader.InventoryPressed() && !skills.IsOpen)
             {
                 if (arsenal.IsOpen) arsenal.Close(); else OpenArsenal();
             }
-            else if (InputReader.RestartPressed() && !arsenal.IsOpen && !baseScreen.ModalOpen)
+            else if (InputReader.RestartPressed() && !arsenal.IsOpen && !skills.IsOpen && !baseScreen.ModalOpen)
             {
                 Explore();
             }
@@ -211,7 +227,33 @@ namespace VampWolfs.Lobby
         /// <summary>Refaz a tela inicial (depois de equipar, melhorar, resetar…).</summary>
         public void RenderBase()
         {
+            RefreshStage();
+            PortraitStudio.SetPreviewClass(Profile.Current.ClassId);
             if (baseScreen != null) baseScreen.Render();
+        }
+
+        /// <summary>Troca o personagem escolhido (o que vai para a Fazenda).</summary>
+        public void SelectCharacter(int index)
+        {
+            Profile.SelectCharacter(index);
+            Save();
+            RenderBase();
+        }
+
+        /// <summary>Cria um personagem novo (com o kit inicial da classe) e já o escolhe.</summary>
+        public void CreateCharacter(string classId, string name)
+        {
+            var c = Profile.AddCharacter(Catalog, classId, name);
+            if (c == null) { Banner("Limite de " + PlayerProfile.MaxCharacters + " personagens", "warn"); return; }
+            Save();
+            RenderBase();
+            Banner(c.Name + " entrou para a mansão", "ok");
+        }
+
+        public void OpenSkills()
+        {
+            if (!InBase) return;
+            skills.Open();
         }
 
         /// <summary>Salva o perfil (o jogo salva ao trocar equipamento e ao sair/voltar da Fazenda).</summary>

@@ -22,6 +22,11 @@ namespace VampWolfs
 
         public Color Color = new Color(0.6f, 0.5f, 0.9f);
 
+        [Tooltip("Heal when the dash starts (Passo Divino).")]
+        public float SelfHeal;
+
+        public override float AiRange { get { return LandingRadius > 0f ? MaxDistance + LandingRadius * 0.5f : 0f; } }
+
         float Distance(CombatUnit caster, Vector3 aimPoint)
         {
             Vector3 offset = aimPoint - caster.Position;
@@ -50,6 +55,11 @@ namespace VampWolfs
             if (InvulnerableTime > 0f)
             {
                 caster.Status.ApplyInvulnerable(InvulnerableTime);
+            }
+
+            if (SelfHeal > 0f)
+            {
+                caster.Health.HealScaled(SelfHeal);
             }
 
             Vfx.UnitFx fx = caster.GetComponent<Vfx.UnitFx>();

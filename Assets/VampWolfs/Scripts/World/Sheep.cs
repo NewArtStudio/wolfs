@@ -148,6 +148,7 @@ namespace VampWolfs
             if (MatchManager.Instance != null)
             {
                 MatchManager.Instance.OnSheepKilled();
+                if (killer != null && killer.IsPlayer) MatchManager.Instance.AwardXp(MatchManager.XpSheep, "ovelha");
             }
 
             Destroy(gameObject);

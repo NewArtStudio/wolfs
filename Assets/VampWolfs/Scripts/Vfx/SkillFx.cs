@@ -63,6 +63,8 @@ namespace VampWolfs.Vfx
             var r = a as AreaAbility; if (r != null) return r.Color;
             var d = a as DashAbility; if (d != null) return d.Color;
             var b = a as BuffAbility; if (b != null) return b.Color;
+            var z = a as ZoneAbility; if (z != null) return z.Color;
+            var t = a as TrapAbility; if (t != null) return t.Color;
             return new Color(1f, 0.8f, 0.5f);
         }
 
@@ -393,6 +395,41 @@ namespace VampWolfs.Vfx
             return true;
         }
 
+        /* ======================= zonas e armadilhas ======================= */
+
+        public static void ZoneStart(Vector3 c, ZoneAbility a)
+        {
+            if (V == null) return;
+            var col = Hdr(a.Color, 1.8f);
+            V.Ring(c, col, 0.3f, a.Radius, 0.35f, 0.25f, 0.3f);
+            V.Flash(c + Vector3.up * 0.5f, col, a.Radius * 0.8f, 0.14f, 0.6f);
+        }
+
+        /// <summary>Partículas subindo da zona (chamado todo quadro pela zona).</summary>
+        public static void ZoneTick(Vector3 c, ZoneAbility a)
+        {
+            if (V == null) return;
+            float rate = 6f + a.Radius * a.Radius * 2f;
+            if (!Every(rate)) return;
+            float ang = Rnd(0f, Mathf.PI * 2f), r = a.Radius * Mathf.Sqrt(Rnd(0f, 1f));
+            var p = c + new Vector3(Mathf.Cos(ang) * r, 0.1f, Mathf.Sin(ang) * r);
+            if (a.HealPerSecond > 0f) V.Pluses.Emit(p, Vector3.up * 1.2f, 0.2f, 0.9f, Hdr(a.Color, 1.6f), 0f, 0f);
+            else if (a.Hit.Damage > 0f) V.Embers.Emit(p, Vector3.up * Rnd(1f, 2.5f), Rnd(0.06f, 0.1f), Rnd(0.5f, 0.9f), Hdr(a.Color, 2f));
+            else V.Smoke.Emit(p, Vector3.up * 0.3f, Rnd(0.8f, 1.3f), Rnd(0.8f, 1.4f), new Color(a.Color.r * 0.6f, a.Color.g * 0.6f, a.Color.b * 0.6f, 0.45f), -1f, 20f);
+        }
+
+        public static bool TrapSnap(Vector3 p, TrapAbility a)
+        {
+            if (V == null) return false;
+            var col = Hdr(a.Color, 2f);
+            V.Flash(p + Vector3.up * 0.4f, col, 1.6f, 0.12f, 0.8f);
+            V.SparkBurst(p + Vector3.up * 0.3f, new Color(2f, 1.6f, 1f), 14, 4f, 0.35f, 0.07f, 0.5f);
+            V.DebrisBurst(p + Vector3.up * 0.2f, new Color(0.3f, 0.28f, 0.26f), 5, 3f, 0.12f);
+            V.Ring(p, col, 0.2f, a.Radius * 1.2f, 0.3f, 0.25f, 0.3f);
+            if (a.Hit.Damage >= 15f) { V.Explosion(p, a.Radius, new Color(2.2f, 1.1f, 0.4f), true, 0.12f); }
+            return true;
+        }
+
         /* ======================= eventos gerais ======================= */
 
         /// <summary>Sangue ao levar dano (sentido: do atacante para o alvo).</summary>
@@ -440,6 +477,16 @@ namespace VampWolfs.Vfx
             V.SparkBurst(c, BloodDark * 2f, 10, 3.5f, 0.4f, 0.08f, 0.4f);
             V.Decal(pos, 1.4f, VfxAssets.Splat, BloodDecal, 10f);
             return true;
+        }
+
+        /// <summary>Subiu de nível: coluna de luz violeta e faíscas.</summary>
+        public static void LevelUp(Vector3 pos)
+        {
+            if (V == null) return;
+            var c = new Color(1.6f, 1.1f, 2.4f);
+            V.DropBeam(pos, c);
+            V.SparkBurst(pos + Vector3.up * Size, c, 24, 5f, 0.6f, 0.08f, 0.9f);
+            V.Ring(pos, c, 0.3f, 2.5f, 0.6f, 0.25f, 0.3f);
         }
 
         public static bool BagDropped(Vector3 pos)

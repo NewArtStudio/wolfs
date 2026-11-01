@@ -11,7 +11,13 @@ namespace VampWolfs
         Q = 3,          // control (stun/slow)
         E = 4,          // defensive (counter / damage reduction)
         R = 5,          // energy skill (costs 1 energy bar)
-        Ultimate = 6    // F    - costs ALL energy (100)
+        Ultimate = 6,   // F    - costs ALL energy (100)
+
+        // Skills system (nov/2026, Albion-style): weapon = Primary/Secondary/Q/E/Ultimate, helmet = R,
+        // chest = Mobility (Space), boots = Boots (Shift), class = Class1/Class2 (keys 1 and 2).
+        Boots = 7,      // Shift
+        Class1 = 8,     // 1
+        Class2 = 9      // 2
     }
 
     /// <summary>
@@ -72,6 +78,12 @@ namespace VampWolfs
         {
             get { return AttackMotion.BothArms; }
         }
+
+        /// <summary>Distance at which the AI considers this ability useful (0 = self/defensive).</summary>
+        public virtual float AiRange { get { return Range; } }
+
+        /// <summary>Defensive ability (shield, counter, damage reduction): the AI uses it when hurt.</summary>
+        public virtual bool IsDefensive { get { return false; } }
 
         /// <summary>Shape shown on the ground while casting.</summary>
         public virtual TelegraphInfo GetTelegraph(CombatUnit caster, Vector3 aimPoint)

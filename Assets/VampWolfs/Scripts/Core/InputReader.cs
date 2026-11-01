@@ -72,6 +72,10 @@ namespace VampWolfs
         public static bool InventoryPressed() { return Pressed(Key.I); }
         public static bool RestartPressed() { return Pressed(Key.Enter); }
         public static bool EscapePressed() { return Pressed(Key.Escape); }
+        /// <summary>Skills system: Shift = boots skill, 1/2 = class skills.</summary>
+        public static bool BootsPressed() { return Pressed(Key.LeftShift) || Pressed(Key.RightShift); }
+        public static bool Class1Pressed() { return Pressed(Key.Digit1); }
+        public static bool Class2Pressed() { return Pressed(Key.Digit2); }
 #else
         public static Vector2 Move()
         {
@@ -97,6 +101,9 @@ namespace VampWolfs
         public static bool InventoryPressed() { return Input.GetKeyDown(KeyCode.I); }
         public static bool RestartPressed() { return Input.GetKeyDown(KeyCode.Return); }
         public static bool EscapePressed() { return Input.GetKeyDown(KeyCode.Escape); }
+        public static bool BootsPressed() { return Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift); }
+        public static bool Class1Pressed() { return Input.GetKeyDown(KeyCode.Alpha1); }
+        public static bool Class2Pressed() { return Input.GetKeyDown(KeyCode.Alpha2); }
 #endif
     }
 }
