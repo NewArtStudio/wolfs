@@ -94,8 +94,12 @@ namespace VampWolfs.Lobby
                 yawVelocity = -dx * TurnPerPixel / Mathf.Max(0.005f, Time.unscaledDeltaTime);
                 lastTurnMove = Time.unscaledTime;
             });
-            screen.RegisterCallback<PointerUpEvent>(e => { turning = false; if (Time.unscaledTime - lastTurnMove > 0.05f) yawVelocity = 0f;   // parou antes de soltar: não arremessa
- if (screen.HasPointerCapture(e.pointerId)) screen.ReleasePointer(e.pointerId); });
+            screen.RegisterCallback<PointerUpEvent>(e =>
+            {
+                turning = false;
+                if (Time.unscaledTime - lastTurnMove > 0.05f) yawVelocity = 0f;   // parou antes de soltar: não arremessa
+                if (screen.HasPointerCapture(e.pointerId)) screen.ReleasePointer(e.pointerId);
+            });
             screen.RegisterCallback<PointerCaptureOutEvent>(e => turning = false);
 
             UiKit.Show(root, false);
