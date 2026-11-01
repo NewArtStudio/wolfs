@@ -64,6 +64,12 @@ namespace VampWolfs
             readyAt = 0f;
         }
 
+        /// <summary>Body motion played by rigged models when this ability is cast and released.</summary>
+        public virtual AttackMotion Motion
+        {
+            get { return AttackMotion.BothArms; }
+        }
+
         /// <summary>Shape shown on the ground while casting.</summary>
         public virtual TelegraphInfo GetTelegraph(CombatUnit caster, Vector3 aimPoint)
         {

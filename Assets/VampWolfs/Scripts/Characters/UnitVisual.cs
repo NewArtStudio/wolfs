@@ -24,12 +24,18 @@ namespace VampWolfs
         Vector3 localVelocity;
         float referenceSpeed = 6f;
         float attackTime = -10f;
+        AttackMotion attackMotion;
+        float castProgress;
+        AttackMotion castMotion;
+        Vector3 worldVelocity;
+        ProceduralRig rig;
         bool dead;
 
         float flashUntil;
         bool tinted;
 
         const float AttackDuration = 0.18f;
+        const float RigAttackDuration = 0.28f;
 
         static readonly Color FlashColor = new Color(1f, 1f, 1f);
         static readonly Color StunTint = new Color(1f, 0.9f, 0.35f);
@@ -78,7 +84,8 @@ namespace VampWolfs
             GameObject instance = Instantiate(art.Model, pose, false);
             instance.name = art.Model.name;
             instance.transform.localPosition = Vector3.zero;
-            instance.transform.localRotation = Quaternion.Euler(0f, art.YawOffset, 0f);
+            // Keep the importer's own root rotation (axis conversion, e.g. Z-up files) and add the yaw tweak.
+            instance.transform.localRotation = Quaternion.Euler(0f, art.YawOffset, 0f) * art.Model.transform.localRotation;
 
             // Models only draw: no physics, no animation of their own.
             foreach (Collider col in instance.GetComponentsInChildren<Collider>())
@@ -104,10 +111,19 @@ namespace VampWolfs
                     modelRenderers[i].sharedMaterials = slots;
                 }
 
+                SkinnedMeshRenderer skinned = modelRenderers[i] as SkinnedMeshRenderer;
+                if (skinned != null)
+                {
+                    skinned.updateWhenOffscreen = true; // bones move: keep culling bounds correct
+                }
+
                 renderers.Add(modelRenderers[i]);
             }
 
             FitToHeight(instance.transform, modelRenderers, art.Height);
+
+            // Rigged model (auto-rigged FBX): animate its joints procedurally.
+            rig = ProceduralRig.TryCreate(transform, instance.transform);
         }
 
         void FitToHeight(Transform instance, Renderer[] modelRenderers, float height)
@@ -150,16 +166,25 @@ namespace VampWolfs
         // ---------------------------------------------------------------- called by gameplay
 
         /// <summary>World velocity of the character this frame (drives bob and lean).</summary>
-        public void SetMotion(Vector3 worldVelocity, float maxSpeed)
+        public void SetMotion(Vector3 velocity, float maxSpeed)
         {
-            localVelocity = transform.InverseTransformDirection(worldVelocity);
+            worldVelocity = velocity;
+            localVelocity = transform.InverseTransformDirection(velocity);
             referenceSpeed = Mathf.Max(0.1f, maxSpeed);
         }
 
-        /// <summary>Quick forward lunge when an ability is released.</summary>
-        public void PlayAttack()
+        /// <summary>Wind-up of the ability being cast (progress 0..1; 0 = not casting).</summary>
+        public void SetCasting(float progress, AttackMotion motion)
+        {
+            castProgress = progress;
+            castMotion = motion;
+        }
+
+        /// <summary>Release of an ability: lunge, plus an arm swing on rigged models.</summary>
+        public void PlayAttack(AttackMotion motion)
         {
             attackTime = Time.time;
+            attackMotion = motion;
         }
 
         public void Flash()
@@ -213,6 +238,21 @@ namespace VampWolfs
 
             pose.localPosition = new Vector3(0f, bob, lunge * 0.25f);
             pose.localRotation = Quaternion.Euler(leanForward + lunge * 10f, 0f, leanSide);
+
+            if (rig != null)
+            {
+                ProceduralRig.State state = new ProceduralRig.State
+                {
+                    WorldVelocity = worldVelocity,
+                    MaxSpeed = referenceSpeed,
+                    CastProgress = castProgress,
+                    CastMotion = castMotion,
+                    Attack01 = Mathf.Clamp01((Time.time - attackTime) / RigAttackDuration),
+                    AttackMotion = attackMotion,
+                    Stunned = status != null && status.IsStunned
+                };
+                rig.Apply(state, Time.deltaTime);
+            }
         }
 
         bool DesiredTint(out Color color)

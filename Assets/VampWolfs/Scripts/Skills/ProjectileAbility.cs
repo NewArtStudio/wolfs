@@ -12,6 +12,11 @@ namespace VampWolfs
         public Color Color = Color.red;
         public float VisualScale = 0.4f;
 
+        public override AttackMotion Motion
+        {
+            get { return AttackMotion.Throw; }
+        }
+
         public override TelegraphInfo GetTelegraph(CombatUnit caster, Vector3 aimPoint)
         {
             Vector3 direction = FlatDirection(caster.Position, aimPoint, caster.transform.forward);

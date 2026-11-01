@@ -29,6 +29,11 @@ namespace VampWolfs
             return Mathf.Clamp(offset.magnitude, MinDistance, MaxDistance);
         }
 
+        public override AttackMotion Motion
+        {
+            get { return AttackMotion.None; }
+        }
+
         public override TelegraphInfo GetTelegraph(CombatUnit caster, Vector3 aimPoint)
         {
             Vector3 direction = FlatDirection(caster.Position, aimPoint, caster.transform.forward);

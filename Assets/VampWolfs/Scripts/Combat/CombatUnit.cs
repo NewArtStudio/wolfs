@@ -181,7 +181,7 @@ namespace VampWolfs
             Telegraph.Hide();
 
             FaceTowards(AimPoint);
-            Visual.PlayAttack();
+            Visual.PlayAttack(ability.Motion);
             ability.Execute(this, AimPoint);
         }
 
@@ -262,6 +262,7 @@ namespace VampWolfs
 
             Velocity = velocity;
             Visual.SetMotion(velocity, MoveSpeed);
+            Visual.SetCasting(IsCasting ? CastProgress : 0f, IsCasting ? currentCast.Motion : AttackMotion.None);
         }
 
         void UpdateTelegraph()
