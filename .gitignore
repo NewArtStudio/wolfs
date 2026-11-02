@@ -41,3 +41,4 @@ sysinfo.txt
 [Rr]ecovery/
 _Recovery/
 _Recovery.meta
+__pycache__/

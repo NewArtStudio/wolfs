@@ -204,14 +204,14 @@ namespace VampWolfs
         }
 
         /// <summary>
-        /// Big procedural map: the invader appears at fighting distance (22–34 m: out of sight in the mist,
+        /// Big procedural map: the invader appears at fighting distance (28–38 m: beyond the mist start of 26 m,
         /// a few seconds away), on reachable floor. Falls back to the farthest prepared spawn.
         /// </summary>
         Vector3 InvaderSpawnPoint()
         {
             float x, z;
             if (layout.Grid != null && Player != null
-                && layout.Grid.RandomPointAround(new System.Random(), Player.Position.x, Player.Position.z, 22f, 34f, 3f, 1.2f, out x, out z))
+                && layout.Grid.RandomPointAround(new System.Random(), Player.Position.x, Player.Position.z, 28f, 38f, 3f, 1.2f, out x, out z))
             {
                 return new Vector3(x, 0f, z);
             }

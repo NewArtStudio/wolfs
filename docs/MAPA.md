@@ -8,6 +8,10 @@ dá para jogar a vida inteira sem repetir um mapa.
 
 ![Os 10 tiles e um mapa de exemplo](img/mapa_tiles.png)
 
+Mapa montado pelo próprio código do jogo (seed 42), com as áreas onde o lobisomem não cabe em vermelho claro:
+
+![Mapa gerado pelo C#](img/mapa_exemplo_seed42.png)
+
 ## Por que qualquer tile encaixa em qualquer outro
 
 Todo tile segue a mesma **regra de borda**:
@@ -41,7 +45,7 @@ Os limites existem só para não sair um mapa com 8 celeiros. **Não há tile es
 
 - **você** nasce num ponto livre sorteado;
 - o **portal de extração** fica a 40–80% do lado do mapa de você (43–86 m), num lugar com espaço em volta;
-- o **invasor** aparece a 22–34 m de onde você está (escondido na névoa, a poucos segundos de distância).
+- o **invasor** aparece a 28–38 m de onde você está (depois do início da névoa, a poucos segundos de distância).
 
 Uma **seta roxa** na borda da tela aponta para o portal quando ele está fora da tela.
 
@@ -99,6 +103,10 @@ ou `fence.prefab`. O jogo usa o prefab no lugar da forma simples, em todos os ti
 | lantern / scarecrow / millstone / sacks / log | pequenos | sim |
 | road, pond, dock, campfire, reeds, flowers, pumpkin | — | não (decoração) |
 
+**Cobertura:** só peças **altas** param tiros (celeiro, casa, cripta, moinho, barraca, poço, feno, árvores, pedras,
+carroça, cercas, cerca viva, milho). Peças **baixas** (caixote, barril, sacos, tronco, túmulo, lampião, espantalho,
+mó, cocho, lenha, fardo) bloqueiam o passo, mas o tiro passa por cima. Para mudar: lista `LOW` no `build_farm_tiles.py`.
+
 ## Criar ou mudar tiles
 
 Tudo em `Tools/Data/build_farm_tiles.py` (uma função por tile, com coordenadas de −9 a 9).
@@ -120,3 +128,11 @@ coloque-a na lista `TILES`.
 - `Scripts/World/FarmPieces.cs`: o visual de cada peça (formas simples ou o seu prefab).
 - `Scripts/World/FarmBuilder.cs`: luz da lua, névoa roxa e o seed.
 - A IA (`AI/WerewolfAI.cs`) vai em linha reta quando enxerga o alvo e segue o caminho A* quando há obstáculo no meio.
+
+## Limites conhecidos
+
+- **Celular (renderer Mobile, Forward):** cada objeto recebe no máximo 4 luzes. Com ~30 lampiões/fogueiras no mapa,
+  o chão pode "piscar" as luzes ao mover a câmera. No PC (Forward+) não acontece.
+- **Prefabs com Read/Write desligado** não são juntados em malhas grandes (só perde desempenho, aparece um aviso).
+- As ovelhas andam em linha reta (não usam o GPS da IA) e podem ficar encostadas em obstáculos.
+- **Character Size acima de ~1,23** deixa o lobisomem maior que a navegação: o jogo avisa no Console.

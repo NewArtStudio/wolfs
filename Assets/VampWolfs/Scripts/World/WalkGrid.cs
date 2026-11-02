@@ -192,15 +192,16 @@ namespace VampWolfs
         /// <summary>Nearest free cell to a point (the character may be touching a wall), searching up to "radius" cells.</summary>
         bool NearestFree(int cx, int cz, int radius, out int fx, out int fz)
         {
+            // "free" here means REACHABLE: a path to a closed pocket would search the whole map and fail
             fx = cx; fz = cz;
-            if (InGrid(cx, cz) && free[cz * Count + cx]) return true;
+            if (InGrid(cx, cz) && reachable[cz * Count + cx]) return true;
             for (int r = 1; r <= radius; r++)
                 for (int dz = -r; dz <= r; dz++)
                     for (int dx = -r; dx <= r; dx++)
                     {
                         if (Math.Abs(dx) != r && Math.Abs(dz) != r) continue;
                         int nx = cx + dx, nz = cz + dz;
-                        if (InGrid(nx, nz) && free[nz * Count + nx]) { fx = nx; fz = nz; return true; }
+                        if (InGrid(nx, nz) && reachable[nz * Count + nx]) { fx = nx; fz = nz; return true; }
                     }
             return false;
         }
@@ -210,7 +211,10 @@ namespace VampWolfs
         int[] cameFrom;
         float[] gScore;
         int[] stamp;
+        int[] closed;
         int stampId;
+        readonly MinHeap open = new MinHeap();
+        readonly List<int> cells = new List<int>();
 
         /// <summary>
         /// A* path (8 directions, no cutting corners). Fills "path" with world points (x, z pairs) from the
@@ -222,14 +226,14 @@ namespace VampWolfs
             int ax, az, bx, bz;
             ToCell(sx, sz, out ax, out az);
             ToCell(gx, gz, out bx, out bz);
-            if (!NearestFree(ax, az, 4, out ax, out az) || !NearestFree(bx, bz, 6, out bx, out bz)) return false;
+            if (!NearestFree(ax, az, 8, out ax, out az) || !NearestFree(bx, bz, 12, out bx, out bz)) return false;
 
             int n = Count * Count;
-            if (cameFrom == null) { cameFrom = new int[n]; gScore = new float[n]; stamp = new int[n]; }
+            if (cameFrom == null) { cameFrom = new int[n]; gScore = new float[n]; stamp = new int[n]; closed = new int[n]; }
             stampId++;
 
             int start = az * Count + ax, goal = bz * Count + bx;
-            MinHeap open = new MinHeap();
+            open.Clear();
             stamp[start] = stampId; gScore[start] = 0f; cameFrom[start] = -1;
             open.Push(start, Heuristic(ax, az, bx, bz));
             int expanded = 0;
@@ -238,6 +242,8 @@ namespace VampWolfs
             while (open.Count > 0)
             {
                 int c = open.Pop();
+                if (closed[c] == stampId) continue;   // stale heap entry (a better one was already expanded)
+                closed[c] = stampId;
                 if (c == goal) { found = true; break; }
                 if (++expanded > maxNodes) break;
                 int cx = c % Count, cz = c / Count;
@@ -257,7 +263,7 @@ namespace VampWolfs
             }
             if (!found) return false;
 
-            List<int> cells = new List<int>();
+            cells.Clear();
             for (int c = goal; c >= 0; c = cameFrom[c]) cells.Add(c);
             cells.Reverse();
 
@@ -299,6 +305,8 @@ namespace VampWolfs
             readonly List<int> items = new List<int>();
             readonly List<float> keys = new List<float>();
             public int Count { get { return items.Count; } }
+
+            public void Clear() { items.Clear(); keys.Clear(); }
 
             public void Push(int item, float key)
             {

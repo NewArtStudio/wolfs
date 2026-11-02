@@ -72,25 +72,33 @@ namespace VampWolfs
         static void ScatterDecor(FarmPlan plan, Transform parent, System.Random rng)
         {
             float half = plan.TileSize * 0.5f - 0.5f;
-            foreach (FarmPlacement cell in plan.Cells)
+            // pieces never cross their tile (free border), so each tile only checks its own pieces
+            List<PlacedPiece>[] byCell = new List<PlacedPiece>[plan.Cells.Length];
+            for (int i = 0; i < byCell.Length; i++) byCell[i] = new List<PlacedPiece>();
+            foreach (PlacedPiece p in plan.Pieces) byCell[p.Cell].Add(p);
+
+            for (int c = 0; c < plan.Cells.Length; c++)
             {
+                FarmPlacement cell = plan.Cells[c];
                 int placed = 0;
                 for (int attempt = 0; attempt < ScatterPerTile * 4 && placed < ScatterPerTile; attempt++)
                 {
                     float x = cell.CenterX + ((float)rng.NextDouble() * 2f - 1f) * half;
                     float z = cell.CenterZ + ((float)rng.NextDouble() * 2f - 1f) * half;
-                    if (Covered(plan, x, z)) continue;
+                    if (Covered(byCell[c], x, z, 0.4f, false)) continue;
                     FarmPieces.Scatter(parent, x, z, rng);
                     placed++;
                 }
             }
         }
 
-        static bool Covered(FarmPlan plan, float x, float z)
+        /// <summary>Is (x, z) on some piece? onlyFlat = only roads, pond and dock (non-blocking flat things).</summary>
+        static bool Covered(List<PlacedPiece> pieces, float x, float z, float grow, bool onlyFlat)
         {
-            foreach (PlacedPiece p in plan.Pieces)
+            foreach (PlacedPiece p in pieces)
             {
-                if (p.Footprint != null && p.Footprint.Contains(x, z, 0.4f)) return true;
+                if (onlyFlat && (p.Blocks || (p.Def.T != "road" && p.Def.T != "pond" && p.Def.T != "dock"))) continue;
+                if (p.Footprint != null && p.Footprint.Contains(x, z, grow)) return true;
             }
             return false;
         }
@@ -156,12 +164,19 @@ namespace VampWolfs
             if (!grid.RandomPoint(rng, 6f, 1.5f, out px, out pz)) { px = 0f; pz = -h + 6f; }
             layout.PlayerSpawn = new Vector3(px, 0f, pz);
 
-            // portal: far enough to cross part of the map (40%–80% of the side), never inside anything
-            float ex, ez;
-            if (!grid.RandomPointAround(rng, px, pz, side * 0.4f, side * 0.8f, 5f, 2.6f, out ex, out ez)
-                && !grid.RandomPoint(rng, 5f, 2.6f, out ex, out ez))
+            // portal: far enough to cross part of the map (40%–80% of the side), never inside anything and
+            // never on the pond or a road (the flat portal would be hidden under them)
+            float ex = -px, ez = -pz;
+            for (int attempt = 0; attempt < 40; attempt++)
             {
-                ex = -px; ez = -pz;
+                float tx, tz;
+                if (!grid.RandomPointAround(rng, px, pz, side * 0.4f, side * 0.8f, 5f, 2.6f, out tx, out tz)
+                    && !grid.RandomPoint(rng, 5f, 2.6f, out tx, out tz))
+                {
+                    break;
+                }
+                ex = tx; ez = tz;
+                if (!Covered(plan.Pieces, tx, tz, 2.4f, true)) break;
             }
             layout.ExtractionPosition = new Vector3(ex, 0f, ez);
 

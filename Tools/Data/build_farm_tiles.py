@@ -26,6 +26,8 @@ CHAR_R = 0.8          # raio do MAIOR personagem (lobisomem 0,65 × tamanho 1,2)
 ROAD_W = 2.2
 
 # tipo: (forma, largura x, profundidade z ou raio, bloqueia?)
+# Peças BAIXAS (LOW) bloqueiam o passo mas NÃO o tiro: só o que é alto serve de cobertura (estilo Battlerite).
+LOW = {"bale", "crate", "barrel", "sacks", "log", "grave", "lantern", "scarecrow", "millstone", "trough", "woodpile"}
 PIECES = {
     "barn":      ("box", 8.0, 7.0, True),
     "house":     ("box", 7.0, 6.0, True),
@@ -174,10 +176,10 @@ def t_pond():
 
 def t_corn():
     p = cross_roads()
-    # fileiras a 2,4 m: sobram 1,7 m entre elas — dá para correr no meio do milho
-    for x in (-6.5, -4.1, -1.7):
+    # fileiras a 2,7 m: sobram 2,0 m entre elas — o lobisomem (e a IA) correm no meio do milho
+    for x in (-6.6, -3.9, -1.2):
         p.append(seg("croprow", x, 1.8, x, 6.8))
-    for x in (1.7, 4.1, 6.5):
+    for x in (1.2, 3.9, 6.6):
         p.append(seg("croprow", x, -6.8, x, -1.8))
     p += [P("scarecrow", 4.4, 4.4), P("pumpkin", 3.0, 3.0), P("pumpkin", 5.6, 2.6), P("pumpkin", 3.4, 6.0),
           P("cart", -4.4, -4.6, 75), P("sacks", -2.2, -3.0), P("sacks", -6.2, -2.8, S=0.8)]
@@ -559,7 +561,7 @@ def main():
     if not ok:
         sys.exit("tiles inválidos: nada foi gravado")
     # formas de colisão de cada peça (o C# lê daqui: uma fonte só). W/D = 0 -> vem da peça (W, L).
-    shapes = [{"T": t, "Shape": v[0], "W": v[1] or 0.0, "D": v[2] or 0.0, "Block": v[3]} for t, v in PIECES.items()]
+    shapes = [{"T": t, "Shape": v[0], "W": v[1] or 0.0, "D": v[2] or 0.0, "Block": v[3], "Low": t in LOW} for t, v in PIECES.items()]
     data = {"TileSize": TILE, "Margin": MARGIN, "Shapes": rounded(shapes), "Tiles": rounded(TILES)}
     with open(out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

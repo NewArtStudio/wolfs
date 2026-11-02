@@ -11,11 +11,20 @@ namespace VampWolfs
         public float HalfW, HalfD;  // box half sizes, or ellipse radii (circle: both = radius)
         public float Yaw;           // degrees
 
+        float cos = float.NaN, sin;
+
         /// <summary>True if (x, z) is inside the shape grown by "grow" meters.</summary>
         public bool Contains(float x, float z, float grow)
         {
-            float lx, lz;
-            FarmPlan.Rotate(x - X, z - Z, -Yaw, out lx, out lz);
+            if (float.IsNaN(cos))
+            {
+                double rad = -Yaw * Math.PI / 180.0;
+                cos = (float)Math.Cos(rad);
+                sin = (float)Math.Sin(rad);
+            }
+            float dx0 = x - X, dz0 = z - Z;
+            float lx = dx0 * cos + dz0 * sin;
+            float lz = -dx0 * sin + dz0 * cos;
             if (IsBox)
             {
                 float dx = Math.Max(Math.Abs(lx) - HalfW, 0f);
@@ -37,6 +46,7 @@ namespace VampWolfs
         public float X, Z, Yaw;     // world
         public FarmFootprint Footprint;
         public bool Blocks;
+        public bool Low;            // blocks walking, not shots
         public int Cell;            // index of the tile it belongs to
     }
 
@@ -265,6 +275,7 @@ namespace VampWolfs
 
                     FarmShapeDef shape = catalog.Shape(def.T);
                     p.Blocks = shape != null && shape.Block;
+                    p.Low = shape != null && shape.Low;
                     p.Footprint = MakeFootprint(shape, def, p.X, p.Z, yaw);
                     Pieces.Add(p);
                 }

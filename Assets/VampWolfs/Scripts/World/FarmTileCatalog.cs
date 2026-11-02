@@ -25,7 +25,8 @@ namespace VampWolfs
         public string T;
         public string Shape;  // "box", "circle", "ellipse"
         public float W, D;    // box: width x depth; circle: W = radius. 0 = comes from the piece (W, L)
-        public bool Block;    // blocks movement and projectiles
+        public bool Block;    // blocks movement
+        public bool Low;      // low piece (crate, grave…): blocks movement but NOT projectiles
     }
 
     [Serializable]

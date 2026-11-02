@@ -41,6 +41,12 @@ namespace VampWolfs
             settings.ArenaHalfSize = Mathf.Max(1, settings.FarmGridSize) * catalog.TileSize * 0.5f;
             spotRng = new System.Random(seed + 1);
 
+            if (0.65f * settings.CharacterSize > WalkGrid.CharacterRadius + 0.01f)
+            {
+                Debug.LogWarning("[VampWolfs] Character Size " + settings.CharacterSize + " deixa o lobisomem maior que o raio da navegação ("
+                    + WalkGrid.CharacterRadius + " m): a IA pode travar em corredores. Ajuste CHAR_R no build_farm_tiles.py e WalkGrid.CharacterRadius.");
+            }
+
             FarmLayout layout = FarmGenerator.Build(root, farm, settings, seed);
             Debug.Log("[VampWolfs] Fazenda gerada: seed " + seed + ", " + settings.FarmGridSize + "×" + settings.FarmGridSize + " tiles");
             return layout;

@@ -7,231 +7,264 @@
    "Shape": "box",
    "W": 8.0,
    "D": 7.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "house",
    "Shape": "box",
    "W": 7.0,
    "D": 6.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "crypt",
    "Shape": "box",
    "W": 4.0,
    "D": 3.4,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "tent",
    "Shape": "box",
    "W": 3.0,
    "D": 3.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "windmill",
    "Shape": "circle",
    "W": 2.0,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "well",
    "Shape": "circle",
    "W": 0.9,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "haystack",
    "Shape": "circle",
    "W": 0.8,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "bale",
    "Shape": "box",
    "W": 1.4,
    "D": 0.9,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "tree",
    "Shape": "circle",
    "W": 0.35,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "deadtree",
    "Shape": "circle",
    "W": 0.3,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "rock",
    "Shape": "circle",
    "W": 0.6,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "crate",
    "Shape": "box",
    "W": 1.0,
    "D": 1.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "barrel",
    "Shape": "circle",
    "W": 0.45,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "cart",
    "Shape": "box",
    "W": 1.6,
    "D": 3.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "woodpile",
    "Shape": "box",
    "W": 2.2,
    "D": 1.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "trough",
    "Shape": "box",
    "W": 0.8,
    "D": 2.4,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "fence",
    "Shape": "box",
    "W": 0.3,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "ironfence",
    "Shape": "box",
    "W": 0.2,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "hedge",
    "Shape": "box",
    "W": 0.9,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "croprow",
    "Shape": "box",
    "W": 0.7,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": false
   },
   {
    "T": "grave",
    "Shape": "box",
    "W": 0.8,
    "D": 0.3,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "lantern",
    "Shape": "circle",
    "W": 0.15,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "scarecrow",
    "Shape": "circle",
    "W": 0.25,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "millstone",
    "Shape": "circle",
    "W": 0.8,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "sacks",
    "Shape": "circle",
    "W": 0.5,
    "D": 0.0,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "log",
    "Shape": "box",
    "W": 1.6,
    "D": 0.5,
-   "Block": true
+   "Block": true,
+   "Low": true
   },
   {
    "T": "road",
    "Shape": "box",
    "W": 0.0,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "pond",
    "Shape": "ellipse",
    "W": 0.0,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "dock",
    "Shape": "box",
    "W": 0.0,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "campfire",
    "Shape": "circle",
    "W": 0.6,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "reeds",
    "Shape": "circle",
    "W": 0.5,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "flowers",
    "Shape": "circle",
    "W": 0.4,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   },
   {
    "T": "pumpkin",
    "Shape": "circle",
    "W": 0.35,
    "D": 0.0,
-   "Block": false
+   "Block": false,
+   "Low": false
   }
  ],
  "Tiles": [
@@ -1043,42 +1076,42 @@
     },
     {
      "T": "croprow",
-     "X": -6.5,
+     "X": -6.6,
      "Z": 4.3,
      "R": 0.0,
      "L": 5.0
     },
     {
      "T": "croprow",
-     "X": -4.1,
+     "X": -3.9,
      "Z": 4.3,
      "R": 0.0,
      "L": 5.0
     },
     {
      "T": "croprow",
-     "X": -1.7,
+     "X": -1.2,
      "Z": 4.3,
      "R": 0.0,
      "L": 5.0
     },
     {
      "T": "croprow",
-     "X": 1.7,
+     "X": 1.2,
      "Z": -4.3,
      "R": 0.0,
      "L": 5.0
     },
     {
      "T": "croprow",
-     "X": 4.1,
+     "X": 3.9,
      "Z": -4.3,
      "R": 0.0,
      "L": 5.0
     },
     {
      "T": "croprow",
-     "X": 6.5,
+     "X": 6.6,
      "Z": -4.3,
      "R": 0.0,
      "L": 5.0

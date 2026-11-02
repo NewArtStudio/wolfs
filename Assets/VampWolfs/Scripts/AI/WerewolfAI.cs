@@ -273,8 +273,9 @@ namespace VampWolfs
                 return straight;
             }
 
+            // recompute at most every 0.6 s (0.3 s if the goal moved a lot); after a failure wait 1 s
             bool goalMoved = (goal - pathGoal).sqrMagnitude > 9f;
-            if (path.Count == 0 || Time.time >= nextPathTime || goalMoved)
+            if (Time.time >= nextPathTime || (goalMoved && Time.time >= nextPathTime - 0.3f))
             {
                 nextPathTime = Time.time + 0.6f;
                 pathGoal = goal;
@@ -282,8 +283,12 @@ namespace VampWolfs
                 if (!grid.FindPath(pos.x, pos.z, goal.x, goal.z, path))
                 {
                     path.Clear();
-                    return straight;
+                    nextPathTime = Time.time + 1f;
                 }
+            }
+            if (path.Count == 0)
+            {
+                return straight;
             }
 
             // skip corners already reached, and jump ahead while the next corner is in plain sight

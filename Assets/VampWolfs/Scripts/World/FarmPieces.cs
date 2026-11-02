@@ -114,7 +114,8 @@ namespace VampWolfs
                 c.radius = Mathf.Max(f.HalfW, f.HalfD);
                 c.height = 3f + c.radius * 2f;
             }
-            go.AddComponent<Obstacle>();
+            // low pieces (crates, graves…) block walking but shots fly over them: no Obstacle marker
+            if (!piece.Low) go.AddComponent<Obstacle>();
         }
 
         // ---------------------------------------------------------------- prefab override
@@ -171,9 +172,10 @@ namespace VampWolfs
             return Shapes.Create(PrimitiveType.Cube, parent, "Glow", pos, scale, color, true);
         }
 
+        /// <summary>Slight color variation in 7 fixed steps (each distinct color is a material: keep them few).</summary>
         static Color Vary(Color c, System.Random rng, float amount)
         {
-            float k = 1f + ((float)rng.NextDouble() * 2f - 1f) * amount;
+            float k = 1f + (rng.Next(7) - 3) / 3f * amount;
             return new Color(c.r * k, c.g * k, c.b * k, c.a);
         }
 
