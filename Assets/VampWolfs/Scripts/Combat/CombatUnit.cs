@@ -18,6 +18,9 @@ namespace VampWolfs
         public float MoveSpeed = 6f;
         public bool IsPlayer;
 
+        /// <summary>Minor enemy (peasant): the HUD shows only a small health bar, no name.</summary>
+        public bool IsMinor;
+
         public string DisplayName { get; private set; }
         public Health Health { get; private set; }
         public Energy Energy { get; private set; }

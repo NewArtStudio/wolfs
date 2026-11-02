@@ -92,6 +92,7 @@ namespace VampWolfs
             DrawBanner();
             DrawBag();
             DrawExtraction();
+            DrawChestChannel();
             DrawPlayerBars();
             DrawAbilityBar();
 
@@ -126,6 +127,12 @@ namespace VampWolfs
                 Vector2 p;
                 if (!WorldToGui(unit.Position + Vector3.up * (unit.Controller.height + 0.5f), out p))
                 {
+                    continue;
+                }
+
+                if (unit.IsMinor)
+                {
+                    DrawMinorBar(unit, p);
                     continue;
                 }
 
@@ -254,6 +261,29 @@ namespace VampWolfs
                 }
             }
 
+            LootChest nearestChest = null;
+            float chestDistance = float.MaxValue;
+            int chestsLeft = 0;
+            for (int i = 0; i < LootChest.All.Count; i++)
+            {
+                LootChest chest = LootChest.All[i];
+                if (chest == null || chest.IsOpen)
+                {
+                    continue;
+                }
+                chestsLeft++;
+                float d = Vector3.Distance(player.Position, chest.transform.position);
+                if (d < chestDistance)
+                {
+                    chestDistance = d;
+                    nearestChest = chest;
+                }
+            }
+            if (nearestChest != null)
+            {
+                lines.Add("<color=#ffc840>Baú" + (nearestChest.IsRare ? " raro" : "") + " mais perto</color>: " + Mathf.RoundToInt(chestDistance) + " m  (" + chestsLeft + " fechados)");
+            }
+
             lines.Add("<color=#8f86a8>Mapa nº " + match.MapSeed + "</color>");
 
             Rect rect = new Rect(x, y, w, Px(10) + lines.Count * Px(22));
@@ -322,6 +352,45 @@ namespace VampWolfs
             GUI.Label(new Rect(x + Px(10), ly, w, lineH), "<b>EQUIPAMENTO</b> <color=#80ff80>(seguro)</color>  Faixa " + player.Equipment.Stats.PowerTier.ToString("0.0") + "  (I)", label);
             GUI.Label(new Rect(x + Px(16), ly + lineH, w, lineH), player.Equipment.Weapon, small);
             GUI.Label(new Rect(x + Px(16), ly + lineH * 1.8f, w, lineH), player.Equipment.Armor, small);
+        }
+
+        /// <summary>Peasants: just a small health bar (no name, no energy), only near the player — 20+ of them on the map.</summary>
+        void DrawMinorBar(CombatUnit unit, Vector2 p)
+        {
+            CombatUnit player = match.Player;
+            if (player != null && Vector3.Distance(player.Position, unit.Position) > 22f)
+            {
+                return;
+            }
+
+            float w = Px(54);
+            float h = Px(6);
+            Rect rect = new Rect(p.x - w * 0.5f, p.y + Px(6), w, h);
+            Bar(rect, unit.Health.Normalized, EnemyHealth);
+            if (unit.IsCasting)
+            {
+                Bar(new Rect(rect.x, rect.y + h + Px(2), w, Px(3)), unit.CastProgress, CastColor);
+            }
+        }
+
+        /// <summary>"Abrindo baú…" bar while the player channels a chest.</summary>
+        void DrawChestChannel()
+        {
+            for (int i = 0; i < LootChest.All.Count; i++)
+            {
+                LootChest chest = LootChest.All[i];
+                if (chest == null || !chest.IsChanneling)
+                {
+                    continue;
+                }
+
+                float w = Px(320);
+                Rect rect = new Rect((Screen.width - w) * 0.5f, Screen.height * 0.62f, w, Px(16));
+                Color c = chest.IsRare ? new Color(1f, 0.78f, 0.2f) : new Color(1f, 0.85f, 0.5f);
+                Bar(rect, chest.Progress01, c);
+                ShadowLabel(new Rect(rect.x, rect.y - Px(26), w, Px(24)), (chest.IsRare ? "Abrindo baú raro... " : "Abrindo baú... ") + chest.RemainingTime.ToString("0.0") + "s  (fique parado; dano interrompe)", labelCenter, c);
+                return;
+            }
         }
 
         /// <summary>Purple arrow on the edge of the screen pointing to the portal when it is off screen (big map + mist).</summary>
@@ -523,11 +592,12 @@ namespace VampWolfs
                 "C: cancelar conjuração · I: equipamento\n\n" +
                 "<b>OBJETIVO</b>\n" +
                 "Mate ovelhas → itens vão para a BAG.\n" +
+                "Baús (guardados por camponeses): fique parado\nao lado para abrir. Dourado = raro.\n" +
                 "Morrer = perde a bag, mantém o equipamento.\n" +
                 "Fique no portal roxo para extrair.";
 
             float w = Px(330);
-            float h = Px(250);
+            float h = Px(290);
             Rect rect = new Rect(Px(12), Px(12), w, h);
             DrawRect(rect, PanelColor);
             GUI.Label(Inset(rect, Px(10)), text, small);

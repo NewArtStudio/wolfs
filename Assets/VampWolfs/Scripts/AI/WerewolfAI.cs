@@ -26,10 +26,7 @@ namespace VampWolfs
         float avoidUntil;
 
         // path on the procedural map (WalkGrid A*): x,z pairs
-        readonly List<float> path = new List<float>();
-        int pathIndex;
-        float nextPathTime;
-        Vector3 pathGoal;
+        readonly NavAgent nav = new NavAgent();
         System.Random wanderRng;
 
         float nextJudgedCleanup;
@@ -60,7 +57,7 @@ namespace VampWolfs
 
             CleanupJudgedProjectiles();
 
-            CombatUnit target = match.Player;
+            CombatUnit target = ChooseTarget(match);
             if (target == null || target.IsDead)
             {
                 SeekLootOrWander(match);
@@ -257,54 +254,32 @@ namespace VampWolfs
             unit.MoveInput = toWander.magnitude > 1f ? Steer(NavDirection(wanderTarget, toWander.normalized)) * 0.5f : Vector3.zero;
         }
 
-        /// <summary>
-        /// Direction toward "goal" on the procedural map: straight when the way is clear, otherwise along an
-        /// A* path around barns and fences (recomputed every 0.6 s or when the goal moves). "straight" is the
-        /// direct direction, used when there is no map grid or no path.
-        /// </summary>
+        /// <summary>Direction toward "goal" on the procedural map (see NavAgent: straight or A* path).</summary>
         Vector3 NavDirection(Vector3 goal, Vector3 straight)
         {
-            MatchManager match = MatchManager.Instance;
-            WalkGrid grid = match != null ? match.Grid : null;
-            Vector3 pos = unit.Position;
-            if (grid == null || grid.LineClear(pos.x, pos.z, goal.x, goal.z, 1f))
-            {
-                path.Clear();
-                return straight;
-            }
+            return nav.Direction(unit.Position, goal, straight);
+        }
 
-            // recompute at most every 0.6 s (0.3 s if the goal moved a lot); after a failure wait 1 s
-            bool goalMoved = (goal - pathGoal).sqrMagnitude > 9f;
-            if (Time.time >= nextPathTime || (goalMoved && Time.time >= nextPathTime - 0.3f))
-            {
-                nextPathTime = Time.time + 0.6f;
-                pathGoal = goal;
-                pathIndex = 0;
-                if (!grid.FindPath(pos.x, pos.z, goal.x, goal.z, path))
-                {
-                    path.Clear();
-                    nextPathTime = Time.time + 1f;
-                }
-            }
-            if (path.Count == 0)
-            {
-                return straight;
-            }
+        /// <summary>
+        /// Normally the player. A peasant that is hitting the invader from up close (and the player is far)
+        /// gets punished first — the player can lure the invader into the peasants.
+        /// </summary>
+        CombatUnit ChooseTarget(MatchManager match)
+        {
+            CombatUnit player = match.Player;
+            float playerDistance = player != null && !player.IsDead ? Vector3.Distance(player.Position, unit.Position) : float.MaxValue;
+            if (playerDistance < 10f) return player;
 
-            // skip corners already reached, and jump ahead while the next corner is in plain sight
-            int corners = path.Count / 2;
-            while (pathIndex < corners - 1)
+            CombatUnit best = null;
+            float bestDistance = 5f;
+            for (int i = 0; i < Peasant.All.Count; i++)
             {
-                float cx = path[pathIndex * 2], cz = path[pathIndex * 2 + 1];
-                float nx = path[pathIndex * 2 + 2], nz = path[pathIndex * 2 + 3];
-                bool reached = (cx - pos.x) * (cx - pos.x) + (cz - pos.z) * (cz - pos.z) < 0.6f;
-                if (reached || grid.LineClear(pos.x, pos.z, nx, nz, 0.8f)) pathIndex++;
-                else break;
+                Peasant p = Peasant.All[i];
+                if (p == null || p.Unit == null || p.Unit.IsDead || p.Target != unit) continue;
+                float d = Vector3.Distance(p.Unit.Position, unit.Position);
+                if (d < bestDistance) { bestDistance = d; best = p.Unit; }
             }
-
-            if (pathIndex >= corners) return straight;
-            Vector3 to = new Vector3(path[pathIndex * 2] - pos.x, 0f, path[pathIndex * 2 + 1] - pos.z);
-            return to.sqrMagnitude > 0.0001f ? to.normalized : straight;
+            return best != null ? best : player;
         }
 
         /// <summary>Very small obstacle avoidance: if the way is blocked, try rotated directions.</summary>

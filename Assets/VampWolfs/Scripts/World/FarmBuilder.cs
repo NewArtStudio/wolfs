@@ -11,6 +11,10 @@ namespace VampWolfs
         public Vector3 ExtractionPosition;
         public Vector3[] InvaderSpawns;
 
+        /// <summary>Where the peasants' chests go (and their guards), and where roaming peasants start.</summary>
+        public Vector3[] ChestSpawns;
+        public Vector3[] RoamerSpawns;
+
         /// <summary>The procedural map (tiles, roads, pieces) and where one can walk.</summary>
         public FarmPlan Plan;
         public WalkGrid Grid;
