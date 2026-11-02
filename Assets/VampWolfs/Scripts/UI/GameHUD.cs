@@ -88,6 +88,7 @@ namespace VampWolfs
             DrawFloatingTexts();
             DrawTopStatus();
             DrawTrackers();
+            DrawPortalArrow();
             DrawBanner();
             DrawBag();
             DrawExtraction();
@@ -253,6 +254,8 @@ namespace VampWolfs
                 }
             }
 
+            lines.Add("<color=#8f86a8>Mapa nº " + match.MapSeed + "</color>");
+
             Rect rect = new Rect(x, y, w, Px(10) + lines.Count * Px(22));
             DrawRect(rect, PanelColor);
             for (int i = 0; i < lines.Count; i++)
@@ -319,6 +322,51 @@ namespace VampWolfs
             GUI.Label(new Rect(x + Px(10), ly, w, lineH), "<b>EQUIPAMENTO</b> <color=#80ff80>(seguro)</color>  Faixa " + player.Equipment.Stats.PowerTier.ToString("0.0") + "  (I)", label);
             GUI.Label(new Rect(x + Px(16), ly + lineH, w, lineH), player.Equipment.Weapon, small);
             GUI.Label(new Rect(x + Px(16), ly + lineH * 1.8f, w, lineH), player.Equipment.Armor, small);
+        }
+
+        /// <summary>Purple arrow on the edge of the screen pointing to the portal when it is off screen (big map + mist).</summary>
+        void DrawPortalArrow()
+        {
+            CombatUnit player = match.Player;
+            if (match.Extraction == null || player == null || player.IsDead || match.IsOver)
+            {
+                return;
+            }
+
+            Vector2 portal, me;
+            bool front = WorldToGui(match.Extraction.transform.position + Vector3.up, out portal);
+            WorldToGui(player.Position, out me);
+            float margin = Px(56);
+            if (front && portal.x > margin && portal.x < Screen.width - margin && portal.y > margin && portal.y < Screen.height - margin)
+            {
+                return;   // visible: no arrow
+            }
+
+            Vector2 dir = front ? portal - me : me - portal;
+            if (dir.sqrMagnitude < 1f)
+            {
+                return;
+            }
+            dir.Normalize();
+
+            // where the ray from the screen center hits the margin rectangle
+            Vector2 center = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            float sx = (Screen.width * 0.5f - margin) / Mathf.Max(0.001f, Mathf.Abs(dir.x));
+            float sy = (Screen.height * 0.5f - margin) / Mathf.Max(0.001f, Mathf.Abs(dir.y));
+            Vector2 tip = center + dir * Mathf.Min(sx, sy);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            Matrix4x4 old = GUI.matrix;
+            GUIUtility.RotateAroundPivot(angle, tip);
+            DrawRect(new Rect(tip.x - Px(26), tip.y - Px(4), Px(20), Px(8)), PortalColor);
+            GUI.matrix = old;
+            GUIUtility.RotateAroundPivot(angle - 45f, tip);   // square with one corner on the tip = arrow head
+            DrawRect(new Rect(tip.x - Px(16), tip.y - Px(16), Px(16), Px(16)), PortalColor);
+            GUI.matrix = old;
+
+            Vector2 labelPos = tip - dir * Px(52);
+            float distance = Vector3.Distance(player.Position, match.Extraction.transform.position);
+            ShadowLabel(new Rect(labelPos.x - Px(60), labelPos.y - Px(11), Px(120), Px(22)), "Portal " + Mathf.RoundToInt(distance) + " m", smallCenter, PortalColor);
         }
 
         void DrawExtraction()

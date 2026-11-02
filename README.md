@@ -2,7 +2,7 @@
 
 Protótipo de **combate estilo Battlerite** + **loop estilo Brumas de Avalon (Albion)**, em Unity 6 / URP.
 
-O jogo abre no **lobby** (cópia da Base do projeto Space em estilo vitoriano: cards dos personagens, Arsenal com baú, equipamento, refino, cristais e gemas — veja [`docs/LOBBY.md`](docs/LOBBY.md) e [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Crie vampiros, lobisomens e caçadores de recompensas, cada um com nível 1–50 e 20 habilidades de classe, e as habilidades vindas das armas e armaduras no estilo Albion — veja [`docs/HABILIDADES.md`](docs/HABILIDADES.md). Em **EXPLORAR**, você entra direto na Fazenda com o personagem escolhido, farmando ovelhas numa fazenda à noite. Depois de 45 s um **invasor (IA) de outra classe** invade o mapa.
+O jogo abre no **lobby** (cópia da Base do projeto Space em estilo vitoriano: cards dos personagens, Arsenal com baú, equipamento, refino, cristais e gemas — veja [`docs/LOBBY.md`](docs/LOBBY.md) e [`docs/EQUIPAMENTO.md`](docs/EQUIPAMENTO.md)). Crie vampiros, lobisomens e caçadores de recompensas, cada um com nível 1–50 e 20 habilidades de classe, e as habilidades vindas das armas e armaduras no estilo Albion — veja [`docs/HABILIDADES.md`](docs/HABILIDADES.md). Em **EXPLORAR**, você entra direto na Fazenda com o personagem escolhido, farmando ovelhas numa fazenda à noite que é **diferente a cada partida** (mapa procedural de 6×6 tiles — veja [`docs/MAPA.md`](docs/MAPA.md)). Depois de 45 s um **invasor (IA) de outra classe** invade o mapa.
 Quem morre perde **só a bag** (o que foi farmado na partida) — o **equipamento nunca cai**.
 Para garantir o loot, fique 4 s no **portal roxo de extração** (levar dano interrompe).
 
@@ -64,7 +64,7 @@ Assets/VampWolfs/
     Skills/      Ability (base) + tipos genéricos: Projectile, Melee, Area, Dash, Counter, Buff
     Characters/  VampireKit, WerewolfKit (números das skills), CharacterFactory, UnitVisual, PlayerController
     AI/          WerewolfAI (usa a mesma API do jogador: mesmos cooldowns e telegraphs)
-    World/       FarmBuilder (mapa), Sheep, ExtractionPoint, Obstacle
+    World/       FarmBuilder (luz/seed), FarmGenerator + FarmPlan + FarmTileCatalog + FarmPieces (mapa procedural), WalkGrid (navegação), Sheep, ExtractionPoint, Obstacle
     Loot/        Inventory (a BAG, em risco), Equipment (seguro), LootBag (bag no chão)
     UI/          GameHUD (IMGUI), FloatingText, BaseScreen (Base antiga em IMGUI, reserva se o lobby faltar)
     Vfx/         efeitos visuais (motor do Space + receitas das habilidades) — veja docs/VFX.md

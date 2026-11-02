@@ -59,6 +59,18 @@ namespace VampWolfs
             get { return State == MatchState.Extracted || State == MatchState.PlayerDead; }
         }
 
+        /// <summary>Where one can walk on this map (spawns, invader pathfinding). Null only if the map failed.</summary>
+        public WalkGrid Grid
+        {
+            get { return layout.Grid; }
+        }
+
+        /// <summary>Seed of the procedural map (same seed = same map).</summary>
+        public int MapSeed
+        {
+            get { return layout.Seed; }
+        }
+
         public float TimeUntilInvasion
         {
             get { return Mathf.Max(0f, Settings.InvasionTime - Elapsed); }
@@ -90,7 +102,7 @@ namespace VampWolfs
 
             Player.Died += OnUnitDied;
 
-            for (int i = 0; i < Settings.SheepCount; i++)
+            for (int i = 0; i < SheepTarget(); i++)
             {
                 SpawnSheep();
             }
@@ -149,7 +161,7 @@ namespace VampWolfs
 
         void SpawnInvader()
         {
-            Vector3 spawn = FarthestSpawnFromPlayer();
+            Vector3 spawn = InvaderSpawnPoint();
 
             // The invader is always of ANOTHER class (decided with the creator), with gear of the player's power tier.
             GearCatalog catalog = GearCatalog.Instance;
@@ -189,6 +201,28 @@ namespace VampWolfs
                 Effects.Burst(spawn, 3.5f, new Color(0.55f, 0.25f, 0.9f), 0.8f);
             }
             ShowBanner("UM " + InvaderClassName.ToUpperInvariant() + " INVADIU A FAZENDA!\nLute pela bag dele ou fuja pelo portal.", new Color(1f, 0.45f, 0.25f), 4.5f);
+        }
+
+        /// <summary>
+        /// Big procedural map: the invader appears at fighting distance (22–34 m: out of sight in the mist,
+        /// a few seconds away), on reachable floor. Falls back to the farthest prepared spawn.
+        /// </summary>
+        Vector3 InvaderSpawnPoint()
+        {
+            float x, z;
+            if (layout.Grid != null && Player != null
+                && layout.Grid.RandomPointAround(new System.Random(), Player.Position.x, Player.Position.z, 22f, 34f, 3f, 1.2f, out x, out z))
+            {
+                return new Vector3(x, 0f, z);
+            }
+            return FarthestSpawnFromPlayer();
+        }
+
+        /// <summary>How many sheep the farm keeps: SheepPerTile × tiles, at least SheepCount.</summary>
+        int SheepTarget()
+        {
+            int tiles = Mathf.Max(1, Settings.FarmGridSize) * Mathf.Max(1, Settings.FarmGridSize);
+            return Mathf.Max(Settings.SheepCount, Mathf.RoundToInt(tiles * Settings.SheepPerTile));
         }
 
         Vector3 FarthestSpawnFromPlayer()

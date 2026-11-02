@@ -11,8 +11,18 @@ namespace VampWolfs
     public class MatchSettings
     {
         [Header("Arena")]
-        [Tooltip("Half the side of the square farm, in meters.")]
+        [Tooltip("Half the side of the square farm, in meters. Calculated from the farm grid when the match starts.")]
         public float ArenaHalfSize = 28f;
+
+        [Header("Farm map (procedural, see docs/MAPA.md)")]
+        [Tooltip("Tiles per side (6 = 6×6 tiles of 18 m = 108 m).")]
+        public int FarmGridSize = 6;
+
+        [Tooltip("0 = a new map every match. Any other number always builds the same map (tests, bug reports: the HUD shows the seed).")]
+        public int FarmSeed = 0;
+
+        [Tooltip("Merge the static pieces into big meshes (fewer draw calls). Turn off if something looks wrong.")]
+        public bool FarmMergeMeshes = true;
 
         [Header("Invasion")]
         [Tooltip("Seconds of farming before the werewolf invades.")]
@@ -22,7 +32,11 @@ namespace VampWolfs
         public float InvasionWarning = 8f;
 
         [Header("Sheep")]
+        [Tooltip("Minimum number of sheep.")]
         public int SheepCount = 14;
+
+        [Tooltip("Sheep per farm tile (6×6 = 36 tiles × 1 = 36 sheep). The real count is the larger of this and SheepCount.")]
+        public float SheepPerTile = 1f;
         public float SheepRespawnTime = 10f;
 
         [Header("Loot")]

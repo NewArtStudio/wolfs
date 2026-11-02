@@ -25,6 +25,13 @@ namespace VampWolfs
         Vector3 avoidDirection;
         float avoidUntil;
 
+        // path on the procedural map (WalkGrid A*): x,z pairs
+        readonly List<float> path = new List<float>();
+        int pathIndex;
+        float nextPathTime;
+        Vector3 pathGoal;
+        System.Random wanderRng;
+
         float nextJudgedCleanup;
         readonly HashSet<Projectile> judgedProjectiles = new HashSet<Projectile>();
 
@@ -217,7 +224,7 @@ namespace VampWolfs
                 return;
             }
 
-            unit.MoveInput = Steer(direction);
+            unit.MoveInput = Steer(NavDirection(unit.Position + toTarget, direction));
         }
 
         void SeekLootOrWander(MatchManager match)
@@ -228,7 +235,7 @@ namespace VampWolfs
             {
                 Vector3 toBag = bag.transform.position - unit.Position;
                 toBag.y = 0f;
-                unit.MoveInput = toBag.magnitude > 0.3f ? Steer(toBag.normalized) : Vector3.zero;
+                unit.MoveInput = toBag.magnitude > 0.3f ? Steer(NavDirection(bag.transform.position, toBag.normalized)) : Vector3.zero;
                 return;
             }
 
@@ -237,11 +244,62 @@ namespace VampWolfs
                 nextWanderTime = Time.time + 4f;
                 float h = match.Settings.ArenaHalfSize - 4f;
                 wanderTarget = new Vector3(Random.Range(-h, h), 0f, Random.Range(-h, h));
+                float wx, wz;
+                if (wanderRng == null) wanderRng = new System.Random(GetInstanceID());
+                if (match.Grid != null && match.Grid.RandomPointAround(wanderRng, unit.Position.x, unit.Position.z, 6f, 18f, 3f, 0.5f, out wx, out wz))
+                {
+                    wanderTarget = new Vector3(wx, 0f, wz);
+                }
             }
 
             Vector3 toWander = wanderTarget - unit.Position;
             toWander.y = 0f;
-            unit.MoveInput = toWander.magnitude > 1f ? Steer(toWander.normalized) * 0.5f : Vector3.zero;
+            unit.MoveInput = toWander.magnitude > 1f ? Steer(NavDirection(wanderTarget, toWander.normalized)) * 0.5f : Vector3.zero;
+        }
+
+        /// <summary>
+        /// Direction toward "goal" on the procedural map: straight when the way is clear, otherwise along an
+        /// A* path around barns and fences (recomputed every 0.6 s or when the goal moves). "straight" is the
+        /// direct direction, used when there is no map grid or no path.
+        /// </summary>
+        Vector3 NavDirection(Vector3 goal, Vector3 straight)
+        {
+            MatchManager match = MatchManager.Instance;
+            WalkGrid grid = match != null ? match.Grid : null;
+            Vector3 pos = unit.Position;
+            if (grid == null || grid.LineClear(pos.x, pos.z, goal.x, goal.z, 1f))
+            {
+                path.Clear();
+                return straight;
+            }
+
+            bool goalMoved = (goal - pathGoal).sqrMagnitude > 9f;
+            if (path.Count == 0 || Time.time >= nextPathTime || goalMoved)
+            {
+                nextPathTime = Time.time + 0.6f;
+                pathGoal = goal;
+                pathIndex = 0;
+                if (!grid.FindPath(pos.x, pos.z, goal.x, goal.z, path))
+                {
+                    path.Clear();
+                    return straight;
+                }
+            }
+
+            // skip corners already reached, and jump ahead while the next corner is in plain sight
+            int corners = path.Count / 2;
+            while (pathIndex < corners - 1)
+            {
+                float cx = path[pathIndex * 2], cz = path[pathIndex * 2 + 1];
+                float nx = path[pathIndex * 2 + 2], nz = path[pathIndex * 2 + 3];
+                bool reached = (cx - pos.x) * (cx - pos.x) + (cz - pos.z) * (cz - pos.z) < 0.6f;
+                if (reached || grid.LineClear(pos.x, pos.z, nx, nz, 0.8f)) pathIndex++;
+                else break;
+            }
+
+            if (pathIndex >= corners) return straight;
+            Vector3 to = new Vector3(path[pathIndex * 2] - pos.x, 0f, path[pathIndex * 2 + 1] - pos.z);
+            return to.sqrMagnitude > 0.0001f ? to.normalized : straight;
         }
 
         /// <summary>Very small obstacle avoidance: if the way is blocked, try rotated directions.</summary>
