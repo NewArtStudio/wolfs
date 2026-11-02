@@ -107,7 +107,7 @@ namespace VampWolfs
 
             // Ultimate when there is energy and the target is in its range.
             Ability ult = unit.GetAbility(AbilitySlot.Ultimate);
-            if (ult != null && unit.Energy.Current >= ult.EnergyCost && distance <= Mathf.Max(4f, ult.AiRange) && unit.TryCast(AbilitySlot.Ultimate, false)) return;
+            if (ult != null && !target.IsMinor && unit.Energy.Current >= ult.EnergyCost && distance <= Mathf.Max(4f, ult.AiRange) && unit.TryCast(AbilitySlot.Ultimate, false)) return;
 
             // Any offensive skill in range (a little randomness so it isn't a fixed rotation).
             int start = Random.Range(0, OffenseOrder.Length);
@@ -271,7 +271,7 @@ namespace VampWolfs
             if (playerDistance < 10f) return player;
 
             CombatUnit best = null;
-            float bestDistance = 5f;
+            float bestDistance = 11f;   // covers the shotgun range (10 m)
             for (int i = 0; i < Peasant.All.Count; i++)
             {
                 Peasant p = Peasant.All[i];

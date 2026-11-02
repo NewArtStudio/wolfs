@@ -244,6 +244,7 @@ namespace VampWolfs
                         float a = (g + (float)rng.NextDouble() * 0.5f) * Mathf.PI * 2f / guards;
                         Vector3 pos = spot + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * 2.6f;
                         if (layout.Grid != null && !layout.Grid.IsReachable(pos.x, pos.z)) pos = spot + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * 1.2f;
+                        if (layout.Grid != null && !layout.Grid.IsReachable(pos.x, pos.z)) pos = spot;   // the chest spot is always clear
                         Peasant p = Peasant.Create(parent, pos, RandomWeapon(rng), rng.Next(2) == 0, true, Settings, rng);
                         group.Add(p);
                     }

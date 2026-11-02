@@ -14,6 +14,19 @@ namespace VampWolfs
         int pathIndex;
         float nextPathTime;
         Vector3 pathGoal;
+        readonly int maxNodes;
+
+        // System.Random, not UnityEngine.Random: agents are created in MonoBehaviour field initializers,
+        // where Unity forbids its Random.
+        static readonly System.Random Jitter = new System.Random();
+
+        /// <param name="maxNodes">A* search budget (peasants use a small one: they only fight near home).</param>
+        public NavAgent(int maxNodes = 120000)
+        {
+            this.maxNodes = maxNodes;
+            // spread the first searches so a whole group alerted together doesn't search in the same frame
+            nextPathTime = (float)Jitter.NextDouble() * 0.6f;
+        }
 
         /// <summary>
         /// Direction from "pos" toward "goal". "straight" is returned when there is no map grid or no path.
@@ -32,10 +45,10 @@ namespace VampWolfs
             bool goalMoved = (goal - pathGoal).sqrMagnitude > 9f;
             if (Time.time >= nextPathTime || (goalMoved && Time.time >= nextPathTime - 0.3f))
             {
-                nextPathTime = Time.time + 0.6f;
+                nextPathTime = Time.time + 0.5f + (float)Jitter.NextDouble() * 0.2f;
                 pathGoal = goal;
                 pathIndex = 0;
-                if (!grid.FindPath(pos.x, pos.z, goal.x, goal.z, path))
+                if (!grid.FindPath(pos.x, pos.z, goal.x, goal.z, path, maxNodes))
                 {
                     path.Clear();
                     nextPathTime = Time.time + 1f;

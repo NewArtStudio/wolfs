@@ -96,7 +96,8 @@ namespace VampWolfs
             Vector3 offset = player.Position - transform.position;
             offset.y = 0f;
             // standing still next to it (moving or casting = not opening)
-            bool opening = offset.magnitude <= OpenRadius && player.MoveInput.sqrMagnitude < 0.01f && !player.IsCasting;
+            bool opening = offset.magnitude <= OpenRadius && player.MoveInput.sqrMagnitude < 0.01f && !player.IsCasting
+                && Time.time - player.LastCastTime > 0.5f && !OtherChestOpening();
             if (!opening)
             {
                 IsChanneling = false;
@@ -107,6 +108,13 @@ namespace VampWolfs
             IsChanneling = true;
             elapsed += Time.deltaTime;
             if (elapsed >= ChannelTime) Open(player, match);
+        }
+
+        /// <summary>Only one chest opens at a time (two chests side by side don't open together).</summary>
+        bool OtherChestOpening()
+        {
+            for (int i = 0; i < All.Count; i++) if (All[i] != this && All[i] != null && All[i].IsChanneling) return true;
+            return false;
         }
 
         void Open(CombatUnit opener, MatchManager match)

@@ -21,6 +21,9 @@ namespace VampWolfs
         /// <summary>Minor enemy (peasant): the HUD shows only a small health bar, no name.</summary>
         public bool IsMinor;
 
+        /// <summary>Time.time of the last ability started (chests: attacking restarts the opening).</summary>
+        public float LastCastTime { get; private set; } = -100f;
+
         public string DisplayName { get; private set; }
         public Health Health { get; private set; }
         public Energy Energy { get; private set; }
@@ -187,6 +190,7 @@ namespace VampWolfs
             currentCastSlot = slotAbility;
             castEnergySpent = ability.EnergyCost;
             castStartTime = Time.time;
+            LastCastTime = Time.time;
             castEndTime = Time.time + CastTimeFor(slot, ability);
             FaceTowards(AimPoint);
 

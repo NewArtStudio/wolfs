@@ -16,10 +16,11 @@ namespace VampWolfs
         Peasant peasant;
         CombatUnit unit;
         MatchSettings settings;
-        readonly NavAgent nav = new NavAgent();
+        readonly NavAgent nav = new NavAgent(30000);   // small search budget: peasants fight near home
         System.Random rng;
 
         bool returning;
+        float returnStarted;
         Vector3 idleTarget;
         float nextIdleTime;
         float nextDecisionTime;
@@ -55,8 +56,10 @@ namespace VampWolfs
             float fromHome = Flat(unit.Position - peasant.Home).magnitude;
             if (peasant.Target != null && (peasant.Target.IsDead || fromHome > settings.PeasantLeashRange))
             {
+                // give up: walk home and heal (also when the enemy died next to home)
                 peasant.Target = null;
-                returning = fromHome > 3f;
+                returning = true;
+                returnStarted = Time.time;
             }
 
             if (returning)
@@ -94,7 +97,10 @@ namespace VampWolfs
             if (peasant.Weapon == PeasantWeapon.Shotgun)
             {
                 // keep a shooting distance: back off if too close, come closer if too far
-                if (distance < 4f) unit.MoveInput = -dir;
+                // back off around obstacles, but never past the leash
+                float fromHome = Flat(unit.Position - peasant.Home).magnitude;
+                if (distance < 4f && fromHome < settings.PeasantLeashRange - 3f) unit.MoveInput = nav.Direction(unit.Position, unit.Position - dir * 4f, -dir);
+                else if (distance < 4f) unit.MoveInput = Vector3.Cross(Vector3.up, dir);
                 else if (distance > range * 0.85f) unit.MoveInput = nav.Direction(unit.Position, target.Position, dir);
                 else unit.MoveInput = Vector3.Cross(Vector3.up, dir) * 0.4f;
             }
@@ -110,6 +116,16 @@ namespace VampWolfs
 
         void ReturnHome(float fromHome)
         {
+            // like Albion mobs "evading": they heal fast on the way back (no free kills by kiting past the leash)
+            unit.Health.Heal(unit.Health.MaxHealth * 0.3f * Time.deltaTime);
+
+            // could not get home (blocked spot)? stay here: this is home now
+            if (Time.time - returnStarted > 10f)
+            {
+                peasant.Home = unit.Position;
+                fromHome = 0f;
+            }
+
             if (fromHome <= 1.5f)
             {
                 returning = false;
@@ -132,6 +148,7 @@ namespace VampWolfs
             Vector3 to = Flat(idleTarget - unit.Position);
             if (to.magnitude < 0.6f)
             {
+                if (!peasant.IsGuard) peasant.Home = idleTarget;   // roamers live wherever they arrived
                 unit.MoveInput = Vector3.zero;
                 return;
             }
@@ -150,7 +167,6 @@ namespace VampWolfs
             if (grid != null && grid.RandomPointAround(rng, from.x, from.z, min, max, 3f, 0.3f, out x, out z))
             {
                 Vector3 spot = new Vector3(x, 0f, z);
-                if (!peasant.IsGuard) peasant.Home = spot;   // roamers "live" wherever they walk to (leash follows them)
                 return spot;
             }
             return peasant.Home;

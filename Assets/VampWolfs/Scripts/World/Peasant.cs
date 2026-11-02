@@ -71,6 +71,8 @@ namespace VampWolfs
         public void Alert(CombatUnit enemy)
         {
             if (Group == null) return;
+            // roamers have no chest: the leash starts where the fight starts
+            if (!IsGuard && (Target == null || Target.IsDead)) Home = Unit.Position;
             for (int i = 0; i < Group.Count; i++)
             {
                 Peasant p = Group[i];

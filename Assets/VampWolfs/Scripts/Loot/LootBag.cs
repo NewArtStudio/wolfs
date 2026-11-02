@@ -84,7 +84,8 @@ namespace VampWolfs
             for (int i = 0; i < CombatUnit.All.Count; i++)
             {
                 CombatUnit unit = CombatUnit.All[i];
-                if (unit == null || unit.IsDead)
+                // peasants never pick bags up (their loot would be lost for good)
+                if (unit == null || unit.IsDead || unit.IsMinor)
                 {
                     continue;
                 }

@@ -115,7 +115,8 @@ namespace VampWolfs
             for (int i = 0; i < CombatUnit.All.Count; i++)
             {
                 CombatUnit unit = CombatUnit.All[i];
-                if (unit == null || unit.IsDead)
+                // peasants are farm folk: sheep don't run from them
+                if (unit == null || unit.IsDead || unit.IsMinor)
                 {
                     continue;
                 }

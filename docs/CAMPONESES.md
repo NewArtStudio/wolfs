@@ -38,13 +38,18 @@ para mapas futuros (outras zonas) darem tiers maiores sem mexer em código.
   O dano das armas é cortado pela metade porque camponês não veste equipamento (regra do `DamageSystem`).
 - **Comportamento (estilo Albion):**
   - os guardas ficam em volta do baú; atacam quem chega a **9 m** e **chamam o grupo inteiro**;
-  - perseguem até **18 m** da casa, depois desistem, voltam e **curam tudo**;
+  - perseguem até **18 m** da casa, depois desistem e voltam **curando rápido** (30% da vida por segundo, como o
+    "evadir" dos monstros do Albion — não dá para matá-los de graça puxando além do limite);
   - **4 camponeses andam sozinhos** pelo mapa (alcance de visão um pouco menor);
   - atacam **você e o invasor**. O invasor revida quando um camponês bate nele de perto e você está longe:
     dá para **atrair o invasor para os guardas**.
 - **Drop:** só **equipamento T1**, **25%** de chance por camponês. Nada mais.
 - **XP:** camponês 15 · baú comum 25 · baú raro 60.
 - Sobre eles aparece só uma **barra de vida pequena** (sem nome), e só quando estão a menos de 22 m.
+- Camponeses **não** pegam bags do chão, **não** ferem ovelhas, e as ovelhas não fogem deles.
+- Bater em camponês dá a energia "de fazenda" (a mesma das ovelhas), e matar camponês não ativa a passiva
+  de cura ao matar: isso fica para personagens de verdade.
+- Para abrir um baú, também é preciso **não ter atacado** no último meio segundo, e só um baú abre por vez.
 
 ## Onde está no código
 
