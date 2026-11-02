@@ -84,6 +84,12 @@ namespace VampWolfs
                     continue;
                 }
 
+                // peasants' shotgun pellets fly past the sheep
+                if (Owner != null && Owner.Team == Team.Peasants && target.Team == Team.Neutral)
+                {
+                    continue;
+                }
+
                 alreadyHit.Add(target);
                 ability.Hit.Apply(Owner, target);
                 if (!Vfx.SkillFx.ProjectileHit(ability, hitPoint, Direction, false)) Effects.Burst(hitPoint, 0.7f, ability.Color, 0.2f);

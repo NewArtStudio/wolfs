@@ -75,5 +75,37 @@ namespace VampWolfs
 
         [Tooltip("Average seconds between AI decisions. Lower = harder.")]
         public float AiReactionTime = 0.25f;
+
+        [Header("Peasants & chests (see docs/CAMPONESES.md)")]
+        [Tooltip("Tier of everything that drops on this map (chests and peasants). The farm is tier I.")]
+        public int MapLootTier = 1;
+
+        [Tooltip("Chests per map (each guarded by a group of peasants).")]
+        public int ChestCount = 6;
+
+        [Range(0f, 1f)]
+        [Tooltip("Chance a chest is RARE (golden: more items, better refine, takes longer to open).")]
+        public float RareChestChance = 0.25f;
+
+        [Tooltip("Seconds standing still to open a common / rare chest (damage restarts it).")]
+        public float ChestChannelTime = 3f;
+        public float RareChestChannelTime = 5f;
+
+        [Tooltip("Guards around each chest (min and max).")]
+        public int GuardsMin = 2;
+        public int GuardsMax = 4;
+
+        [Tooltip("Extra peasants walking alone around the farm.")]
+        public int RoamingPeasants = 4;
+
+        [Tooltip("Peasants attack enemies closer than this (meters).")]
+        public float PeasantAggroRange = 9f;
+
+        [Tooltip("Peasants give up the chase this far from home and walk back healing to full.")]
+        public float PeasantLeashRange = 18f;
+
+        [Range(0f, 1f)]
+        [Tooltip("Chance a dead peasant drops one equipment piece (only of MapLootTier).")]
+        public float PeasantDropChance = 0.25f;
     }
 }

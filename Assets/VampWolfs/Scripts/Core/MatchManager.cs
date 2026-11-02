@@ -33,6 +33,7 @@ namespace VampWolfs
 
         /// <summary>XP rewards [PROTÓTIPO].</summary>
         public const int XpSheep = 8, XpInvader = 120, XpExtraction = 60;
+        public const int XpPeasant = 15, XpChest = 25, XpRareChest = 60;
 
         /// <summary>XP earned by the hero this match (shown on the end screen).</summary>
         public int XpEarned { get; private set; }
@@ -106,6 +107,8 @@ namespace VampWolfs
             {
                 SpawnSheep();
             }
+
+            SpawnChestsAndPeasants();
 
             ShowBanner("Farme ovelhas e extraia no portal roxo.\nCuidado: as brumas atraem invasores.", new Color(0.85f, 0.8f, 1f), 6f);
         }
@@ -216,6 +219,52 @@ namespace VampWolfs
                 return new Vector3(x, 0f, z);
             }
             return FarthestSpawnFromPlayer();
+        }
+
+        /// <summary>
+        /// The peasants' chests (main loot of the map), each with a group of 2–4 guards around it, plus a few
+        /// peasants walking alone. Weapons and men/women are drawn at random. [PROTÓTIPO]
+        /// </summary>
+        void SpawnChestsAndPeasants()
+        {
+            System.Random rng = new System.Random(layout.Seed ^ 0x2f6b);
+            Transform parent = layout.Root;
+            if (layout.ChestSpawns != null)
+            {
+                foreach (Vector3 spot in layout.ChestSpawns)
+                {
+                    bool rare = rng.NextDouble() < Settings.RareChestChance;
+                    LootChest.Create(parent, spot, (float)rng.NextDouble() * 360f, rare, Settings);
+
+                    int guards = rng.Next(Mathf.Max(1, Settings.GuardsMin), Mathf.Max(Settings.GuardsMin, Settings.GuardsMax) + 1);
+                    if (rare) guards = Mathf.Min(guards + 1, Settings.GuardsMax + 1);   // rare chests are better guarded
+                    List<Peasant> group = new List<Peasant>();
+                    for (int g = 0; g < guards; g++)
+                    {
+                        float a = (g + (float)rng.NextDouble() * 0.5f) * Mathf.PI * 2f / guards;
+                        Vector3 pos = spot + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * 2.6f;
+                        if (layout.Grid != null && !layout.Grid.IsReachable(pos.x, pos.z)) pos = spot + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * 1.2f;
+                        if (layout.Grid != null && !layout.Grid.IsReachable(pos.x, pos.z)) pos = spot;   // the chest spot is always clear
+                        Peasant p = Peasant.Create(parent, pos, RandomWeapon(rng), rng.Next(2) == 0, true, Settings, rng);
+                        group.Add(p);
+                    }
+                    foreach (Peasant p in group) p.Group = group;
+                }
+            }
+
+            if (layout.RoamerSpawns != null)
+            {
+                foreach (Vector3 spot in layout.RoamerSpawns)
+                {
+                    Peasant.Create(parent, spot, RandomWeapon(rng), rng.Next(2) == 0, false, Settings, rng);
+                }
+            }
+        }
+
+        static PeasantWeapon RandomWeapon(System.Random rng)
+        {
+            int r = rng.Next(10);
+            return r < 4 ? PeasantWeapon.Dagger : r < 7 ? PeasantWeapon.Plow : PeasantWeapon.Shotgun;
         }
 
         /// <summary>How many sheep the farm keeps: SheepPerTile × tiles, at least SheepCount.</summary>

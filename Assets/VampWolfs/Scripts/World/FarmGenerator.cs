@@ -49,7 +49,7 @@ namespace VampWolfs
             Physics.SyncTransforms();
 
             WalkGrid grid = WalkGrid.FromPlan(plan);
-            return MakeLayout(root, plan, grid, seed);
+            return MakeLayout(root, plan, grid, seed, settings);
         }
 
         // ---------------------------------------------------------------- ground, scatter, forest, walls
@@ -147,7 +147,30 @@ namespace VampWolfs
 
         // ---------------------------------------------------------------- start positions
 
-        static FarmLayout MakeLayout(Transform root, FarmPlan plan, WalkGrid grid, int seed)
+        /// <summary>
+        /// Chests: on open reachable floor (room for the guards), not on roads/pond, ≥ 20 m from the player's
+        /// start, ≥ 12 m from the portal and spread out (≥ 22 m apart; relaxed if the map is too tight).
+        /// </summary>
+        static Vector3[] PickChestSpots(FarmPlan plan, WalkGrid grid, System.Random rng, int count, Vector3 player, Vector3 portal)
+        {
+            List<Vector3> spots = new List<Vector3>();
+            float spacing = 22f;
+            for (int attempt = 0; attempt < 1200 && spots.Count < count; attempt++)
+            {
+                if (attempt > 0 && attempt % 300 == 0) spacing *= 0.75f;
+                float x, z;
+                if (!grid.RandomPoint(rng, 6f, 3f, out x, out z)) continue;
+                Vector3 p = new Vector3(x, 0f, z);
+                if (Vector3.Distance(p, player) < 20f || Vector3.Distance(p, portal) < 12f) continue;
+                if (Covered(plan.Pieces, x, z, 1.5f, true)) continue;
+                bool farEnough = true;
+                foreach (Vector3 s in spots) if (Vector3.Distance(s, p) < spacing) { farEnough = false; break; }
+                if (farEnough) spots.Add(p);
+            }
+            return spots.ToArray();
+        }
+
+        static FarmLayout MakeLayout(Transform root, FarmPlan plan, WalkGrid grid, int seed, MatchSettings settings)
         {
             System.Random rng = new System.Random(seed * 31 + 7);
             float h = plan.HalfSize;
@@ -189,6 +212,15 @@ namespace VampWolfs
             }
             if (spawns.Count == 0) spawns.Add(new Vector3(-px, 0f, -pz));
             layout.InvaderSpawns = spawns.ToArray();
+
+            layout.ChestSpawns = PickChestSpots(plan, grid, rng, settings.ChestCount, layout.PlayerSpawn, layout.ExtractionPosition);
+            List<Vector3> roamers = new List<Vector3>();
+            for (int i = 0; i < settings.RoamingPeasants; i++)
+            {
+                float rx, rz;
+                if (grid.RandomPoint(rng, 5f, 1f, out rx, out rz) && new Vector2(rx - px, rz - pz).magnitude > 18f) roamers.Add(new Vector3(rx, 0f, rz));
+            }
+            layout.RoamerSpawns = roamers.ToArray();
             return layout;
         }
     }

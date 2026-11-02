@@ -219,7 +219,7 @@ namespace VampWolfs
             v.Part(PrimitiveType.Sphere, "EyeR", new Vector3(0.15f, 2.4f, 0.56f), Vector3.one * 0.1f, eyes, true);
         }
 
-        static CombatUnit CreateUnit(Transform parent, string displayName, Vector3 position, Team team, float maxHealth,
+        internal static CombatUnit CreateUnit(Transform parent, string displayName, Vector3 position, Team team, float maxHealth,
             float moveSpeed, float radius, float height, Color teamColor)
         {
             radius *= SizeMultiplier;

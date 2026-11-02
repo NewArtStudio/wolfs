@@ -135,7 +135,8 @@ namespace VampWolfs
 
             if (caster != null && !caster.IsDead)
             {
-                float rate = target.Team == Team.Neutral ? EnergyPerNeutralDamage : EnergyPerDamage;
+                // sheep and peasants (minor enemies) give the low "farm" energy rate, characters the full one
+                float rate = target.Team == Team.Neutral || target.Team == Team.Peasants ? EnergyPerNeutralDamage : EnergyPerDamage;
                 // Energy from the damage BEFORE the gear multiplier, so EX/ultimate pacing is the same at every tier.
                 caster.Energy.Add(dealt / Mathf.Max(0.01f, attackerMult) * rate * (1f + caster.Passives.Energy));
 
@@ -146,7 +147,7 @@ namespace VampWolfs
                 }
 
                 // Passive "heal on kill" (Imortal, Apetite Voraz…): only for characters, not sheep.
-                if (target.IsDead && target.Team != Team.Neutral && caster.Passives.KillHeal > 0f)
+                if (target.IsDead && target.Team != Team.Neutral && target.Team != Team.Peasants && caster.Passives.KillHeal > 0f)
                 {
                     caster.Health.Heal(caster.Health.MaxHealth * caster.Passives.KillHeal);
                 }
@@ -219,6 +220,12 @@ namespace VampWolfs
                 }
 
                 if (caster != null && (health == caster.Health || health.Team == caster.Team))
+                {
+                    continue;
+                }
+
+                // peasants never hurt the sheep (their own flock)
+                if (caster != null && caster.Team == Team.Peasants && health.Team == Team.Neutral)
                 {
                     continue;
                 }
